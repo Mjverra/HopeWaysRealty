@@ -1,0 +1,512 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+body {
+	background: #f4f7fb;
+}
+
+/* Header Section */
+
+header {
+	position: fixed;
+
+	top: 0;
+
+	left: 0;
+
+	width: 100%;
+
+	z-index: 999;
+}
+
+nav {
+	display: flex;
+
+	justify-content: space-between;
+
+	align-items: center;
+
+	padding: 20px 8%;
+
+	background: rgba(5, 20, 40, 0.6);
+
+	backdrop-filter: blur(15px);
+}
+
+.logo a {
+	display: flex;
+
+	align-items: center;
+
+	gap: 15px;
+
+	text-decoration: none;
+
+	color: white;
+
+	font-size: 28px;
+
+	font-weight: bold;
+}
+
+.header-logo {
+	width: 60px;
+
+	height: 60px;
+
+	border-radius: 50%;
+}
+
+nav ul {
+	display: flex;
+
+	list-style: none;
+
+	gap: 35px;
+}
+
+nav ul li a {
+	text-decoration: none;
+
+	color: white;
+
+	font-weight: bold;
+
+	transition: 0.3s;
+}
+
+nav ul li a:hover {
+	color: #f4b400;
+}
+
+.active {
+	color: #f4b400;
+}
+
+/* Hero Section */
+
+.hero {
+	height: 100vh;
+
+	background:
+		linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+		url("../images/house.avif") no-repeat center center;
+
+	background-size: cover;
+
+	background-position: center;
+
+	display: flex;
+
+	justify-content: center;
+
+	align-items: center;
+
+	text-align: center;
+}
+
+.hero-content {
+	color: white;
+
+	max-width: 900px;
+
+	padding: 40px;
+}
+
+.hero-content h1 {
+	font-size: 70px;
+
+	margin-bottom: 20px;
+}
+
+.hero-content p {
+	font-size: 22px;
+
+	line-height: 1.8;
+
+	margin-bottom: 40px;
+}
+
+.hero-buttons {
+	display: flex;
+
+	justify-content: center;
+
+	gap: 25px;
+}
+
+.btn-primary {
+	padding: 18px 40px;
+
+	background: #f4b400;
+
+	color: black;
+
+	font-weight: bold;
+
+	border-radius: 40px;
+
+	text-decoration: none;
+}
+
+.btn-secondary {
+	padding: 18px 40px;
+
+	border: 2px solid white;
+
+	color: white;
+
+	border-radius: 40px;
+
+	text-decoration: none;
+}
+
+/* ==========================================
+   HERO VIDEO
+========================================== */
+
+.properties-hero {
+	position: relative;
+	width: 100%;
+	height: 90vh;
+	overflow: hidden;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hero-video {
+	position: absolute;
+
+	top: 50%;
+	left: 50%;
+
+	min-width: 100%;
+	min-height: 100%;
+
+	width: auto;
+	height: auto;
+
+	transform: translate(-50%, -50%);
+
+	object-fit: cover;
+
+	z-index: 1;
+}
+
+.properties-hero .overlay {
+	position: relative;
+
+	z-index: 2;
+
+	width: 100%;
+	height: 100%;
+
+	background: rgba(0, 0, 0, 0.45);
+
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	align-items: center;
+
+	text-align: center;
+
+	color: white;
+
+	padding: 20px;
+}
+.properties-hero h1 {
+	font-size: 4rem;
+
+	margin-bottom: 20px;
+
+	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.properties-hero p {
+	font-size: 1.3rem;
+
+	margin-bottom: 30px;
+
+	max-width: 700px;
+
+	text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+}
+.properties-hero .btn {
+	background: #f4b400;
+
+	color: white;
+
+	padding: 14px 35px;
+
+	border-radius: 50px;
+
+	text-decoration: none;
+
+	font-weight: bold;
+
+	transition: 0.3s;
+}
+
+.properties-hero .btn:hover {
+	background: #d89d00;
+
+	transform: translateY(-3px);
+}
+/* ==========================================
+   PROPERTIES SECTION
+========================================== */
+
+.properties {
+	padding: 90px 8%;
+	background: #f5f8fc;
+}
+
+.properties h2 {
+	text-align: center;
+	font-size: 2.6rem;
+	color: #0a4d68;
+	margin-bottom: 10px;
+}
+
+.subtitle {
+	text-align: center;
+	color: #666;
+	margin-bottom: 50px;
+	font-size: 1.05rem;
+}
+
+/* ==========================================
+   PROPERTY GRID
+========================================== */
+
+.property-container {
+	display: grid;
+
+	grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+
+	gap: 35px;
+}
+
+/* ==========================================
+   PROPERTY CARD
+========================================== */
+
+.property-card {
+	background: #fff;
+
+	border-radius: 18px;
+
+	overflow: hidden;
+
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+
+	transition: 0.35s;
+}
+
+.property-card:hover {
+	transform: translateY(-12px);
+
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+.property-card img {
+	width: 100%;
+
+	height: 240px;
+
+	object-fit: cover;
+
+	transition: 0.5s;
+}
+
+.property-card:hover img {
+	transform: scale(1.08);
+}
+
+/* ==========================================
+   PROPERTY INFO
+========================================== */
+
+.property-info {
+	padding: 25px;
+}
+
+.property-info h3 {
+	color: #0a4d68;
+
+	margin-bottom: 12px;
+
+	font-size: 1.5rem;
+}
+
+.property-info p {
+	color: #666;
+
+	margin-bottom: 10px;
+
+	line-height: 1.6;
+}
+
+.property-info i {
+	color: #f4b400;
+
+	margin-right: 8px;
+}
+
+.property-info h4 {
+	color: #0a4d68;
+
+	font-size: 1.5rem;
+
+	margin: 20px 0;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.property-info .btn {
+	display: inline-block;
+
+	text-decoration: none;
+
+	background: #0a4d68;
+
+	color: #fff;
+
+	padding: 12px 30px;
+
+	border-radius: 30px;
+
+	font-weight: bold;
+
+	transition: 0.3s;
+}
+
+.property-info .btn:hover {
+	background: #f4b400;
+
+	color: #fff;
+}
+
+/* ==========================================
+   CALL TO ACTION
+========================================== */
+
+.cta {
+	background: linear-gradient(135deg, #0a4d68, #154c79);
+
+	padding: 80px 8%;
+
+	text-align: center;
+
+	color: #fff;
+}
+
+.cta h2 {
+	font-size: 2.5rem;
+
+	margin-bottom: 20px;
+}
+
+.cta p {
+	width: 70%;
+
+	margin: auto;
+
+	margin-bottom: 35px;
+
+	line-height: 1.8;
+}
+
+.cta .btn {
+	display: inline-block;
+
+	background: #f4b400;
+
+	color: #fff;
+
+	padding: 15px 40px;
+
+	border-radius: 40px;
+
+	text-decoration: none;
+
+	font-size: 18px;
+
+	transition: 0.3s;
+}
+
+.cta .btn:hover {
+	background: #fff;
+
+	color: #0a4d68;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+	background: #081e34;
+
+	color: #fff;
+
+	text-align: center;
+
+	padding: 35px 20px;
+}
+
+.footer-content h3 {
+	margin-bottom: 10px;
+
+	font-size: 1.5rem;
+}
+
+.footer-content p {
+	color: #ccc;
+
+	margin: 8px 0;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 991px) {
+	.properties-hero {
+		height: 55vh;
+	}
+
+	.properties-hero h1 {
+		font-size: 2.6rem;
+	}
+
+	.cta p {
+		width: 90%;
+	}
+}
+@media (max-width: 768px) {
+	.properties-hero {
+		height: 70vh;
+	}
+
+	.properties-hero h1 {
+		font-size: 2.3rem;
+	}
+
+	.properties-hero p {
+		font-size: 1rem;
+	}
+}

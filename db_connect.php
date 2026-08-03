@@ -1,14 +1,13 @@
 <?php
+$host = getenv("MYSQLHOST");
+$port = getenv("MYSQLPORT");
+$dbname = getenv("MYSQLDATABASE");
+$user = getenv("MYSQLUSER");
+$password = getenv("MYSQLPASSWORD");
 
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "hopeways_realty";
-
-$conn = new mysqli($host, $user, $password, $database);
+$conn = new mysqli($host, $user, $password, $dbname, $port);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Database connection failed: " . $conn->connect_error);
 }
-
 ?>

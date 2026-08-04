@@ -132,24 +132,6 @@ body {
   color: #444;
 }
 
-.card-footer {
-  padding: 20px 25px;
-  border-top: 1px solid #eee;
-  text-align: right;
-}
-
-.reply-btn {
-  background: #0a4d68;
-  color: white;
-  padding: 12px 25px;
-  text-decoration: none;
-  border-radius: 30px;
-}
-
-.reply-btn:hover {
-  background: #08384d;
-}
-
 .empty-state {
   grid-column: 1/-1;
   background: white;

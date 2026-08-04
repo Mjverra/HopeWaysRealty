@@ -185,34 +185,7 @@ if (!$result) {
         Read
     </button>
 
-</div>
 
-                    </div>
-
-                   <div class="card-footer">
-
-    <button class="read-btn"
-        data-name="<?php echo htmlspecialchars($row['fullname']); ?>"
-        data-email="<?php echo htmlspecialchars($row['email']); ?>"
-        data-phone="<?php echo htmlspecialchars($row['phone']); ?>"
-        data-subject="<?php echo htmlspecialchars($row['subject']); ?>"
-        data-date="<?php echo date('F d, Y h:i A', strtotime($row['created_at'])); ?>"
-        data-message="<?php echo htmlspecialchars($row['message']); ?>">
-
-        <i class="fas fa-book-open"></i>
-        Read
-
-    </button>
-
-    <a href="mailto:<?php echo $row['email']; ?>" class="reply-btn">
-
-        <i class="fas fa-reply"></i>
-
-        Reply
-
-    </a>
-
-</div>
                 </div>
 
             <?php } ?>

@@ -36,7 +36,7 @@ if (!$result) {
 
 <body>
 
- <body>
+ 
 
 <header class="top-header">
 
@@ -156,38 +156,63 @@ if (!$result) {
 
                         </div>
 
-                        <div class="message-area">
+                       <div class="message-area">
 
-                            <h4>
+    <h4>
+        <i class="fas fa-comment"></i>
+        Customer Message
+    </h4>
 
-                                <i class="fas fa-comment"></i>
+    <p>
+        <?php
+        $preview = strlen($row['message']) > 100
+            ? substr($row['message'], 0, 100) . "..."
+            : $row['message'];
 
-                                Customer Message
+        echo nl2br(htmlspecialchars($preview));
+        ?>
+    </p>
 
-                            </h4>
+    <button
+        class="read-btn"
+        data-name="<?php echo htmlspecialchars($row['fullname']); ?>"
+        data-email="<?php echo htmlspecialchars($row['email']); ?>"
+        data-phone="<?php echo htmlspecialchars($row['phone']); ?>"
+        data-subject="<?php echo htmlspecialchars($row['subject']); ?>"
+        data-date="<?php echo date('F d, Y h:i A', strtotime($row['created_at'])); ?>"
+        data-message="<?php echo htmlspecialchars($row['message']); ?>">
+        <i class="fas fa-book-open"></i>
+        Read
+    </button>
 
-                            <p>
-
-                                <?php echo nl2br(htmlspecialchars($row['message'])); ?>
-
-                            </p>
-
-                        </div>
+</div>
 
                     </div>
 
-                    <div class="card-footer">
+                   <div class="card-footer">
 
-                        <a href="mailto:<?php echo $row['email']; ?>" class="reply-btn">
+    <button class="read-btn"
+        data-name="<?php echo htmlspecialchars($row['fullname']); ?>"
+        data-email="<?php echo htmlspecialchars($row['email']); ?>"
+        data-phone="<?php echo htmlspecialchars($row['phone']); ?>"
+        data-subject="<?php echo htmlspecialchars($row['subject']); ?>"
+        data-date="<?php echo date('F d, Y h:i A', strtotime($row['created_at'])); ?>"
+        data-message="<?php echo htmlspecialchars($row['message']); ?>">
 
-                            <i class="fas fa-reply"></i>
+        <i class="fas fa-book-open"></i>
+        Read
 
-                            Reply
+    </button>
 
-                        </a>
+    <a href="mailto:<?php echo $row['email']; ?>" class="reply-btn">
 
-                    </div>
+        <i class="fas fa-reply"></i>
 
+        Reply
+
+    </a>
+
+</div>
                 </div>
 
             <?php } ?>
@@ -211,10 +236,77 @@ if (!$result) {
     </div>
 
 </section>
+<div id="messageModal" class="modal">
 
+    <div class="modal-box">
+
+        <span class="close-modal">&times;</span>
+
+        <h2>
+            <i class="fas fa-envelope-open-text"></i>
+            Customer Message
+        </h2>
+
+        <hr>
+
+        <p><strong>Name:</strong> <span id="mName"></span></p>
+
+        <p><strong>Email:</strong> <span id="mEmail"></span></p>
+
+        <p><strong>Phone:</strong> <span id="mPhone"></span></p>
+
+        <p><strong>Subject:</strong> <span id="mSubject"></span></p>
+
+        <p><strong>Date:</strong> <span id="mDate"></span></p>
+
+        <hr>
+
+        <div id="mMessage"></div>
+
+    </div>
+
+</div>
+<script>
+
+const modal=document.getElementById("messageModal");
+
+document.querySelectorAll(".read-btn").forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        document.getElementById("mName").textContent=btn.dataset.name;
+        document.getElementById("mEmail").textContent=btn.dataset.email;
+        document.getElementById("mPhone").textContent=btn.dataset.phone;
+        document.getElementById("mSubject").textContent=btn.dataset.subject;
+        document.getElementById("mDate").textContent=btn.dataset.date;
+        document.getElementById("mMessage").textContent=btn.dataset.message;
+
+        modal.style.display="flex";
+
+    });
+
+});
+
+document.querySelector(".close-modal").onclick=function(){
+
+    modal.style.display="none";
+
+}
+
+window.onclick=function(e){
+
+    if(e.target==modal){
+
+        modal.style.display="none";
+
+    }
+
+}
+
+</script>
 </body>
 
-</body>
+
 
 </html>
 

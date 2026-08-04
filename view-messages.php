@@ -73,7 +73,7 @@ if (!$result) {
         <h2>Inbox</h2>
 
         <span>
-            <?php echo $result->num_rows; ?> Message(s)
+            <?php echo $result->num_rows; ?> Total Message(s)
         </span>
 
     </div>
@@ -183,7 +183,6 @@ if (!$result) {
         data-date="<?php echo date('F d, Y h:i A', strtotime($row['created_at'])); ?>"
         data-message="<?php echo htmlspecialchars($row['message']); ?>">
         <i class="fas fa-book-open"></i>
-        data-read="<?php echo $row['is_read']; ?>"
         Read
     </button>
 

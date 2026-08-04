@@ -5,14 +5,16 @@ $password = getenv("MYSQLPASSWORD");
 $database = getenv("MYSQLDATABASE");
 $port = getenv("MYSQLPORT");
 
-// Connect to Railway MySQL
+echo "<pre>";
+echo "Host: $host\n";
+echo "User: $username\n";
+echo "Database: $database\n";
+echo "Port: $port\n";
+echo "</pre>";
+
 $conn = new mysqli($host, $username, $password, $database, $port);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-// Optional: Set UTF-8 encoding
-$conn->set_charset("utf8mb4");
 ?>

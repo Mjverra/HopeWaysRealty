@@ -172,18 +172,22 @@ if (!$result) {
         ?>
     </p>
 
-    <button
-        class="read-btn"
-        data-id="<?php echo $row['id']; ?>"
-        data-name="<?php echo htmlspecialchars($row['fullname']); ?>"
-        data-email="<?php echo htmlspecialchars($row['email']); ?>"
-        data-phone="<?php echo htmlspecialchars($row['phone']); ?>"
-        data-subject="<?php echo htmlspecialchars($row['subject']); ?>"
-        data-date="<?php echo date('F d, Y h:i A', strtotime($row['created_at'])); ?>"
-        data-message="<?php echo htmlspecialchars($row['message']); ?>">
-        <i class="fas fa-book-open"></i>
-        Read
-    </button>
+   <button
+    class="read-btn <?php echo $row['is_read'] ? 'unread-btn' : ''; ?>"
+    data-id="<?php echo $row['id']; ?>"
+    data-read="<?php echo $row['is_read']; ?>"
+    data-name="<?php echo htmlspecialchars($row['fullname']); ?>"
+    data-email="<?php echo htmlspecialchars($row['email']); ?>"
+    data-phone="<?php echo htmlspecialchars($row['phone']); ?>"
+    data-subject="<?php echo htmlspecialchars($row['subject']); ?>"
+    data-date="<?php echo date('F d, Y • h:i A', strtotime($row['created_at'])); ?>"
+    data-message="<?php echo htmlspecialchars($row['message']); ?>">
+
+    <i class="fas <?php echo $row['is_read'] ? 'fa-envelope' : 'fa-book-open'; ?>"></i>
+
+    <?php echo $row['is_read'] ? 'Unread' : 'Read'; ?>
+
+</button>
 
 
                 </div>

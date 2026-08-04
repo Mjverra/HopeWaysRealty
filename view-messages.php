@@ -8,7 +8,9 @@ if (!isset($_SESSION['admin'])) {
 
 include "db_connect.php";
 
-$sql = "SELECT * FROM contact_messages ORDER BY created_at DESC";
+SELECT *
+FROM contact_messages
+ORDER BY is_read ASC, created_at DESC
 $result = $conn->query($sql);
 
 if (!$result) {
@@ -243,9 +245,7 @@ if (!$result) {
     </div>
 
 </div>
-<script>
-let unreadCount = <?php echo $unread; ?>;
-</script>
+
 <script>
 
 const modal = document.getElementById("messageModal");
@@ -254,20 +254,54 @@ document.querySelectorAll(".read-btn").forEach(btn => {
 
     btn.addEventListener("click", () => {
 
-        // Mark message as read in the database
         fetch("mark-read.php", {
 
             method: "POST",
 
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+            headers:{
+                "Content-Type":"application/x-www-form-urlencoded"
             },
 
-            body: "id=" + btn.dataset.id
+            body:"id="+btn.dataset.id
+
+        })
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            btn.dataset.read = data.is_read;
+
+            const card = btn.closest(".message-card");
+
+            const badge = card.querySelector(".status-badge");
+
+            if(data.is_read == 1){
+
+                card.classList.add("read-message");
+
+                badge.classList.remove("hidden");
+
+                btn.classList.add("unread-btn");
+
+                btn.innerHTML =
+                    '<i class="fas fa-envelope"></i> Unread';
+
+            }else{
+
+                card.classList.remove("read-message");
+
+                badge.classList.add("hidden");
+
+                btn.classList.remove("unread-btn");
+
+                btn.innerHTML =
+                    '<i class="fas fa-book-open"></i> Read';
+
+            }
 
         });
 
-        // Fill the modal
         document.getElementById("mName").textContent = btn.dataset.name;
         document.getElementById("mEmail").textContent = btn.dataset.email;
         document.getElementById("mPhone").textContent = btn.dataset.phone;

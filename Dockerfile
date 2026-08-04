@@ -1,18 +1,11 @@
-FROM php:8.3-apache
+FROM php:8.3-cli
 
-# Install mysqli extension
+WORKDIR /app
+
+COPY . .
+
 RUN docker-php-ext-install mysqli
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
+EXPOSE 8080
 
-# Copy website files into Apache
-COPY . /var/www/html/
-
-# Set working directory
-WORKDIR /var/www/html
-
-# Give Apache permission to read files
-RUN chown -R www-data:www-data /var/www/html
-
-EXPOSE 80
+CMD sh -c "php -S 0.0.0.0:${PORT:-8080} -t /app"

@@ -12,6 +12,30 @@ document.querySelectorAll(".read-btn").forEach((btn) => {
         },
 
         body: "id=" + btn.dataset.id,
+      }).then((data) => {
+        btn.dataset.read = data.is_read;
+
+        const card = btn.closest(".message-card");
+
+        const badge = card.querySelector(".status-badge");
+
+        if (data.is_read == 1) {
+          btn.innerHTML = '<i class="fas fa-envelope"></i> Unread';
+
+          btn.classList.add("unread-btn");
+
+          card.classList.add("read-message");
+
+          badge.classList.remove("hidden");
+        } else {
+          btn.innerHTML = '<i class="fas fa-book-open"></i> Read';
+
+          btn.classList.remove("unread-btn");
+
+          card.classList.remove("read-message");
+
+          badge.classList.add("hidden");
+        }
       });
 
       // Mark as read locally

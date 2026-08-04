@@ -85,7 +85,7 @@ if (!$result) {
 
             <?php while ($row = $result->fetch_assoc()) { ?>
 
-                <div class="message-card">
+                <div class="message-card <?php echo $row['is_read'] ? 'read-message' : ''; ?>">
 
                     <div class="card-top">
 
@@ -99,21 +99,20 @@ if (!$result) {
 
                         <div class="user-details">
 
-                            <h3>
+    <h3>
+        <?php echo htmlspecialchars($row['fullname']); ?>
+    </h3>
 
-                                <?php echo htmlspecialchars($row['fullname']); ?>
+    <span>
+        <i class="fas fa-calendar-alt"></i>
+        <?php echo date("F d, Y • h:i A", strtotime($row['created_at'])); ?>
+    </span>
 
-                            </h3>
+    <span class="status-badge <?php echo $row['is_read'] ? '' : 'hidden'; ?>">
+        ✓ Opened
+    </span>
 
-                            <span>
-
-                                <i class="fas fa-calendar-alt"></i>
-
-                                <?php echo date("F d, Y • h:i A",strtotime($row['created_at'])); ?>
-
-                            </span>
-
-                        </div>
+</div>
 
                     </div>
 

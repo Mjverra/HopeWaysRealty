@@ -308,3 +308,71 @@ body {
 .read-message .read-btn::after {
   content: " ✓";
 }
+.unread-btn {
+  background: #28a745;
+
+  color: #fff;
+}
+
+.unread-btn:hover {
+  background: #218838;
+}
+/* ===== Read Message Style ===== */
+
+.message-card.read-message {
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.message-card.read-message .card-top {
+  background: #6c757d;
+}
+
+.message-card.read-message .avatar {
+  background: #e9ecef;
+  color: #6c757d;
+}
+
+/* Badge */
+
+.status-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  background: #d1e7dd;
+  color: #146c43;
+}
+
+.status-badge.hidden {
+  display: none;
+}
+
+/* Read Button */
+
+.read-btn {
+  background: #f4b400;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.read-btn:hover {
+  background: #d89d00;
+}
+
+/* Unread Button */
+
+.unread-btn {
+  background: #28a745;
+}
+
+.unread-btn:hover {
+  background: #218838;
+}

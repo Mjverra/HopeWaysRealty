@@ -8,9 +8,7 @@ if (!isset($_SESSION['admin'])) {
 
 include "db_connect.php";
 
-SELECT *
-FROM contact_messages
-ORDER BY is_read ASC, created_at DESC
+$sql = "SELECT * FROM contact_messages ORDER BY is_read ASC, created_at DESC";
 $result = $conn->query($sql);
 
 if (!$result) {

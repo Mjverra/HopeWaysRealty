@@ -42,7 +42,7 @@
 
     </form><br>
 
-    <a href="index.html" class="back-home">
+    <a href="index.php" class="back-home">
         <i class="fas fa-house"></i>
         Back to Home
     </a>

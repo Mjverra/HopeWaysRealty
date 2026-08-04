@@ -1,3 +1,16 @@
+<?php
+include "db_connect.php";
+
+$count = 0;
+
+$sql = "SELECT COUNT(*) AS total FROM contact_messages";
+$result = $conn->query($sql);
+
+if ($result && $row = $result->fetch_assoc()) {
+    $count = $row['total'];
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,7 +32,7 @@
     <header>
       <nav>
         <div class="logo">
-          <a href="index.html">
+          <a href="index.php">
             <img src="images/headerlogo.jpg" class="header-logo" />
 
             <span>HopeWays Realty</span>
@@ -27,7 +40,7 @@
         </div>
 
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.php">Home</a></li>
 
           <li><a href="properties.html">Properties</a></li>
 
@@ -36,9 +49,15 @@
           <li><a href="services.html">Services</a></li>
 
           <li><a href="contact.html">Contact</a></li>
-          <li>
-            <a href="view-messages.php"> <u> | Admin Access |</u> </a>
-          </li>
+          <li class="admin-nav">
+    <a href="view-messages.php">
+        <u>| Admin Access |</u>
+    </a>
+
+    <span class="message-counter">
+        Messages (<?php echo $messageCount; ?>)
+    </span>
+</li>
         </ul>
       </nav>
     </header>

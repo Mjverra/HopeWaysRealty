@@ -672,3 +672,15 @@ img {
 body {
   overflow-x: hidden;
 }
+.admin-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.message-counter {
+  color: #ffd700;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}

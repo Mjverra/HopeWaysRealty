@@ -684,3 +684,29 @@ body {
   font-weight: 600;
   white-space: nowrap;
 }
+.admin-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-link {
+  color: white;
+  text-decoration: none;
+}
+
+.notification-badge {
+  background: #e53935;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.notification-badge:hover {
+  background: #c62828;
+  transform: scale(1.05);
+}

@@ -1,7 +1,7 @@
 <?php
 include "db_connect.php";
 
-$count = 0;
+$messageCount = 0;
 
 $sql = "SELECT COUNT(*) AS total FROM contact_messages";
 $result = $conn->query($sql);
@@ -39,26 +39,27 @@ if ($result && $row = $result->fetch_assoc()) {
           </a>
         </div>
 
-        <ul>
-          <li><a href="index.php">Home</a></li>
+       <ul>
+    <li><a href="index.php">Home</a></li>
 
-          <li><a href="properties.html">Properties</a></li>
+    <li><a href="properties.html">Properties</a></li>
 
-          <li><a href="about.html">About</a></li>
+    <li><a href="about.html">About</a></li>
 
-          <li><a href="services.html">Services</a></li>
+    <li><a href="services.html">Services</a></li>
 
-          <li><a href="contact.html">Contact</a></li>
-          <li class="admin-nav">
-    <a href="view-messages.php">
+    <li><a href="contact.html">Contact</a></li>
+
+    <li class="admin-nav">
+    <a href="view-messages.php" class="admin-link">
         <u>| Admin Access |</u>
     </a>
 
-    <span class="message-counter">
-        Messages (<?php echo $messageCount; ?>)
-    </span>
+    <a href="view-messages.php" class="notification-badge">
+        🔔 <?php echo $count; ?>
+    </a>
 </li>
-        </ul>
+</ul>
       </nav>
     </header>
 

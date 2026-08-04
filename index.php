@@ -1,9 +1,13 @@
 <?php
 include "db_connect.php";
 
-$messageCount = 0;
+$count = 0;
 
-$sql = "SELECT COUNT(*) AS total FROM contact_messages";
+// Count only unread messages
+$sql = "SELECT COUNT(*) AS total
+        FROM contact_messages
+        WHERE is_read = 0";
+
 $result = $conn->query($sql);
 
 if ($result && $row = $result->fetch_assoc()) {
@@ -56,8 +60,8 @@ if ($result && $row = $result->fetch_assoc()) {
     </a>
 
     <a href="view-messages.php" class="notification-badge">
-        🔔 <?php echo $count; ?>
-    </a>
+    🔔 <span id="messageCount"><?php echo $count; ?></span>
+</a>
 </li>
 </ul>
       </nav>

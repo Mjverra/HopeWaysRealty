@@ -292,3 +292,19 @@ body {
     text-align: center;
   }
 }
+.read-message {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.read-message .card-top {
+  background: #6c757d;
+}
+
+.read-message .read-btn {
+  background: #28a745;
+}
+
+.read-message .read-btn::after {
+  content: " ✓";
+}

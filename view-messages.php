@@ -175,6 +175,7 @@ if (!$result) {
 
     <button
         class="read-btn"
+        data-id="<?php echo $row['id']; ?>"
         data-name="<?php echo htmlspecialchars($row['fullname']); ?>"
         data-email="<?php echo htmlspecialchars($row['email']); ?>"
         data-phone="<?php echo htmlspecialchars($row['phone']); ?>"
@@ -182,6 +183,7 @@ if (!$result) {
         data-date="<?php echo date('F d, Y h:i A', strtotime($row['created_at'])); ?>"
         data-message="<?php echo htmlspecialchars($row['message']); ?>">
         <i class="fas fa-book-open"></i>
+        data-read="<?php echo $row['is_read']; ?>"
         Read
     </button>
 
@@ -240,37 +242,54 @@ if (!$result) {
 
 </div>
 <script>
+let unreadCount = <?php echo $unread; ?>;
+</script>
+<script>
 
-const modal=document.getElementById("messageModal");
+const modal = document.getElementById("messageModal");
 
-document.querySelectorAll(".read-btn").forEach(btn=>{
+document.querySelectorAll(".read-btn").forEach(btn => {
 
-    btn.addEventListener("click",()=>{
+    btn.addEventListener("click", () => {
 
-        document.getElementById("mName").textContent=btn.dataset.name;
-        document.getElementById("mEmail").textContent=btn.dataset.email;
-        document.getElementById("mPhone").textContent=btn.dataset.phone;
-        document.getElementById("mSubject").textContent=btn.dataset.subject;
-        document.getElementById("mDate").textContent=btn.dataset.date;
-        document.getElementById("mMessage").textContent=btn.dataset.message;
+        // Mark message as read in the database
+        fetch("mark-read.php", {
 
-        modal.style.display="flex";
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+
+            body: "id=" + btn.dataset.id
+
+        });
+
+        // Fill the modal
+        document.getElementById("mName").textContent = btn.dataset.name;
+        document.getElementById("mEmail").textContent = btn.dataset.email;
+        document.getElementById("mPhone").textContent = btn.dataset.phone;
+        document.getElementById("mSubject").textContent = btn.dataset.subject;
+        document.getElementById("mDate").textContent = btn.dataset.date;
+        document.getElementById("mMessage").textContent = btn.dataset.message;
+
+        modal.style.display = "flex";
 
     });
 
 });
 
-document.querySelector(".close-modal").onclick=function(){
+document.querySelector(".close-modal").onclick = function () {
 
-    modal.style.display="none";
+    modal.style.display = "none";
 
 }
 
-window.onclick=function(e){
+window.onclick = function (e) {
 
-    if(e.target==modal){
+    if (e.target == modal) {
 
-        modal.style.display="none";
+        modal.style.display = "none";
 
     }
 

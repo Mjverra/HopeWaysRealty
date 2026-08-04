@@ -1,41 +1,54 @@
-const searchInput = document.getElementById("searchInput");
+const modal = document.getElementById("messageModal");
 
-searchInput.addEventListener("keyup", function () {
-  const value = this.value.toLowerCase();
+document.querySelectorAll(".read-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    // Only process unread messages
+    if (btn.dataset.read === "0") {
+      fetch("mark-read.php", {
+        method: "POST",
 
-  const cards = document.querySelectorAll(".card");
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
 
-  cards.forEach((card) => {
-    const text = card.innerText.toLowerCase();
+        body: "id=" + btn.dataset.id,
+      });
 
-    card.style.display = text.includes(value) ? "block" : "none";
+      // Mark as read locally
+      btn.dataset.read = "1";
+
+      // Update counter
+      unreadCount--;
+
+      // Optional: visually mark the card as read
+      btn.closest(".message-card").classList.add("read-message");
+
+      // Update badge if it exists on this page
+      const badge = document.getElementById("messageCount");
+
+      if (badge) {
+        badge.textContent = unreadCount;
+      }
+    }
+
+    // Open the modal
+    document.getElementById("mName").textContent = btn.dataset.name;
+    document.getElementById("mEmail").textContent = btn.dataset.email;
+    document.getElementById("mPhone").textContent = btn.dataset.phone;
+    document.getElementById("mSubject").textContent = btn.dataset.subject;
+    document.getElementById("mDate").textContent = btn.dataset.date;
+    document.getElementById("mMessage").textContent = btn.dataset.message;
+
+    modal.style.display = "flex";
   });
 });
 
-const form = document.getElementById("contactForm");
+document.querySelector(".close-modal").onclick = function () {
+  modal.style.display = "none";
+};
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value.trim();
-
-  const email = document.getElementById("email").value.trim();
-
-  const message = document.getElementById("message").value.trim();
-
-  const status = document.getElementById("status");
-
-  if (name == "" || email == "" || message == "") {
-    status.style.color = "red";
-
-    status.innerHTML = "Please complete all fields.";
-
-    return;
+window.onclick = function (e) {
+  if (e.target == modal) {
+    modal.style.display = "none";
   }
-
-  status.style.color = "green";
-
-  status.innerHTML = "Thank you! Your inquiry has been submitted.";
-
-  form.reset();
-});
+};

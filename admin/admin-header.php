@@ -30,8 +30,8 @@
         Messages
     </a>
 
-    <a href="manage-properties.php"
-       class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'manage-properties.php' ? 'active' : ''; ?>">
+    <a href="admin/manage-properties.php"
+       class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'admin/manage-properties.php' ? 'active' : ''; ?>">
         <i class="fas fa-house"></i>
         Properties
     </a>

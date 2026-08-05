@@ -18,7 +18,7 @@ include "../includes/db_connect.php";
     <title>Add Property | HopeWays Realty</title>
 
     <link rel="stylesheet" href="css/messages.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="../css/admin.css">
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -37,7 +37,7 @@ include "../includes/db_connect.php";
             Add New Property
         </h2>
 
-        <a href="manage-properties.php" class="btn btn-secondary">
+        <a href="admin/manage-properties.php" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i>
             Back
         </a>
@@ -272,7 +272,7 @@ Water Tank"></textarea>
 
             <div class="form-buttons">
 
-                <a href="manage-properties.php" class="btn btn-secondary">
+                <a href="admin/manage-properties.php" class="btn btn-secondary">
                     <i class="fas fa-xmark"></i>
                     Cancel
                 </a>

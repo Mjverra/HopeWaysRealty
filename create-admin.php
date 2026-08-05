@@ -1,5 +1,5 @@
 <?php
-include "includes/db_connect.php";
+include "../includes/db_connect.php";
 
 $username = "admin";
 $password = password_hash("admin123", PASSWORD_DEFAULT);

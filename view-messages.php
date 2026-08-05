@@ -45,8 +45,8 @@ if (!$result) {
         <div>
 
             <h1>
-                <i class="fas fa-envelope-open-text"></i>
-                Customer Messages
+                <i class="fas fa-user-shield"></i>
+                HopeWays Realty Admin
             </h1>
 
             <p>
@@ -58,22 +58,23 @@ if (!$result) {
 
         <div class="header-actions">
 
-    <a href="view-messages.php" class="nav-btn active">
-        <i class="fas fa-envelope"></i>
-        Messages
-    </a>
+            <a href="view-messages.php" class="nav-btn active">
+                <i class="fas fa-envelope"></i>
+                Messages
+            </a>
 
-    <a href="manage-properties.php" class="nav-btn">
-        <i class="fas fa-building"></i>
-        Properties
-    </a>
+            <a href="manage-properties.php" class="nav-btn">
+                <i class="fas fa-building"></i>
+                Properties
+            </a>
 
-    <a href="logout.php" class="logout-btn">
-        <i class="fas fa-right-from-bracket"></i>
-        Logout
-    </a>
+            <a href="logout.php" class="logout-btn">
+                <i class="fas fa-right-from-bracket"></i>
+                Logout
+            </a>
 
-</div>
+        </div>
+
     </div>
 
 </header>
@@ -83,7 +84,10 @@ if (!$result) {
 
     <div class="dashboard-title">
 
-        <h2>Inbox</h2>
+        <h2>
+    <i class="fas fa-envelope-open-text"></i>
+    Customer Messages
+</h2>
 
         <span>
             <?php echo $result->num_rows; ?> Total Message(s)

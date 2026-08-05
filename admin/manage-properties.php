@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-include "includes/db_connect.php";
+include "../includes/db_connect.php";
 
 /* Get all properties */
 
@@ -15,7 +15,7 @@ $sql = "SELECT * FROM properties ORDER BY created_at DESC";
 $result = $conn->query($sql);
 ?>
 <link rel="stylesheet" href="css/messages.css">
-<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="../css/admin.css">
 <!DOCTYPE html>
 <html lang="en">
 

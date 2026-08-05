@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-include "includes/db_connect.php";
+include "../includes/db_connect.php";
 
 $sql = "SELECT * FROM contact_messages ORDER BY is_read ASC, created_at DESC";
 $result = $conn->query($sql);

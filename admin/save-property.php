@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-include "includes/db_connect.php";
+include "../includes/db_connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: add-property.php");

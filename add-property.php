@@ -26,206 +26,277 @@ include "db_connect.php";
 
 <body>
 
-    <?php include "admin-header.php"; ?>
+<?php include "admin-header.php"; ?>
 
-    <div class="admin-container">
+<div class="admin-container">
 
-        <div class="page-title">
-            <h2>
-                <i class="fas fa-plus-circle"></i>
-                Add New Property
-            </h2>
+    <div class="page-title">
 
-            <a href="manage-properties.php" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i>
-                Back
-            </a>
+        <h2>
+            <i class="fas fa-plus-circle"></i>
+            Add New Property
+        </h2>
+
+        <a href="manage-properties.php" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
+            Back
+        </a>
+
+    </div>
+
+    <form action="save-property.php" method="POST" enctype="multipart/form-data">
+
+        <!-- ================= PROPERTY INFORMATION ================= -->
+
+        <div class="admin-card">
+
+            <h3 class="section-title">
+                <i class="fas fa-house"></i>
+                Property Information
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Property Title <span class="required">*</span></label>
+                    <input type="text" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Property Type <span class="required">*</span></label>
+                    <select name="property_type" required>
+                        <option value="">Select Property Type</option>
+                        <option>House & Lot</option>
+                        <option>Townhouse</option>
+                        <option>Residential Lot</option>
+                        <option>Commercial Lot</option>
+                        <option>Agricultural Land</option>
+                        <option>Condominium</option>
+                        <option>Office Space</option>
+                        <option>Warehouse</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Location <span class="required">*</span></label>
+                    <input type="text" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Price <span class="required">*</span></label>
+                    <input
+                        type="text"
+                        name="price"
+                        placeholder="Example: ₱10,000,000"
+                        required>
+                </div>
+
+            </div>
+
         </div>
 
-        <form action="save-property.php" method="POST" enctype="multipart/form-data">
+        <!-- ================= PROPERTY DETAILS ================= -->
 
-            <!-- ================= PROPERTY INFORMATION ================= -->
+        <div class="admin-card">
 
-            <div class="admin-card">
+            <h3 class="section-title">
+                <i class="fas fa-circle-info"></i>
+                Property Details
+            </h3>
 
-                <h3 class="section-title">
-                    <i class="fas fa-house"></i>
-                    Property Information
-                </h3>
-
-                <div class="form-grid">
-
-                    <div class="form-group">
-                        <label>Property Title</label>
-                        <input type="text" name="title" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Property Type</label>
-                        <select name="property_type" required>
-                            <option value="">Select Property Type</option>
-                            <option>House & Lot</option>
-                            <option>Townhouse</option>
-                            <option>Residential Lot</option>
-                            <option>Commercial Lot</option>
-                            <option>Agricultural Land</option>
-                            <option>Condominium</option>
-                            <option>Office Space</option>
-                            <option>Warehouse</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label>Location</label>
-                        <input type="text" name="location" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input type="text" name="price" required>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- ================= PROPERTY DETAILS ================= -->
-
-            <div class="admin-card">
-
-                <h3 class="section-title">
-                    Property Details
-                </h3>
-
-                <div class="form-grid">
-
-                    <div class="form-group">
-                        <label>Bedrooms</label>
-                        <input type="number" name="bedrooms" value="0" min="0">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Bathrooms</label>
-                        <input type="number" name="bathrooms" value="0" min="0">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Garage</label>
-                        <input type="text" name="garage">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Lot Area</label>
-                        <input type="text" name="lot_area">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Floor Area</label>
-                        <input type="text" name="floor_area">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Furnishing</label>
-                        <select name="furnishing">
-                            <option value="">Select Furnishing</option>
-                            <option>Fully Furnished</option>
-                            <option>Semi-Furnished</option>
-                            <option>Bare</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Status</label>
-                        <select name="status" required>
-                            <option>Available</option>
-                            <option>Reserved</option>
-                            <option>Sold</option>
-                        </select>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- ================= DESCRIPTION ================= -->
-
-            <div class="admin-card">
-
-                <h3 class="section-title">
-                    Description
-                </h3>
+            <div class="form-grid">
 
                 <div class="form-group">
-                    <textarea
-                        name="description"
-                        rows="6"
-                        placeholder="Enter the complete property description..."></textarea>
+                    <label>Bedrooms</label>
+                    <input type="number" name="bedrooms" value="0" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Bathrooms</label>
+                    <input type="number" name="bathrooms" value="0" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Garage</label>
+                    <input
+                        type="text"
+                        name="garage"
+                        placeholder="Example: 1 Car">
+                </div>
+
+                <div class="form-group">
+                    <label>Lot Area</label>
+                    <input
+                        type="text"
+                        name="lot_area"
+                        placeholder="Example: 360 sqm">
+                </div>
+
+                <div class="form-group">
+                    <label>Floor Area</label>
+                    <input
+                        type="text"
+                        name="floor_area"
+                        placeholder="Example: 163.5 sqm">
+                </div>
+
+                <div class="form-group">
+                    <label>Furnishing</label>
+                    <select name="furnishing">
+                        <option value="">Select Furnishing</option>
+                        <option>Fully Furnished</option>
+                        <option>Semi-Furnished</option>
+                        <option>Bare</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Status <span class="required">*</span></label>
+                    <select name="status" required>
+                        <option>Available</option>
+                        <option>Reserved</option>
+                        <option>Sold</option>
+                    </select>
                 </div>
 
             </div>
 
-            <!-- ================= AMENITIES ================= -->
+        </div>
 
-            <div class="admin-card">
+        <!-- ================= DESCRIPTION ================= -->
 
-                <h3 class="section-title">
-                    Amenities
-                </h3>
+        <div class="admin-card">
 
-                <div class="form-group">
-                    <textarea
-                        name="amenities"
-                        rows="5"
-                        placeholder="Example:
+            <h3 class="section-title">
+                <i class="fas fa-file-lines"></i>
+                Property Description
+            </h3>
+
+            <div class="form-group">
+                <textarea
+                    name="description"
+                    rows="6"
+                    placeholder="Enter the complete property description..."></textarea>
+            </div>
+
+        </div>
+
+        <!-- ================= AMENITIES ================= -->
+
+        <div class="admin-card">
+
+            <h3 class="section-title">
+                <i class="fas fa-star"></i>
+                Amenities
+            </h3>
+
+            <div class="form-group">
+                <textarea
+                    name="amenities"
+                    rows="5"
+                    placeholder="Example:
 Garage
 Garden
 Balcony
 Fully Furnished
 Water Tank"></textarea>
-                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= LOCATION & COVER IMAGE ================= -->
+
+        <div class="admin-card">
+
+            <h3 class="section-title">
+                <i class="fas fa-location-dot"></i>
+                Location & Cover Image
+            </h3>
+
+            <div class="form-group">
+                <label>Google Maps URL</label>
+                <input
+                    type="url"
+                    name="map_url"
+                    placeholder="https://www.google.com/maps?q=...">
+            </div>
+
+            <br>
+
+            <div class="form-group">
+
+                <label>Property Cover Image <span class="required">*</span></label>
+
+                <input
+                    type="file"
+                    id="coverImage"
+                    name="cover_image"
+                    accept="image/*"
+                    required>
+
+                <br><br>
+
+                <img
+                    id="previewImage"
+                    src=""
+                    alt="Cover Image Preview"
+                    style="
+                        display:none;
+                        width:100%;
+                        max-width:350px;
+                        border-radius:12px;
+                        border:2px solid #ddd;
+                        box-shadow:0 4px 12px rgba(0,0,0,.15);">
 
             </div>
 
-            <!-- ================= LOCATION & IMAGE ================= -->
+            <div class="form-buttons">
 
-            <div class="admin-card">
+                <a href="manage-properties.php" class="btn btn-secondary">
+                    <i class="fas fa-xmark"></i>
+                    Cancel
+                </a>
 
-                <div class="form-group">
-                    <label>Google Maps URL</label>
-                    <input
-                        type="url"
-                        name="map_url"
-                        placeholder="https://www.google.com/maps?q=...">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label>Cover Image</label>
-                    <input
-                        type="file"
-                        name="cover_image"
-                        accept="image/*"
-                        required>
-                </div>
-
-                <br>
-
-                <div style="text-align:center;">
-
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-floppy-disk"></i>
-                        Save Property
-                    </button>
-
-                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-floppy-disk"></i>
+                    Save Property
+                </button>
 
             </div>
 
-        </form>
+        </div>
 
-    </div>
+    </form>
+
+</div>
+
+<script>
+document.getElementById("coverImage").addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (file) {
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            const preview = document.getElementById("previewImage");
+
+            preview.src = e.target.result;
+            preview.style.display = "block";
+
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+});
+
+document.querySelector("form").addEventListener("submit", function () {
+    document.querySelector("button[type='submit']").disabled = true;
+});
+</script>
 
 </body>
-
 </html>

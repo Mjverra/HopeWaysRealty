@@ -194,3 +194,9 @@ body {
     gap: 15px;
   }
 }
+/* Required field */
+
+.required {
+  color: #dc3545;
+  font-weight: bold;
+}

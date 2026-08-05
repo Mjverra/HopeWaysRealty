@@ -520,3 +520,34 @@ td {
 
   color: #000;
 }
+/* ==========================================
+   PROPERTY MANAGEMENT
+========================================== */
+
+.property-list {
+  margin-top: 30px;
+}
+
+.add-btn {
+  background: #0f4c75;
+
+  color: white;
+
+  text-decoration: none;
+
+  padding: 12px 22px;
+
+  border-radius: 30px;
+
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  background: #08324f;
+}
+
+.add-btn i {
+  margin-right: 8px;
+}

@@ -16,26 +16,32 @@
 
         </div>
 
-        <div class="header-actions">
+       <div class="header-actions">
 
-            <a href="view-messages.php"
-               class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'view-messages.php' ? 'active' : ''; ?>">
-                <i class="fas fa-envelope"></i>
-                Messages
-            </a>
+    <a href="admin-dashboard.php"
+       class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'admin-dashboard.php' ? 'active' : ''; ?>">
+        <i class="fas fa-gauge-high"></i>
+        Dashboard
+    </a>
 
-            <a href="manage-properties.php"
-               class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'manage-properties.php' ? 'active' : ''; ?>">
-                <i class="fas fa-house"></i>
-                Properties
-            </a>
+    <a href="view-messages.php"
+       class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'view-messages.php' ? 'active' : ''; ?>">
+        <i class="fas fa-envelope"></i>
+        Messages
+    </a>
 
-            <a href="logout.php" class="logout-btn">
-                <i class="fas fa-right-from-bracket"></i>
-                Logout
-            </a>
+    <a href="manage-properties.php"
+       class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'manage-properties.php' ? 'active' : ''; ?>">
+        <i class="fas fa-house"></i>
+        Properties
+    </a>
 
-        </div>
+    <a href="logout.php" class="logout-btn">
+        <i class="fas fa-right-from-bracket"></i>
+        Logout
+    </a>
+
+</div>
 
     </div>
 

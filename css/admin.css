@@ -1,0 +1,196 @@
+/* ==========================================================
+   HOPEWAYS REALTY ADMIN PANEL
+   admin.css
+========================================================== */
+
+/* Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
+  background: #f4f7fb;
+
+  color: #333;
+}
+
+/* Main Container */
+
+.admin-container {
+  width: 95%;
+
+  max-width: 1300px;
+
+  margin: 40px auto;
+}
+
+/* Page Title */
+
+.page-title {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+.page-title h2 {
+  font-size: 28px;
+
+  color: #0f4c75;
+}
+
+/* Card */
+
+.admin-card {
+  background: #fff;
+
+  border-radius: 12px;
+
+  padding: 25px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  margin-bottom: 25px;
+}
+
+/* Section Title */
+
+.section-title {
+  font-size: 20px;
+
+  color: #0f4c75;
+
+  margin-bottom: 20px;
+}
+
+/* Form Grid */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+/* Form Group */
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #0f4c75;
+
+  outline: none;
+
+  box-shadow: 0 0 6px rgba(15, 76, 117, 0.2);
+}
+
+.form-group textarea {
+  resize: vertical;
+
+  min-height: 140px;
+}
+
+/* Full Width */
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Buttons */
+
+.btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 12px 24px;
+
+  border: none;
+
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: #0f4c75;
+
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #08324f;
+}
+
+.btn-secondary {
+  background: #6c757d;
+
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #545b62;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+}

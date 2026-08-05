@@ -55,11 +55,11 @@ if ($result && $row = $result->fetch_assoc()) {
     <li><a href="contact.html">Contact</a></li>
 
     <li class="admin-nav">
-    <a href="admin/view-messages.php" class="admin-link">
+    <a href="view-messages.php" class="admin-link">
         <u>| Admin Access |</u>
     </a>
 
-    <a href="admin/view-messages.php" class="notification-badge">
+    <a href="view-messages.php" class="notification-badge">
     🔔 <span id="messageCount"><?php echo $count; ?></span>
 </a>
 </li>

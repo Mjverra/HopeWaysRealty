@@ -376,3 +376,18 @@ body {
 .unread-btn:hover {
   background: #218838;
 }
+.delete-btn {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 10px 18px;
+  background: #dc3545;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background: #b02a37;
+}

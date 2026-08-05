@@ -188,6 +188,14 @@ if (!$result) {
     <?php echo $row['is_read'] ? 'Unread' : 'Read'; ?>
 
 </button>
+<a
+    href="delete-message.php?id=<?php echo $row['id']; ?>"
+    class="delete-btn"
+    onclick="return confirm('Are you sure you want to delete this message?');">
+
+    <i class="fas fa-trash"></i> Delete
+
+</a>
 
 
                 </div>

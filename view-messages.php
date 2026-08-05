@@ -56,11 +56,24 @@ if (!$result) {
 
         </div>
 
-        <a href="logout.php" class="logout-btn">
-            <i class="fas fa-right-from-bracket"></i>
-            Logout
-        </a>
+        <div class="header-actions">
 
+    <a href="view-messages.php" class="nav-btn active">
+        <i class="fas fa-envelope"></i>
+        Messages
+    </a>
+
+    <a href="manage-properties.php" class="nav-btn">
+        <i class="fas fa-building"></i>
+        Properties
+    </a>
+
+    <a href="logout.php" class="logout-btn">
+        <i class="fas fa-right-from-bracket"></i>
+        Logout
+    </a>
+
+</div>
     </div>
 
 </header>

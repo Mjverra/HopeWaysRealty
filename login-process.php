@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "db_connect.php";
+include "includes/db_connect.php";
 
 $username = $_POST['username'];
 $password = $_POST['password'];

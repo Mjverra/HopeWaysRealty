@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-include "db_connect.php";
+include "includes/db_connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: add-property.php");
@@ -117,7 +117,7 @@ $stmt->close();
    CREATE PROPERTY FOLDER
 ====================================== */
 
-$propertyFolder = "uploads/properties/" . $propertyId . "/";
+$propertyFolder = __DIR__ . "/uploads/properties/" . $propertyId . "/";
 
 if (!is_dir($propertyFolder)) {
 
@@ -162,16 +162,33 @@ if (
 
     }
 
-    $coverImagePath = $propertyFolder . "cover." . $extension;
+    $coverFile = "cover." . $extension;
+
+$coverImagePath = $propertyFolder . $coverFile;
 
     if (!move_uploaded_file(
-        $_FILES['cover_image']['tmp_name'],
-        $coverImagePath
-    )) {
+    $_FILES['cover_image']['tmp_name'],
+    $coverImagePath
+)) {
 
-        die("Failed to upload cover image.");
+    echo "<h2>UPLOAD FAILED</h2>";
 
-    }
+    echo "<pre>";
+    print_r($_FILES['cover_image']);
+    echo "</pre>";
+
+    echo "<p><strong>Destination:</strong> " . $coverImagePath . "</p>";
+
+    echo "<p><strong>Folder Exists:</strong> ";
+    var_dump(is_dir($propertyFolder));
+    echo "</p>";
+
+    echo "<p><strong>Folder Writable:</strong> ";
+    var_dump(is_writable($propertyFolder));
+    echo "</p>";
+
+    die();
+}
 
 }
 /* ======================================
@@ -184,12 +201,13 @@ $update = $conn->prepare(
      WHERE id = ?"
 );
 
+$dbImagePath = "uploads/properties/" . $propertyId . "/" . $coverFile;
+
 $update->bind_param(
     "si",
-    $coverImagePath,
+    $dbImagePath,
     $propertyId
 );
-
 $update->execute();
 
 $update->close();

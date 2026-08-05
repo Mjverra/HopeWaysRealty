@@ -16,7 +16,8 @@ if($result->num_rows == 1){
 
     $_SESSION['admin'] = $username;
 
-    header("Location: view-messages.php");
+    header("Location: admin/view-messages.php");
+exit();
 
 }else{
 

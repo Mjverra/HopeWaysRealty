@@ -434,3 +434,23 @@ footer {
   background: #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
 }
+/* Inquiry Header */
+
+.inquiry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.inquiry-header h2 {
+  margin: 0;
+  border-left: 6px solid #f4b400;
+  padding-left: 15px;
+  color: #0a4d68;
+}
+
+.inquiry-header .btn {
+  padding: 12px 28px;
+}

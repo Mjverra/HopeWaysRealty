@@ -193,3 +193,7 @@ $update->bind_param(
 $update->execute();
 
 $update->close();
+$conn->close();
+
+header("Location: manage-properties.php?success=1");
+exit();

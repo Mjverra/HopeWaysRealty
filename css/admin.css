@@ -298,3 +298,16 @@ body {
 .btn-danger:hover {
   background: #bb2d3b;
 }
+.success-message {
+  background: #d1fae5;
+
+  color: #065f46;
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  margin: 20px 0;
+
+  font-weight: 600;
+}

@@ -37,6 +37,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <body>
 
 <?php include "admin-header.php"; ?>
+<?php if(isset($_GET['deleted'])){ ?>
+
+<div class="success-message">
+
+    <i class="fas fa-circle-check"></i>
+
+    Property deleted successfully.
+
+</div>
+
+<?php } ?>
 
 <section class="dashboard">
 

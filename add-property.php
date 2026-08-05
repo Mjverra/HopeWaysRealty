@@ -249,6 +249,26 @@ Water Tank"></textarea>
                         box-shadow:0 4px 12px rgba(0,0,0,.15);">
 
             </div>
+            <hr style="margin:25px 0;">
+
+<div class="form-group">
+
+    <label>Property Gallery Images</label>
+
+    <input
+        type="file"
+        id="galleryImages"
+        name="gallery_images[]"
+        accept="image/*"
+        multiple>
+
+    <small>
+        You can select multiple images (Ctrl + Click or Shift + Click).
+    </small>
+
+</div>
+
+<div id="galleryPreview" class="gallery-preview"></div>
 
             <div class="form-buttons">
 
@@ -295,6 +315,32 @@ document.getElementById("coverImage").addEventListener("change", function () {
 
 document.querySelector("form").addEventListener("submit", function () {
     document.querySelector("button[type='submit']").disabled = true;
+});
+const galleryInput = document.getElementById("galleryImages");
+const galleryPreview = document.getElementById("galleryPreview");
+
+galleryInput.addEventListener("change", function () {
+
+    galleryPreview.innerHTML = "";
+
+    [...this.files].forEach(file => {
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            const img = document.createElement("img");
+
+            img.src = e.target.result;
+
+            galleryPreview.appendChild(img);
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
 });
 </script>
 

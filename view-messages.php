@@ -38,46 +38,7 @@ if (!$result) {
 
  
 
-<header class="top-header">
-
-    <div class="header-content">
-
-        <div>
-
-            <h1>
-                <i class="fas fa-user-shield"></i>
-                HopeWays Realty Admin
-            </h1>
-
-            <p>
-                Welcome,
-                <strong><?php echo $_SESSION['admin']; ?></strong>
-            </p>
-
-        </div>
-
-        <div class="header-actions">
-
-            <a href="view-messages.php" class="nav-btn active">
-                <i class="fas fa-envelope"></i>
-                Messages
-            </a>
-
-            <a href="manage-properties.php" class="nav-btn">
-                <i class="fas fa-building"></i>
-                Properties
-            </a>
-
-            <a href="logout.php" class="logout-btn">
-                <i class="fas fa-right-from-bracket"></i>
-                Logout
-            </a>
-
-        </div>
-
-    </div>
-
-</header>
+<?php include 'admin-header.php'; ?>
 
 
 <section class="dashboard">

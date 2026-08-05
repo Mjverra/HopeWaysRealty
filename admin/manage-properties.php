@@ -14,7 +14,7 @@ $sql = "SELECT * FROM properties ORDER BY created_at DESC";
 
 $result = $conn->query($sql);
 ?>
-<link rel="stylesheet" href="css/messages.css">
+<link rel="stylesheet" href="../css/messages.css">
 <link rel="stylesheet" href="../css/admin.css">
 <!DOCTYPE html>
 <html lang="en">

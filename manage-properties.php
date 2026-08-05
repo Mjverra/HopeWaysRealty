@@ -70,7 +70,96 @@ if($result->num_rows > 0){
 
 ?>
 
-<!-- property card goes here -->
+<div class="property-card-admin">
+
+    <div class="property-image">
+
+        <?php if(!empty($row['cover_image'])){ ?>
+
+            <img
+                src="<?php echo htmlspecialchars($row['cover_image']); ?>"
+                alt="Property">
+
+        <?php }else{ ?>
+
+            <img
+                src="images/headerlogo.jpg"
+                alt="No Image">
+
+        <?php } ?>
+
+    </div>
+
+    <div class="property-details">
+
+        <h3>
+            <?php echo htmlspecialchars($row['title']); ?>
+        </h3>
+
+        <p>
+
+            <i class="fas fa-location-dot"></i>
+
+            <?php echo htmlspecialchars($row['location']); ?>
+
+        </p>
+
+        <p>
+
+            <strong>Type:</strong>
+
+            <?php echo htmlspecialchars($row['property_type']); ?>
+
+        </p>
+
+        <p>
+
+            <strong>Price:</strong>
+
+            <?php echo htmlspecialchars($row['price']); ?>
+
+        </p>
+
+        <p>
+
+            <strong>Status:</strong>
+
+            <span class="status">
+
+                <?php echo htmlspecialchars($row['status']); ?>
+
+            </span>
+
+        </p>
+
+        <div class="property-actions">
+
+            <a
+                href="edit-property.php?id=<?php echo $row['id']; ?>"
+                class="btn btn-primary">
+
+                <i class="fas fa-pen"></i>
+
+                Edit
+
+            </a>
+
+            <a
+                href="delete-property.php?id=<?php echo $row['id']; ?>"
+                class="btn btn-danger"
+                onclick="return confirm('Delete this property?');">
+
+                <i class="fas fa-trash"></i>
+
+                Delete
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 <?php
 

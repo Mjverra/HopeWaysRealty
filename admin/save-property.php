@@ -213,5 +213,5 @@ $update->execute();
 $update->close();
 $conn->close();
 
-header("Location: admin/manage-properties.php?success=1");
+header("Location: manage-properties.php?success=1");
 exit();

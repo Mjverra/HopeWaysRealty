@@ -93,8 +93,8 @@ if (
         die("Invalid cover image format.");
     }
 
-    if ($_FILES['cover_image']['size'] > 5 * 1024 * 1024) {
-        die("Cover image exceeds 5MB.");
+    if ($_FILES['cover_image']['size'] > 10 * 1024 * 1024) {
+        die("Cover image exceeds 10MB.");
     }
 
     $mime = mime_content_type($_FILES['cover_image']['tmp_name']);

@@ -46,7 +46,7 @@ if ($result && $row = $result->fetch_assoc()) {
        <ul>
     <li><a href="index.php">Home</a></li>
 
-    <li><a href="properties.html">Properties</a></li>
+    <li><a href="properties.php">Properties</a></li>
 
     <li><a href="about.html">About</a></li>
 
@@ -78,7 +78,7 @@ if ($result && $row = $result->fetch_assoc()) {
           </p>
 
           <div class="hero-buttons">
-            <a href="properties.html" class="btn-primary">
+            <a href="properties.php" class="btn-primary">
               Browse Properties
             </a>
 

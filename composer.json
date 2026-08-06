@@ -1,0 +1,8 @@
+{
+    "name": "mjverra/hopewaysrealty",
+    "description": "HopeWays Realty Website",
+    "type": "project",
+    "require": {
+        "cloudinary/cloudinary_php": "^3.1"
+    }
+}

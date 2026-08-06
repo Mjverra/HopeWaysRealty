@@ -7,6 +7,7 @@ if (!isset($_SESSION['admin'])) {
 }
 
 include "../includes/db_connect.php";
+require_once "../includes/cloudinary.php";
 
 /* ==============================
    CHECK PROPERTY ID
@@ -63,15 +64,7 @@ $amenities      = trim($_POST['amenities']);
 $map_url        = trim($_POST['map_url']);
 
 $cover_image = $property['cover_image'];
-/* ==============================
-   PROPERTY FOLDER
-============================== */
 
-$propertyFolder = __DIR__ . "/uploads/properties/" . $id . "/";
-
-if (!is_dir($propertyFolder)) {
-    mkdir($propertyFolder, 0777, true);
-}
 
 /* ==============================
    REPLACE COVER IMAGE
@@ -93,8 +86,8 @@ if (
         die("Invalid cover image format.");
     }
 
-    if ($_FILES['cover_image']['size'] > 9 * 1024 * 1024) {
-        die("Cover image exceeds 9MB.");
+    if ($_FILES['cover_image']['size'] > 10 * 1024 * 1024) {
+        die("Cover image exceeds 10MB.");
     }
 
     $mime = mime_content_type($_FILES['cover_image']['tmp_name']);
@@ -103,22 +96,26 @@ if (
         die("Invalid image.");
     }
 
-    $coverFile = "cover." . $extension;
+    try {
 
-    $coverImagePath = $propertyFolder . $coverFile;
-
-    if (
-        move_uploaded_file(
+        $upload = $cloudinary->uploadApi()->upload(
             $_FILES['cover_image']['tmp_name'],
-            $coverImagePath
-        )
-    ) {
+            [
+                "folder" => "hopeways/properties",
+                "public_id" => "property_" . $id . "_cover",
+                "overwrite" => true,
+                "resource_type" => "image"
+            ]
+        );
 
-        // Save relative path into database
-        $cover_image = "uploads/properties/" . $id . "/" . $coverFile;
+        $cover_image = $upload->offsetGet('secure_url');
+
+    } catch (Exception $e) {
+
+        die("Cloudinary Upload Failed:<br>" . $e->getMessage());
+
     }
 }
-
 /* ==============================
    UPDATE PROPERTY DETAILS
 ============================== */

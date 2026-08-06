@@ -62,6 +62,61 @@ $map_url        = trim($_POST['map_url']);
 
 $cover_image = $property['cover_image'];
 /* ==============================
+   PROPERTY FOLDER
+============================== */
+
+$propertyFolder = "../uploads/properties/property-" . $id . "/";
+
+if (!is_dir($propertyFolder)) {
+    mkdir($propertyFolder, 0777, true);
+}
+
+/* ==============================
+   REPLACE COVER IMAGE
+============================== */
+
+if (
+    isset($_FILES['cover_image']) &&
+    $_FILES['cover_image']['error'] == 0
+) {
+
+    $allowedExtensions = ['jpg','jpeg','png','webp'];
+
+    $extension = strtolower(pathinfo(
+        $_FILES['cover_image']['name'],
+        PATHINFO_EXTENSION
+    ));
+
+    if (!in_array($extension, $allowedExtensions)) {
+        die("Invalid cover image format.");
+    }
+
+    if ($_FILES['cover_image']['size'] > 5 * 1024 * 1024) {
+        die("Cover image exceeds 5MB.");
+    }
+
+    $mime = mime_content_type($_FILES['cover_image']['tmp_name']);
+
+    if (strpos($mime, "image/") !== 0) {
+        die("Invalid image.");
+    }
+
+    $coverFile = "cover." . $extension;
+
+    $coverImagePath = $propertyFolder . $coverFile;
+
+    if (
+        move_uploaded_file(
+            $_FILES['cover_image']['tmp_name'],
+            $coverImagePath
+        )
+    ) {
+
+        // Save relative path into database
+        $cover_image = "uploads/properties/property-" . $id . "/" . $coverFile;
+    }
+}
+/* ==============================
    UPDATE PROPERTY DETAILS
 ============================== */
 

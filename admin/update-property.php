@@ -116,9 +116,7 @@ if (
         $cover_image = "uploads/properties/" . $id . "/" . $coverFile;
     }
 }
-echo "<pre>";
-echo $cover_image;
-die();
+
 /* ==============================
    UPDATE PROPERTY DETAILS
 ============================== */

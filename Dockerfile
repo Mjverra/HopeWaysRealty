@@ -6,6 +6,9 @@ COPY . .
 
 RUN docker-php-ext-install mysqli
 
+# Copy php.ini
+RUN cp /app/php.ini /usr/local/etc/php/php.ini
+
 EXPOSE 8080
 
-CMD sh -c "php -S 0.0.0.0:${PORT:-8080} -t /app"
+CMD ["php", "-c", "/usr/local/etc/php/php.ini", "-S", "0.0.0.0:8080", "-t", "/app"]

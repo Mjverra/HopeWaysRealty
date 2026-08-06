@@ -37,9 +37,7 @@ if ($result->num_rows == 0) {
 $property = $result->fetch_assoc();
 $stmt->close();
 
-echo "<pre>";
-print_r($_FILES['cover_image']);
-die();
+
 
 /* ==============================
    GET FORM VALUES

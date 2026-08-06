@@ -11,6 +11,7 @@ exit();
 }
 
 include "../includes/db_connect.php";
+require_once "../includes/cloudinary.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: add-property.php");
@@ -113,22 +114,12 @@ if (!$stmt->execute()) {
 $propertyId = $conn->insert_id;
 
 $stmt->close();
+
 /* ======================================
-   CREATE PROPERTY FOLDER
+   UPLOAD COVER IMAGE TO CLOUDINARY
 ====================================== */
 
-$propertyFolder = __DIR__ . "/uploads/properties/" . $propertyId . "/";
-
-if (!is_dir($propertyFolder)) {
-
-    mkdir($propertyFolder, 0777, true);
-
-}
-/* ======================================
-   UPLOAD COVER IMAGE
-====================================== */
-
-$coverImagePath = "";
+$coverImageUrl = "";
 
 if (
     isset($_FILES['cover_image']) &&
@@ -143,74 +134,64 @@ if (
     ));
 
     if (!in_array($extension, $allowedExtensions)) {
-
         die("Invalid cover image format.");
-
     }
 
-    if ($_FILES['cover_image']['size'] > 9 * 1024 * 1024) {
-
-        die("Cover image exceeds the 9MB limit.");
-
+    if ($_FILES['cover_image']['size'] > 10 * 1024 * 1024) {
+        die("Cover image exceeds the 10MB limit.");
     }
 
     $mime = mime_content_type($_FILES['cover_image']['tmp_name']);
 
     if (strpos($mime, "image/") !== 0) {
-
         die("Invalid image file.");
-
     }
 
-    $coverFile = "cover." . $extension;
+    try {
 
-$coverImagePath = $propertyFolder . $coverFile;
+        $upload = $cloudinary->uploadApi()->upload(
+            $_FILES['cover_image']['tmp_name'],
+            [
+                "folder" => "hopeways/properties",
+                "public_id" => "property_" . $propertyId . "_cover",
+                "overwrite" => true,
+                "resource_type" => "image"
+            ]
+        );
 
-    if (!move_uploaded_file(
-    $_FILES['cover_image']['tmp_name'],
-    $coverImagePath
-)) {
+        echo "<pre>";
+print_r($upload);
+die();
 
-    echo "<h2>UPLOAD FAILED</h2>";
+    } catch (Exception $e) {
 
-    echo "<pre>";
-    print_r($_FILES['cover_image']);
-    echo "</pre>";
+        die("Cloudinary Upload Failed:<br>" . $e->getMessage());
 
-    echo "<p><strong>Destination:</strong> " . $coverImagePath . "</p>";
-
-    echo "<p><strong>Folder Exists:</strong> ";
-    var_dump(is_dir($propertyFolder));
-    echo "</p>";
-
-    echo "<p><strong>Folder Writable:</strong> ";
-    var_dump(is_writable($propertyFolder));
-    echo "</p>";
-
-    die();
-}
+    }
 
 }
 /* ======================================
    UPDATE COVER IMAGE
 ====================================== */
 
-$update = $conn->prepare(
-    "UPDATE properties
-     SET cover_image = ?
-     WHERE id = ?"
-);
-
-$dbImagePath = "uploads/properties/" . $propertyId . "/" . $coverFile;
+$update = $conn->prepare("
+    UPDATE properties
+    SET cover_image = ?
+    WHERE id = ?
+");
 
 $update->bind_param(
     "si",
-    $dbImagePath,
+    $coverImageUrl,
     $propertyId
 );
-$update->execute();
+
+if (!$update->execute()) {
+    die("Database Error: " . $update->error);
+}
 
 $update->close();
+
 $conn->close();
 
 header("Location: manage-properties.php?success=1");

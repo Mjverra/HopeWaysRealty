@@ -75,3 +75,147 @@ while($row = $images->fetch_assoc()){
 
 $sql->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Property | HopeWays Realty</title>
+
+    <link rel="stylesheet" href="../css/messages.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<?php include "admin-header.php"; ?>
+
+<div class="admin-container">
+
+    <div class="page-title">
+
+        <h2>
+
+            <i class="fas fa-pen-to-square"></i>
+
+            Edit Property
+
+        </h2>
+
+        <a href="manage-properties.php" class="btn btn-secondary">
+
+            <i class="fas fa-arrow-left"></i>
+
+            Back
+
+        </a>
+
+    </div>
+
+<form
+    action="update-property.php"
+    method="POST"
+    enctype="multipart/form-data">
+
+<input
+    type="hidden"
+    name="id"
+    value="<?php echo $property['id']; ?>">
+    <div class="admin-card">
+
+<h3 class="section-title">
+
+<i class="fas fa-house"></i>
+
+Property Information
+
+</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Property Title</label>
+
+<input
+type="text"
+name="title"
+value="<?php echo htmlspecialchars($property['title']); ?>"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Property Type</label>
+
+<select name="property_type" required>
+
+<?php
+
+$types = [
+
+"House & Lot",
+"Townhouse",
+"Residential Lot",
+"Commercial Lot",
+"Agricultural Land",
+"Condominium",
+"Office Space",
+"Warehouse"
+
+];
+
+foreach($types as $type){
+
+    $selected =
+        $property['property_type'] == $type
+        ? "selected"
+        : "";
+
+    echo "<option $selected>$type</option>";
+
+}
+
+?>
+
+</select>
+
+</div>
+
+<div class="form-group full-width">
+
+<label>Location</label>
+
+<input
+type="text"
+name="location"
+value="<?php echo htmlspecialchars($property['location']); ?>"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Price</label>
+
+<input
+type="text"
+name="price"
+value="<?php echo htmlspecialchars($property['price']); ?>"
+required>
+
+</div>
+
+</div>
+
+</div>

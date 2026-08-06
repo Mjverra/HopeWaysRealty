@@ -422,6 +422,161 @@ required>
     </div>
 
 </div>
+<!-- =======================================================
+     PROPERTY DESCRIPTION
+======================================================== -->
+
+<div class="admin-card">
+
+    <h3 class="section-title">
+
+        <i class="fas fa-file-lines"></i>
+
+        Property Description
+
+    </h3>
+
+    <div class="form-group">
+
+        <textarea
+            name="description"
+            rows="7"
+            placeholder="Enter property description..."><?php echo htmlspecialchars($property['description']); ?></textarea>
+
+    </div>
+
+</div>
+
+<!-- =======================================================
+     AMENITIES
+======================================================== -->
+
+<div class="admin-card">
+
+    <h3 class="section-title">
+
+        <i class="fas fa-star"></i>
+
+        Amenities
+
+    </h3>
+
+    <div class="form-group">
+
+        <textarea
+            name="amenities"
+            rows="6"
+            placeholder="Garage&#10;Garden&#10;Swimming Pool&#10;Balcony"><?php echo htmlspecialchars($property['amenities']); ?></textarea>
+
+    </div>
+
+</div>
+
+<!-- =======================================================
+     LOCATION
+======================================================== -->
+
+<div class="admin-card">
+
+    <h3 class="section-title">
+
+        <i class="fas fa-location-dot"></i>
+
+        Google Maps
+
+    </h3>
+
+    <div class="form-group">
+
+        <label>Google Maps URL</label>
+
+        <input
+            type="url"
+            name="map_url"
+            value="<?php echo htmlspecialchars($property['map_url']); ?>"
+            placeholder="https://www.google.com/maps?q=...">
+
+    </div>
+
+</div>
+<!-- =======================================================
+     GALLERY IMAGES
+======================================================== -->
+
+<div class="admin-card">
+
+    <h3 class="section-title">
+
+        <i class="fas fa-images"></i>
+
+        Property Gallery
+
+    </h3>
+
+    <?php if(count($gallery) > 0){ ?>
+
+    <div class="gallery-grid">
+
+        <?php foreach($gallery as $image){ ?>
+
+            <div class="gallery-item">
+
+                <img
+                    src="<?php echo htmlspecialchars($image['image_path']); ?>"
+                    alt="Gallery Image">
+
+                <br><br>
+
+                <a
+                    href="delete-gallery-image.php?id=<?php echo $image['id']; ?>&property=<?php echo $property['id']; ?>"
+                    class="btn btn-danger"
+                    onclick="return confirm('Delete this image?');">
+
+                    <i class="fas fa-trash"></i>
+
+                    Delete
+
+                </a>
+
+            </div>
+
+        <?php } ?>
+
+    </div>
+
+    <?php }else{ ?>
+
+        <p style="color:#777;text-align:center;">
+
+            No gallery images uploaded.
+
+        </p>
+
+    <?php } ?>
+
+    <hr style="margin:30px 0;">
+
+    <div class="form-group">
+
+        <label>
+
+            Upload More Images
+
+        </label>
+
+        <input
+            type="file"
+            name="gallery_images[]"
+            id="galleryImages"
+            accept="image/*"
+            multiple>
+
+    </div>
+
+    <div id="galleryPreview" class="gallery-preview"></div>
+
+</div>
+
 <script>
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -457,3 +612,75 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 </script>
+<div class="form-buttons">
+
+    <a
+        href="manage-properties.php"
+        class="btn btn-secondary">
+
+        <i class="fas fa-xmark"></i>
+
+        Cancel
+
+    </a>
+
+    <button
+        type="submit"
+        class="btn btn-primary">
+
+        <i class="fas fa-floppy-disk"></i>
+
+        Update Property
+
+    </button>
+
+</div>
+
+</form>
+
+</div>
+
+<script>
+
+const galleryInput =
+document.getElementById("galleryImages");
+
+if(galleryInput){
+
+galleryInput.addEventListener("change", function(){
+
+    const preview =
+    document.getElementById("galleryPreview");
+
+    preview.innerHTML = "";
+
+    [...this.files].forEach(file=>{
+
+        const reader =
+        new FileReader();
+
+        reader.onload=function(e){
+
+            preview.innerHTML +=
+            `<img src="${e.target.result}"
+                  style="
+                    width:150px;
+                    margin:10px;
+                    border-radius:10px;
+                    border:1px solid #ddd;">`;
+
+        }
+
+        reader.readAsDataURL(file);
+
+    });
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>

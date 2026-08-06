@@ -65,7 +65,7 @@ $cover_image = $property['cover_image'];
    PROPERTY FOLDER
 ============================== */
 
-$propertyFolder = "../uploads/properties/property-" . $id . "/";
+$propertyFolder = __DIR__ . "/uploads/properties/" . $id . "/";
 
 if (!is_dir($propertyFolder)) {
     mkdir($propertyFolder, 0777, true);
@@ -113,7 +113,7 @@ if (
     ) {
 
         // Save relative path into database
-        $cover_image = "uploads/properties/property-" . $id . "/" . $coverFile;
+        $cover_image = "uploads/properties/" . $id . "/" . $coverFile;
     }
 }
 /* ==============================

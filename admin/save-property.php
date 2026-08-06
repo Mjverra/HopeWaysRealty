@@ -148,9 +148,9 @@ if (
 
     }
 
-    if ($_FILES['cover_image']['size'] > 10 * 1024 * 1024) {
+    if ($_FILES['cover_image']['size'] > 9 * 1024 * 1024) {
 
-        die("Cover image exceeds the 10MB limit.");
+        die("Cover image exceeds the 9MB limit.");
 
     }
 

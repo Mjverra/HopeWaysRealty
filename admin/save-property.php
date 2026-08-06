@@ -159,9 +159,7 @@ if (
             ]
         );
 
-        echo "<pre>";
-print_r($upload);
-die();
+        $coverImageUrl = $upload['secure_url'];
 
     } catch (Exception $e) {
 

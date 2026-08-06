@@ -191,7 +191,64 @@ if (!$update->execute()) {
 }
 
 $update->close();
+/* ======================================
+   UPLOAD GALLERY IMAGES TO CLOUDINARY
+====================================== */
 
+if (
+    isset($_FILES['gallery_images']) &&
+    !empty($_FILES['gallery_images']['name'][0])
+) {
+
+    $imageOrder = 1;
+
+    foreach ($_FILES['gallery_images']['tmp_name'] as $index => $tmpName) {
+
+        if ($_FILES['gallery_images']['error'][$index] != 0) {
+            continue;
+        }
+
+        try {
+
+            $upload = $cloudinary->uploadApi()->upload(
+                $tmpName,
+                [
+                    "folder" => "hopeways/properties/gallery",
+                    "public_id" => "property_" . $propertyId . "_gallery_" . $imageOrder,
+                    "overwrite" => true,
+                    "resource_type" => "image"
+                ]
+            );
+
+            $imageUrl = $upload->offsetGet('secure_url');
+
+            $stmt = $conn->prepare("
+                INSERT INTO property_images
+                (property_id, image_path, image_order)
+                VALUES (?, ?, ?)
+            ");
+
+            $stmt->bind_param(
+                "isi",
+                $propertyId,
+                $imageUrl,
+                $imageOrder
+            );
+
+            $stmt->execute();
+            $stmt->close();
+
+            $imageOrder++;
+
+        } catch (Exception $e) {
+
+            die("Gallery Upload Failed:<br>" . $e->getMessage());
+
+        }
+
+    }
+
+}
 $conn->close();
 
 header("Location: manage-properties.php?success=1");

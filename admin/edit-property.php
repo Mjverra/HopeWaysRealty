@@ -219,3 +219,241 @@ required>
 </div>
 
 </div>
+<!-- ================= PROPERTY DETAILS ================= -->
+
+<div class="admin-card">
+
+    <h3 class="section-title">
+
+        <i class="fas fa-circle-info"></i>
+
+        Property Details
+
+    </h3>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>Bedrooms</label>
+
+            <input
+                type="number"
+                name="bedrooms"
+                value="<?php echo $property['bedrooms']; ?>"
+                min="0">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Bathrooms</label>
+
+            <input
+                type="number"
+                name="bathrooms"
+                value="<?php echo $property['bathrooms']; ?>"
+                min="0">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Garage</label>
+
+            <input
+                type="text"
+                name="garage"
+                value="<?php echo htmlspecialchars($property['garage']); ?>">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Lot Area</label>
+
+            <input
+                type="text"
+                name="lot_area"
+                value="<?php echo htmlspecialchars($property['lot_area']); ?>">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Floor Area</label>
+
+            <input
+                type="text"
+                name="floor_area"
+                value="<?php echo htmlspecialchars($property['floor_area']); ?>">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Furnishing</label>
+
+            <select name="furnishing">
+
+                <?php
+
+                $furnishing = [
+
+                    "",
+
+                    "Fully Furnished",
+
+                    "Semi-Furnished",
+
+                    "Bare"
+
+                ];
+
+                foreach($furnishing as $item){
+
+                    $selected =
+                        $property['furnishing'] == $item
+                        ? "selected"
+                        : "";
+
+                    echo "<option $selected>$item</option>";
+
+                }
+
+                ?>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Status</label>
+
+            <select name="status">
+
+                <?php
+
+                $status = [
+
+                    "Available",
+
+                    "Reserved",
+
+                    "Sold"
+
+                ];
+
+                foreach($status as $item){
+
+                    $selected =
+                        $property['status'] == $item
+                        ? "selected"
+                        : "";
+
+                    echo "<option $selected>$item</option>";
+
+                }
+
+                ?>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ================= COVER IMAGE ================= -->
+
+<div class="admin-card">
+
+    <h3 class="section-title">
+
+        <i class="fas fa-image"></i>
+
+        Cover Image
+
+    </h3>
+
+    <div style="text-align:center;">
+
+        <?php if(!empty($property['cover_image'])){ ?>
+
+            <img
+                src="<?php echo htmlspecialchars($property['cover_image']); ?>"
+                id="previewImage"
+                style="width:320px;
+                       border-radius:12px;
+                       border:1px solid #ddd;
+                       margin-bottom:20px;">
+
+        <?php }else{ ?>
+
+            <img
+                src="../images/default/no-image.png"
+                id="previewImage"
+                style="width:320px;
+                       border-radius:12px;
+                       border:1px solid #ddd;
+                       margin-bottom:20px;">
+
+        <?php } ?>
+
+        <div class="form-group">
+
+            <label>Replace Cover Image</label>
+
+            <input
+                type="file"
+                id="coverImage"
+                name="cover_image"
+                accept="image/*">
+                
+                <small>
+
+                Leave this blank if you don't want to replace the current cover image.
+
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    const coverImage =
+        document.getElementById("coverImage");
+
+    if(coverImage){
+
+        coverImage.addEventListener("change", function(){
+
+            const file = this.files[0];
+
+            if(file){
+
+                const reader = new FileReader();
+
+                reader.onload = function(e){
+
+                    document.getElementById("previewImage").src =
+                        e.target.result;
+
+                }
+
+                reader.readAsDataURL(file);
+
+            }
+
+        });
+
+    }
+
+});
+
+</script>

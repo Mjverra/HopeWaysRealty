@@ -136,12 +136,13 @@ UPDATE properties SET
     description=?,
     amenities=?,
     map_url=?,
+    cover_image=?,
     updated_at=NOW()
 WHERE id=?
 ");
 
 $stmt->bind_param(
-    "ssssiissssssssi",
+    "ssssiisssssssssi",
     $title,
     $property_type,
     $location,
@@ -156,6 +157,7 @@ $stmt->bind_param(
     $description,
     $amenities,
     $map_url,
+    $cover_image,
     $id
 );
 

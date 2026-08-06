@@ -61,3 +61,53 @@ $amenities      = trim($_POST['amenities']);
 $map_url        = trim($_POST['map_url']);
 
 $cover_image = $property['cover_image'];
+/* ==============================
+   UPDATE PROPERTY DETAILS
+============================== */
+
+$stmt = $conn->prepare("
+UPDATE properties SET
+    title=?,
+    property_type=?,
+    location=?,
+    price=?,
+    bedrooms=?,
+    bathrooms=?,
+    garage=?,
+    lot_area=?,
+    floor_area=?,
+    furnishing=?,
+    status=?,
+    description=?,
+    amenities=?,
+    map_url=?,
+    updated_at=NOW()
+WHERE id=?
+");
+
+$stmt->bind_param(
+    "ssssiissssssssi",
+    $title,
+    $property_type,
+    $location,
+    $price,
+    $bedrooms,
+    $bathrooms,
+    $garage,
+    $lot_area,
+    $floor_area,
+    $furnishing,
+    $status,
+    $description,
+    $amenities,
+    $map_url,
+    $id
+);
+
+if (!$stmt->execute()) {
+    die("Database Error: " . $stmt->error);
+}
+
+$stmt->close();
+header("Location: manage-properties.php?updated=1");
+exit();

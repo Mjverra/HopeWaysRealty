@@ -159,7 +159,10 @@ if (
             ]
         );
 
-        $coverImageUrl = $upload['secure_url'];
+        $coverImageUrl = $upload->offsetGet('secure_url');
+        
+        echo $coverImageUrl;
+die();
 
     } catch (Exception $e) {
 

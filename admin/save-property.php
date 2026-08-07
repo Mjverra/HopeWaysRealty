@@ -222,6 +222,15 @@ if (
 
             $imageUrl = $upload->offsetGet('secure_url');
             $publicId = $upload->offsetGet('public_id');
+            echo "<pre>";
+echo "URL:\n";
+var_dump($imageUrl);
+
+echo "PUBLIC ID:\n";
+var_dump($publicId);
+echo "</pre>";
+
+die();
 
            $stmt = $conn->prepare("
     INSERT INTO property_images

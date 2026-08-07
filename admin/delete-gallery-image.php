@@ -9,3 +9,11 @@ if (!isset($_SESSION['admin'])) {
 
 include "../includes/db_connect.php";
 require_once "../includes/cloudinary.php";
+if (!isset($_GET['id']) || !isset($_GET['property'])) {
+
+    die("Invalid request.");
+
+}
+
+$imageId = (int) $_GET['id'];
+$propertyId = (int) $_GET['property'];

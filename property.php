@@ -62,11 +62,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <body>
 
-<?php include "includes/header.php"; ?>
+<h1>HEADER TEST</h1>
 
 
 
-<?php include "includes/footer.php"; ?>
+<h1>FOOTER TEST</h1>
 
 </body>
 

@@ -17,3 +17,28 @@ if (!isset($_GET['id']) || !isset($_GET['property'])) {
 
 $imageId = (int) $_GET['id'];
 $propertyId = (int) $_GET['property'];
+/* ======================================
+   GET IMAGE INFORMATION
+====================================== */
+
+$stmt = $conn->prepare("
+    SELECT *
+    FROM property_images
+    WHERE id = ?
+");
+
+$stmt->bind_param("i", $imageId);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if ($result->num_rows == 0) {
+
+    die("Image not found.");
+
+}
+
+$image = $result->fetch_assoc();
+
+$stmt->close();

@@ -169,3 +169,42 @@
     cursor:pointer;
 
 }
+.prev-image,
+.next-image{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:50px;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    padding:15px;
+
+}
+
+.prev-image{
+
+    left:20px;
+
+}
+
+.next-image{
+
+    right:20px;
+
+}
+
+.prev-image:hover,
+.next-image:hover{
+
+    color:#ddd;
+
+}

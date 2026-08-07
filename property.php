@@ -181,8 +181,54 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     </div>
 
 </section>
+<div id="lightbox" class="lightbox">
+
+    <span class="close-lightbox">&times;</span>
+
+    <img id="lightbox-image" src="" alt="">
+
+</div>
 
 <?php include "includes/footer.php"; ?>
+<script>
+
+const galleryImages = document.querySelectorAll(".gallery-item img");
+
+const lightbox = document.getElementById("lightbox");
+
+const lightboxImage = document.getElementById("lightbox-image");
+
+const closeBtn = document.querySelector(".close-lightbox");
+
+galleryImages.forEach(image => {
+
+    image.addEventListener("click", function(){
+
+        lightbox.style.display="flex";
+
+        lightboxImage.src=this.src;
+
+    });
+
+});
+
+closeBtn.onclick=function(){
+
+    lightbox.style.display="none";
+
+};
+
+lightbox.onclick=function(e){
+
+    if(e.target===lightbox){
+
+        lightbox.style.display="none";
+
+    }
+
+};
+
+</script>
 
 </body>
 

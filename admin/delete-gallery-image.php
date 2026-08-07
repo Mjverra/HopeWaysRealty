@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-echo "DELETE SCRIPT IS RUNNING";
-die();
+
 if (!isset($_SESSION['admin'])) {
     header("Location: ../login.php");
     exit();

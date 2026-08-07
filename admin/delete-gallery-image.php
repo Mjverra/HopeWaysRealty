@@ -48,23 +48,25 @@ $stmt->close();
 
 try {
 
-    if (!empty($image['public_id'])) {
+    echo "<pre>";
 
-       $response = $cloudinary->uploadApi()->destroy(
-    $image['public_id'],
-    [
-        "resource_type" => "image",
-        "invalidate" => true
-    ]
-);
+    echo "Public ID from database:\n";
+    var_dump($image['public_id']);
 
-echo "<pre>";
-print_r($response);
-echo "</pre>";
+    $response = $cloudinary->uploadApi()->destroy(
+        $image['public_id'],
+        [
+            "resource_type" => "image",
+            "invalidate" => true
+        ]
+    );
 
-die();
+    echo "\nCloudinary Response:\n";
+    print_r($response);
 
-    }
+    echo "</pre>";
+
+    die();
 
 } catch (Exception $e) {
 

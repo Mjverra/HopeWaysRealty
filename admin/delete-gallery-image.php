@@ -50,9 +50,19 @@ try {
 
     if (!empty($image['public_id'])) {
 
-        $cloudinary->uploadApi()->destroy(
-            $image['public_id']
-        );
+       $response = $cloudinary->uploadApi()->destroy(
+    $image['public_id'],
+    [
+        "resource_type" => "image",
+        "invalidate" => true
+    ]
+);
+
+echo "<pre>";
+print_r($response);
+echo "</pre>";
+
+die();
 
     }
 

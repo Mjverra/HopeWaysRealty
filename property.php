@@ -324,7 +324,7 @@ lightbox.onclick=function(e){
 
 </script>
 
-</script>
+
 
 </body>
 

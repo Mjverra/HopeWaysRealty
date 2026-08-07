@@ -24,6 +24,22 @@ if ($result->num_rows == 0) {
 $property = $result->fetch_assoc();
 
 $stmt->close();
+/* ======================================
+   GET GALLERY IMAGES
+====================================== */
+
+$imageStmt = $conn->prepare("
+    SELECT *
+    FROM property_images
+    WHERE property_id = ?
+    ORDER BY image_order ASC, id ASC
+");
+
+$imageStmt->bind_param("i", $id);
+
+$imageStmt->execute();
+
+$gallery = $imageStmt->get_result();
 
 // Get gallery images
 $stmt = $conn->prepare("
@@ -145,6 +161,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </div>
 <section class="property-gallery">
+
+    <h2>Property Gallery</h2>
+
+    <div class="gallery-grid">
+
+        <?php while($image = $gallery->fetch_assoc()) { ?>
+
+            <div class="gallery-item">
+
+                <img
+                    src="<?= htmlspecialchars($image['image_path']) ?>"
+                    alt="<?= htmlspecialchars($property['title']) ?>">
+
+            </div>
+
+        <?php } ?>
+
+    </div>
+
 </section>
 
 <?php include "includes/footer.php"; ?>

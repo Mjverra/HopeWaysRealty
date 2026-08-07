@@ -62,11 +62,48 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <body>
 
-<h1>HEADER TEST</h1>
+<?php include "includes/header.php"; ?>
 
+<section class="property-hero">
 
+    <img
+        src="<?= htmlspecialchars($property['cover_image']) ?>"
+        alt="<?= htmlspecialchars($property['title']) ?>">
 
-<h1>FOOTER TEST</h1>
+</section>
+
+<section class="property-info">
+
+    <div class="container">
+
+        <h1><?= htmlspecialchars($property['title']) ?></h1>
+
+        <h2>
+            ₱<?= number_format($property['price'], 2) ?>
+        </h2>
+
+        <p class="location">
+            <i class="fas fa-location-dot"></i>
+            <?= htmlspecialchars($property['location']) ?>
+        </p>
+
+        <div class="property-badges">
+
+            <span>
+                <?= htmlspecialchars($property['property_type']) ?>
+            </span>
+
+            <span>
+                <?= htmlspecialchars($property['status']) ?>
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<?php include "includes/footer.php"; ?>
 
 </body>
 

@@ -222,15 +222,7 @@ if (
 
             $imageUrl = $upload->offsetGet('secure_url');
             $publicId = $upload->offsetGet('public_id');
-            echo "<pre>";
-echo "URL:\n";
-var_dump($imageUrl);
-
-echo "PUBLIC ID:\n";
-var_dump($publicId);
-echo "</pre>";
-
-die();
+           
 
            $stmt = $conn->prepare("
     INSERT INTO property_images
@@ -255,7 +247,7 @@ die();
 );
 
             $stmt->execute();
-            if ($stmt->error) {
+          if ($stmt->error) {
     die($stmt->error);
 }
 
@@ -267,7 +259,7 @@ var_dump($imageUrl);
 echo "Public ID:\n";
 var_dump($publicId);
 
-echo "Inserted ID:\n";
+echo "Inserted Row ID:\n";
 var_dump($stmt->insert_id);
 
 echo "</pre>";

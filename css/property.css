@@ -118,9 +118,9 @@
     transform:scale(1.05);
 
 }
-/* ======================================
+/* ==========================
    LIGHTBOX
-====================================== */
+========================== */
 
 .lightbox{
 
@@ -146,11 +146,17 @@
 
 .lightbox img{
 
-    max-width:90%;
+    width:80%;
 
-    max-height:90%;
+    max-width:1200px;
+
+    max-height:90vh;
+
+    object-fit:contain;
 
     border-radius:10px;
+
+    box-shadow:0 10px 40px rgba(0,0,0,.5);
 
 }
 
@@ -162,48 +168,61 @@
 
     right:35px;
 
-    color:white;
+    font-size:50px;
 
-    font-size:45px;
+    color:white;
 
     cursor:pointer;
 
 }
-.prev-image,
-.next-image{
+
+/* Previous Button */
+
+.prev-image{
 
     position:absolute;
+
+    left:30px;
 
     top:50%;
 
     transform:translateY(-50%);
 
-    font-size:50px;
+    font-size:70px;
 
-    color:#fff;
+    color:white;
 
     cursor:pointer;
 
     user-select:none;
 
-    padding:15px;
-
 }
 
-.prev-image{
-
-    left:20px;
-
-}
+/* Next Button */
 
 .next-image{
 
-    right:20px;
+    position:absolute;
+
+    right:30px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:70px;
+
+    color:white;
+
+    cursor:pointer;
+
+    user-select:none;
 
 }
 
 .prev-image:hover,
-.next-image:hover{
+.next-image:hover,
+.close-lightbox:hover{
 
     color:#ddd;
 

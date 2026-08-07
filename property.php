@@ -104,6 +104,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 </section>
 <section class="property-details">
 
+    <div class="property-details">
+
     <div class="detail-box">
         <i class="fas fa-bed"></i>
         <h3><?= $property['bedrooms'] ?></h3>
@@ -139,7 +141,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         <h3><?= htmlspecialchars($property['furnishing']) ?></h3>
         <p>Furnishing</p>
     </div>
+    </div>
 
+</div>
+<section class="property-gallery">
 </section>
 
 <?php include "includes/footer.php"; ?>

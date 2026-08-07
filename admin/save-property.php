@@ -221,19 +221,29 @@ if (
             );
 
             $imageUrl = $upload->offsetGet('secure_url');
+            $publicId = $upload->offsetGet('public_id');
 
-            $stmt = $conn->prepare("
-                INSERT INTO property_images
-                (property_id, image_path, image_order)
-                VALUES (?, ?, ?)
-            ");
+           $stmt = $conn->prepare("
+    INSERT INTO property_images
+    (
+        property_id,
+        image_path,
+        public_id,
+        image_order
+    )
+    VALUES
+    (
+        ?, ?, ?, ?
+    )
+");
 
             $stmt->bind_param(
-                "isi",
-                $propertyId,
-                $imageUrl,
-                $imageOrder
-            );
+    "issi",
+    $propertyId,
+    $imageUrl,
+    $publicId,
+    $imageOrder
+);
 
             $stmt->execute();
             $stmt->close();

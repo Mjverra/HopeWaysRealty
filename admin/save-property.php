@@ -255,6 +255,24 @@ die();
 );
 
             $stmt->execute();
+            if ($stmt->error) {
+    die($stmt->error);
+}
+
+echo "<pre>";
+
+echo "Image URL:\n";
+var_dump($imageUrl);
+
+echo "Public ID:\n";
+var_dump($publicId);
+
+echo "Inserted ID:\n";
+var_dump($stmt->insert_id);
+
+echo "</pre>";
+
+die();
             $stmt->close();
 
             $imageOrder++;

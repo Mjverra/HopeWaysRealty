@@ -102,6 +102,45 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     </div>
 
 </section>
+<section class="property-details">
+
+    <div class="detail-box">
+        <i class="fas fa-bed"></i>
+        <h3><?= $property['bedrooms'] ?></h3>
+        <p>Bedrooms</p>
+    </div>
+
+    <div class="detail-box">
+        <i class="fas fa-bath"></i>
+        <h3><?= $property['bathrooms'] ?></h3>
+        <p>Bathrooms</p>
+    </div>
+
+    <div class="detail-box">
+        <i class="fas fa-car"></i>
+        <h3><?= htmlspecialchars($property['garage']) ?></h3>
+        <p>Garage</p>
+    </div>
+
+    <div class="detail-box">
+        <i class="fas fa-ruler-combined"></i>
+        <h3><?= htmlspecialchars($property['lot_area']) ?></h3>
+        <p>Lot Area</p>
+    </div>
+
+    <div class="detail-box">
+        <i class="fas fa-house"></i>
+        <h3><?= htmlspecialchars($property['floor_area']) ?></h3>
+        <p>Floor Area</p>
+    </div>
+
+    <div class="detail-box">
+        <i class="fas fa-couch"></i>
+        <h3><?= htmlspecialchars($property['furnishing']) ?></h3>
+        <p>Furnishing</p>
+    </div>
+
+</section>
 
 <?php include "includes/footer.php"; ?>
 

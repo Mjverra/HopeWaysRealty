@@ -57,3 +57,5 @@ $gallery = $stmtGallery->get_result();
 
 ?>
 <?php include "includes/footer.php"; ?>
+</body>
+</html>

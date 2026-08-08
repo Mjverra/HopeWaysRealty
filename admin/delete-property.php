@@ -44,6 +44,30 @@ $property = $result->fetch_assoc();
 $stmt->close();
 
 /* ============================
+   Delete Cover Image
+============================ */
+
+if (!empty($property['cover_public_id'])) {
+
+    try {
+
+        $cloudinary->uploadApi()->destroy(
+            $property['cover_public_id'],
+            [
+                "resource_type" => "image",
+                "invalidate" => true
+            ]
+        );
+
+    } catch (Exception $e) {
+
+        // Continue deleting the property
+        // even if Cloudinary deletion fails.
+
+    }
+
+}
+/* ============================
    Delete Gallery Records
 ============================ */
 

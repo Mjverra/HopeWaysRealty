@@ -10,9 +10,46 @@ include "../includes/db_connect.php";
 
 /* Get all properties */
 
-$sql = "SELECT * FROM properties ORDER BY created_at DESC";
+$search = trim($_GET['search'] ?? '');
 
-$result = $conn->query($sql);
+if ($search != "") {
+
+    $sql = "
+        SELECT *
+        FROM properties
+        WHERE
+            title LIKE ?
+            OR location LIKE ?
+            OR property_type LIKE ?
+            OR status LIKE ?
+        ORDER BY id DESC
+    ";
+
+    $stmt = $conn->prepare($sql);
+
+    $keyword = "%" . $search . "%";
+
+    $stmt->bind_param(
+        "ssss",
+        $keyword,
+        $keyword,
+        $keyword,
+        $keyword
+    );
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+} else {
+
+    $result = $conn->query("
+        SELECT *
+        FROM properties
+        ORDER BY id DESC
+    ");
+
+}
 ?>
 <link rel="stylesheet" href="../css/messages.css">
 <link rel="stylesheet" href="../css/admin.css">

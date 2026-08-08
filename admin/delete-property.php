@@ -69,13 +69,49 @@ if (!empty($property['cover_public_id'])) {
 
 }
 /* ============================
-   Delete Gallery Records
+   Delete Gallery Images
 ============================ */
 
-$stmt = $conn->prepare(
-    "DELETE FROM property_images
-     WHERE property_id = ?"
-);
+$stmt = $conn->prepare("
+    SELECT public_id
+    FROM property_images
+    WHERE property_id = ?
+");
+
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+while ($image = $result->fetch_assoc()) {
+
+    if (!empty($image['public_id'])) {
+
+        try {
+
+            $cloudinary->uploadApi()->destroy(
+                $image['public_id'],
+                [
+                    "resource_type" => "image",
+                    "invalidate" => true
+                ]
+            );
+
+        } catch (Exception $e) {
+
+            // Continue deleting the property
+
+        }
+
+    }
+
+}
+
+$stmt->close();
+$stmt = $conn->prepare("
+    DELETE FROM property_images
+    WHERE property_id = ?
+");
 
 $stmt->bind_param("i", $id);
 $stmt->execute();

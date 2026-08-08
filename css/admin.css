@@ -421,3 +421,69 @@ margin-top:20px;
     background:#fff;
 
 }
+/* ======================================
+   PROPERTY STATISTICS
+====================================== */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin:25px 0 35px;
+}
+
+.stat-card{
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.3s;
+    border-top:5px solid #0b4f79;
+}
+
+.stat-card:hover{
+    transform:translateY(-4px);
+}
+
+.stat-card i{
+    font-size:34px;
+    margin-bottom:15px;
+    color:#0b4f79;
+}
+
+.stat-card h3{
+    font-size:34px;
+    margin:0;
+    color:#222;
+}
+
+.stat-card p{
+    margin-top:8px;
+    color:#666;
+    font-size:15px;
+}
+
+.stat-card.available{
+    border-top-color:#28a745;
+}
+
+.stat-card.available i{
+    color:#28a745;
+}
+
+.stat-card.reserved{
+    border-top-color:#ffc107;
+}
+
+.stat-card.reserved i{
+    color:#ffc107;
+}
+
+.stat-card.sold{
+    border-top-color:#dc3545;
+}
+
+.stat-card.sold i{
+    color:#dc3545;
+}

@@ -155,16 +155,15 @@ if($result->num_rows > 0){
 
             </a>
 
-            <a
-                href="delete-property.php?id=<?php echo $row['id']; ?>"
-                class="btn btn-danger"
-                onclick="return confirm('Delete this property?');">
+           <a
+    href="delete-property.php?id=<?php echo $row['id']; ?>"
+    class="btn btn-danger"
+    onclick="return confirm('Are you sure you want to permanently delete this property?\n\nThis will also delete:\n• Cover Image\n• Gallery Images\n• Property Details');">
 
-                <i class="fas fa-trash"></i>
+    <i class="fas fa-trash"></i>
+    Delete
 
-                Delete
-
-            </a>
+</a>
 
         </div>
 

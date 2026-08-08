@@ -131,6 +131,11 @@ $sql->close();
     name="id"
     value="<?php echo $property['id']; ?>">
     <div class="admin-card">
+        <input
+    type="hidden"
+    id="deletedImages"
+    name="deleted_images"
+    value="">
 
 <h3 class="section-title">
 
@@ -519,7 +524,9 @@ required>
 
         <?php foreach($gallery as $image){ ?>
 
-            <div class="gallery-item">
+            <div
+    class="gallery-item"
+    id="gallery-image-<?php echo $image['id']; ?>">
 
                 <img
                     src="<?php echo htmlspecialchars($image['image_path']); ?>"
@@ -527,16 +534,16 @@ required>
 
                 <br><br>
 
-                <a
-                    href="delete-gallery-image.php?id=<?php echo $image['id']; ?>&property=<?php echo $property['id']; ?>"
-                    class="btn btn-danger"
-                    onclick="return confirm('Delete this image?');">
+                <button
+    type="button"
+    class="btn btn-danger delete-gallery-btn"
+    data-image-id="<?php echo $image['id']; ?>">
 
-                    <i class="fas fa-trash"></i>
+    <i class="fas fa-trash"></i>
 
-                    Delete
+    Delete
 
-                </a>
+</button>
 
             </div>
 

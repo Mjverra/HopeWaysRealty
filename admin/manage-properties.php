@@ -20,11 +20,47 @@ include "../includes/db_connect.php";
 $search = trim($_GET['search'] ?? '');
 $status = trim($_GET['status'] ?? '');
 $type   = trim($_GET['type'] ?? '');
+/* ===============================
+   PAGINATION
+================================ */
+
+$limit = 10;
+
+$page = isset($_GET['page'])
+    ? max(1, (int)$_GET['page'])
+    : 1;
+
+$offset = ($page - 1) * $limit;
 
 $sql = "SELECT * FROM properties WHERE 1=1";
 
 $params = [];
 $types = "";
+/* ===============================
+   COUNT FILTERED RESULTS
+================================ */
+
+$countSql = str_replace(
+    "SELECT *",
+    "SELECT COUNT(*) AS total",
+    $sql
+);
+
+$countStmt = $conn->prepare($countSql);
+
+if (!empty($params)) {
+    $countStmt->bind_param($types, ...$params);
+}
+
+$countStmt->execute();
+
+$totalRows = $countStmt
+    ->get_result()
+    ->fetch_assoc()['total'];
+
+$countStmt->close();
+
+$totalPages = ceil($totalRows / $limit);
 
 /* ===============================
    SEARCH
@@ -127,8 +163,13 @@ $statsStmt->close();
 /* ======================================
    LOAD PROPERTY LIST
 ====================================== */
-
+$sql .= " ORDER BY id DESC LIMIT ? OFFSET ?";
 $stmt = $conn->prepare($sql);
+
+$params[] = $limit;
+$params[] = $offset;
+
+$types .= "ii";
 
 if (!empty($params)) {
     $stmt->bind_param($types, ...$params);

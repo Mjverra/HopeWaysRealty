@@ -644,7 +644,27 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 
 </form>
+</form>
 
+<!-- Loading Overlay -->
+<div id="loadingOverlay">
+
+    <div class="loading-box">
+
+        <i class="fas fa-spinner fa-spin"></i>
+
+        <h3>Updating Property...</h3>
+
+        <p>Please wait while changes are being saved.</p>
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>
 </div>
 
 <script>
@@ -716,15 +736,14 @@ document.querySelectorAll(".delete-gallery-btn").forEach(button => {
 
 </script>
 <script>
-document.querySelector("form").addEventListener("submit", function () {
+document.getElementById("loadingOverlay").style.display = "flex";
 
-    const btn = document.getElementById("updateBtn");
+const btn = document.getElementById("updateBtn");
 
-    btn.disabled = true;
+btn.disabled = true;
 
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...';
-
-});
+btn.innerHTML =
+    '<i class="fas fa-spinner fa-spin"></i> Updating...';
 </script>
 </body>
 

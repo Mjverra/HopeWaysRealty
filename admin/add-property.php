@@ -292,7 +292,19 @@ Water Tank"></textarea>
         </div>
 
     </form>
+<div id="loadingOverlay">
 
+    <div class="loading-box">
+
+        <i class="fas fa-spinner fa-spin"></i>
+
+        <h3>Uploading Property...</h3>
+
+        <p>Please wait while images are being uploaded.</p>
+
+    </div>
+
+</div>
 </div>
 
 <script>
@@ -318,9 +330,7 @@ document.getElementById("coverImage").addEventListener("change", function () {
 
 });
 
-document.querySelector("form").addEventListener("submit", function () {
-    document.querySelector("button[type='submit']").disabled = true;
-});
+
 const galleryInput = document.getElementById("galleryImages");
 const galleryPreview = document.getElementById("galleryPreview");
 
@@ -348,14 +358,18 @@ galleryInput.addEventListener("change", function () {
 
 });
 </script>
+
 <script>
 document.querySelector("form").addEventListener("submit", function () {
+
+    document.getElementById("loadingOverlay").style.display = "flex";
 
     const btn = document.getElementById("saveBtn");
 
     btn.disabled = true;
 
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+    btn.innerHTML =
+        '<i class="fas fa-spinner fa-spin"></i> Uploading...';
 
 });
 </script>

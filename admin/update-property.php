@@ -166,5 +166,89 @@ if (!$stmt->execute()) {
 }
 
 $stmt->close();
+
+/* ======================================
+   UPLOAD NEW GALLERY IMAGES
+====================================== */
+
+if (
+    isset($_FILES['gallery_images']) &&
+    !empty($_FILES['gallery_images']['name'][0])
+) {
+
+    // Get the next image order
+    $result = $conn->query("
+        SELECT COALESCE(MAX(image_order),0)+1 AS next_order
+        FROM property_images
+        WHERE property_id = $id
+    ");
+
+    $row = $result->fetch_assoc();
+
+    $imageOrder = $row['next_order'];
+
+    foreach ($_FILES['gallery_images']['tmp_name'] as $index => $tmpName) {
+
+        if ($_FILES['gallery_images']['error'][$index] != 0) {
+            continue;
+        }
+
+        try {
+
+            $upload = $cloudinary->uploadApi()->upload(
+                $tmpName,
+                [
+                    "folder" => "hopeways/properties/gallery",
+                    "public_id" => "property_" . $id . "_gallery_" . $imageOrder,
+                    "overwrite" => true,
+                    "resource_type" => "image"
+                ]
+            );
+
+            $imageUrl = $upload->offsetGet('secure_url');
+            $publicId = $upload->offsetGet('public_id');
+
+            $insert = $conn->prepare("
+                INSERT INTO property_images
+                (
+                    property_id,
+                    image_path,
+                    public_id,
+                    image_order
+                )
+                VALUES
+                (
+                    ?, ?, ?, ?
+                )
+            ");
+
+            $insert->bind_param(
+                "issi",
+                $id,
+                $imageUrl,
+                $publicId,
+                $imageOrder
+            );
+
+            if (!$insert->execute()) {
+                die("Gallery Database Error: " . $insert->error);
+            }
+
+            $insert->close();
+
+            $imageOrder++;
+
+        } catch (Exception $e) {
+
+            die("Gallery Upload Failed:<br>" . $e->getMessage());
+
+        }
+
+    }
+
+}
+
+$conn->close();
+
 header("Location: manage-properties.php?updated=1");
 exit();

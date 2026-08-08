@@ -408,3 +408,16 @@ margin-top:20px;
 .loading-box p{
     color:#666;
 }
+.search-bar select{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    background:#fff;
+
+}

@@ -19,11 +19,13 @@ $id = (int) $_GET['id'];
    Get Property Information
 ============================ */
 
-$stmt = $conn->prepare(
-    "SELECT cover_image
-     FROM properties
-     WHERE id = ?"
-);
+$stmt = $conn->prepare("
+    SELECT
+        cover_image,
+        cover_public_id
+    FROM properties
+    WHERE id = ?
+");
 
 $stmt->bind_param("i", $id);
 $stmt->execute();

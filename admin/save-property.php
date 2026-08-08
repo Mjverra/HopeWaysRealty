@@ -159,6 +159,7 @@ if (
         );
 
         $coverImageUrl = $upload->offsetGet('secure_url');
+$coverPublicId = $upload->offsetGet('public_id');
 
         
 
@@ -175,13 +176,16 @@ if (
 
 $update = $conn->prepare("
     UPDATE properties
-    SET cover_image = ?
+    SET
+        cover_image = ?,
+        cover_public_id = ?
     WHERE id = ?
 ");
 
 $update->bind_param(
-    "si",
+    "ssi",
     $coverImageUrl,
+    $coverPublicId,
     $propertyId
 );
 

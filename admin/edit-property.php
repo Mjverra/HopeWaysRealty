@@ -687,6 +687,34 @@ galleryInput.addEventListener("change", function(){
 }
 
 </script>
+<script>
+
+const deletedImages = [];
+
+document.querySelectorAll(".delete-gallery-btn").forEach(button => {
+
+    button.addEventListener("click", function () {
+
+        const imageId = this.dataset.imageId;
+
+        // don't add twice
+        if (!deletedImages.includes(imageId)) {
+            deletedImages.push(imageId);
+        }
+
+        // update hidden input
+        document.getElementById("deletedImages").value =
+            deletedImages.join(",");
+
+        // hide image
+        document.getElementById("gallery-image-" + imageId)
+            .style.display = "none";
+
+    });
+
+});
+
+</script>
 
 </body>
 

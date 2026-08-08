@@ -7,6 +7,7 @@ if (!isset($_SESSION['admin'])) {
 }
 
 include "../includes/db_connect.php";
+require_once "../includes/cloudinary.php";
 
 if (!isset($_GET['id'])) {
     header("Location: manage-properties.php");

@@ -249,6 +249,71 @@ if (
 }
 
 $conn->close();
+/* ======================================
+   DELETE REMOVED GALLERY IMAGES
+====================================== */
+
+if (!empty($_POST['deleted_images'])) {
+
+    $deletedImages = explode(",", $_POST['deleted_images']);
+
+    foreach ($deletedImages as $imageId) {
+
+        $imageId = (int)$imageId;
+
+        // Get image info
+        $img = $conn->prepare("
+            SELECT public_id
+            FROM property_images
+            WHERE id = ?
+        ");
+
+        $img->bind_param("i", $imageId);
+        $img->execute();
+
+        $result = $img->get_result();
+
+        if ($result->num_rows > 0) {
+
+            $image = $result->fetch_assoc();
+
+            // Delete from Cloudinary
+            if (!empty($image['public_id'])) {
+
+                try {
+
+                    $cloudinary->uploadApi()->destroy(
+                        $image['public_id'],
+                        [
+                            "resource_type" => "image",
+                            "invalidate" => true
+                        ]
+                    );
+
+                } catch (Exception $e) {
+
+                    // Continue even if Cloudinary fails
+                }
+
+            }
+
+            // Delete from database
+            $delete = $conn->prepare("
+                DELETE FROM property_images
+                WHERE id = ?
+            ");
+
+            $delete->bind_param("i", $imageId);
+            $delete->execute();
+            $delete->close();
+
+        }
+
+        $img->close();
+
+    }
+
+}
 
 header("Location: manage-properties.php?updated=1");
 exit();

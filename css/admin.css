@@ -289,6 +289,28 @@ body {
   gap: 15px;
 }
 
+.search-bar{
+    margin:20px 0 30px;
+}
+
+.search-bar form{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.search-bar input{
+    flex:1;
+    padding:12px 15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.search-bar button,
+.search-bar a{
+    white-space:nowrap;
+}
 .btn-danger {
   background: #dc3545;
 

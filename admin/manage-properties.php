@@ -70,7 +70,39 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </a>
 
     </div>
+<div class="search-bar">
 
+    <form method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search by title, location, type or status..."
+            value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+
+        <button type="submit" class="btn btn-primary">
+
+            <i class="fas fa-search"></i>
+
+            Search
+
+        </button>
+
+        <?php if (!empty($_GET['search'])): ?>
+
+            <a href="manage-properties.php" class="btn btn-secondary">
+
+                <i class="fas fa-times"></i>
+
+                Clear
+
+            </a>
+
+        <?php endif; ?>
+
+    </form>
+
+</div>
     <div class="property-list">
 
 <?php

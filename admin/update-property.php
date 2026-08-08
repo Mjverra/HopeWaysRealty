@@ -248,7 +248,7 @@ if (
 
 }
 
-$conn->close();
+
 /* ======================================
    DELETE REMOVED GALLERY IMAGES
 ====================================== */
@@ -314,6 +314,7 @@ if (!empty($_POST['deleted_images'])) {
     }
 
 }
+$conn->close();
 
 header("Location: manage-properties.php?updated=1");
 exit();

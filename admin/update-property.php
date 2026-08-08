@@ -64,6 +64,7 @@ $amenities      = trim($_POST['amenities']);
 $map_url        = trim($_POST['map_url']);
 
 $cover_image = $property['cover_image'];
+$cover_public_id = $property['cover_public_id'];
 
 
 /* ==============================
@@ -97,8 +98,19 @@ if (
     }
 
     try {
+if (!empty($property['cover_public_id'])) {
 
+    $cloudinary->uploadApi()->destroy(
+        $property['cover_public_id'],
+        [
+            "resource_type" => "image",
+            "invalidate" => true
+        ]
+    );
+
+}
         $upload = $cloudinary->uploadApi()->upload(
+            
             $_FILES['cover_image']['tmp_name'],
             [
                 "folder" => "hopeways/properties",
@@ -109,6 +121,7 @@ if (
         );
 
         $cover_image = $upload->offsetGet('secure_url');
+$cover_public_id = $upload->offsetGet('public_id');
 
     } catch (Exception $e) {
 
@@ -137,12 +150,13 @@ UPDATE properties SET
     amenities=?,
     map_url=?,
     cover_image=?,
-    updated_at=NOW()
+cover_public_id=?,
+updated_at=NOW()
 WHERE id=?
 ");
 
 $stmt->bind_param(
-    "ssssiisssssssssi",
+    "ssssiissssssssssi",
     $title,
     $property_type,
     $location,
@@ -158,6 +172,7 @@ $stmt->bind_param(
     $amenities,
     $map_url,
     $cover_image,
+    $cover_public_id,
     $id
 );
 

@@ -82,15 +82,9 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
- else {
 
-    $result = $conn->query("
-        SELECT *
-        FROM properties
-        ORDER BY id DESC
-    ");
 
-}
+
 ?>
 <link rel="stylesheet" href="../css/messages.css">
 <link rel="stylesheet" href="../css/admin.css">
@@ -253,7 +247,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </div>
 
-</div>
+
     <div class="property-list">
 
 <?php

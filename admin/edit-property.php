@@ -632,14 +632,14 @@ document.addEventListener("DOMContentLoaded", function(){
     </a>
 
     <button
-        type="submit"
-        class="btn btn-primary">
+    type="submit"
+    class="btn btn-primary"
+    id="updateBtn">
 
-        <i class="fas fa-floppy-disk"></i>
+    <i class="fas fa-floppy-disk"></i>
+    Update Property
 
-        Update Property
-
-    </button>
+</button>
 
 </div>
 
@@ -715,7 +715,17 @@ document.querySelectorAll(".delete-gallery-btn").forEach(button => {
 });
 
 </script>
+<script>
+document.querySelector("form").addEventListener("submit", function () {
 
+    const btn = document.getElementById("updateBtn");
+
+    btn.disabled = true;
+
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...';
+
+});
+</script>
 </body>
 
 </html>

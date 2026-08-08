@@ -277,10 +277,15 @@ Water Tank"></textarea>
                     Cancel
                 </a>
 
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-floppy-disk"></i>
-                    Save Property
-                </button>
+                <button
+    type="submit"
+    class="btn btn-primary"
+    id="saveBtn">
+
+    <i class="fas fa-floppy-disk"></i>
+    Save Property
+
+</button>
 
             </div>
 
@@ -343,6 +348,16 @@ galleryInput.addEventListener("change", function () {
 
 });
 </script>
+<script>
+document.querySelector("form").addEventListener("submit", function () {
 
+    const btn = document.getElementById("saveBtn");
+
+    btn.disabled = true;
+
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+
+});
+</script>
 </body>
 </html>

@@ -7,6 +7,13 @@ exit();
 }
 
 include "../includes/db_connect.php";
+/* ======================================
+   PROPERTY STATISTICS
+====================================== */
+
+
+
+
 
 /* Get all properties */
 
@@ -68,14 +75,63 @@ if ($type != "") {
     $types .= "s";
 }
 
-$sql .= " ORDER BY id DESC";
+/* ======================================
+   PROPERTY STATISTICS
+====================================== */
+
+$statsSql = str_replace(
+    "SELECT *",
+    "SELECT status",
+    $sql
+);
+
+$statsStmt = $conn->prepare($statsSql);
+
+if (!empty($params)) {
+    $statsStmt->bind_param($types, ...$params);
+}
+
+$statsStmt->execute();
+
+$statsResult = $statsStmt->get_result();
+
+$totalProperties = 0;
+$availableProperties = 0;
+$reservedProperties = 0;
+$soldProperties = 0;
+
+while ($row = $statsResult->fetch_assoc()) {
+
+    $totalProperties++;
+
+    switch ($row['status']) {
+
+        case "Available":
+            $availableProperties++;
+            break;
+
+        case "Reserved":
+            $reservedProperties++;
+            break;
+
+        case "Sold":
+            $soldProperties++;
+            break;
+
+    }
+
+}
+
+$statsStmt->close();
+
+/* ======================================
+   LOAD PROPERTY LIST
+====================================== */
 
 $stmt = $conn->prepare($sql);
 
 if (!empty($params)) {
-
     $stmt->bind_param($types, ...$params);
-
 }
 
 $stmt->execute();
@@ -142,6 +198,33 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </a>
 
     </div>
+    <div class="stats-grid">
+
+    <div class="stat-card">
+        <i class="fas fa-house"></i>
+        <h3><?= $totalProperties ?></h3>
+        <p>Total Properties</p>
+    </div>
+
+    <div class="stat-card available">
+        <i class="fas fa-circle-check"></i>
+        <h3><?= $availableProperties ?></h3>
+        <p>Available</p>
+    </div>
+
+    <div class="stat-card reserved">
+        <i class="fas fa-clock"></i>
+        <h3><?= $reservedProperties ?></h3>
+        <p>Reserved</p>
+    </div>
+
+    <div class="stat-card sold">
+        <i class="fas fa-circle-xmark"></i>
+        <h3><?= $soldProperties ?></h3>
+        <p>Sold</p>
+    </div>
+
+</div>
 <div class="search-bar">
 
     <form method="GET">

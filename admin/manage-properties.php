@@ -36,31 +36,7 @@ $sql = "SELECT * FROM properties WHERE 1=1";
 
 $params = [];
 $types = "";
-/* ===============================
-   COUNT FILTERED RESULTS
-================================ */
 
-$countSql = str_replace(
-    "SELECT *",
-    "SELECT COUNT(*) AS total",
-    $sql
-);
-
-$countStmt = $conn->prepare($countSql);
-
-if (!empty($params)) {
-    $countStmt->bind_param($types, ...$params);
-}
-
-$countStmt->execute();
-
-$totalRows = $countStmt
-    ->get_result()
-    ->fetch_assoc()['total'];
-
-$countStmt->close();
-
-$totalPages = ceil($totalRows / $limit);
 
 /* ===============================
    SEARCH
@@ -111,6 +87,31 @@ if ($type != "") {
     $types .= "s";
 }
 
+/* ===============================
+   COUNT FILTERED RESULTS
+================================ */
+
+$countSql = str_replace(
+    "SELECT *",
+    "SELECT COUNT(*) AS total",
+    $sql
+);
+
+$countStmt = $conn->prepare($countSql);
+
+if (!empty($params)) {
+    $countStmt->bind_param($types, ...$params);
+}
+
+$countStmt->execute();
+
+$totalRows = $countStmt
+    ->get_result()
+    ->fetch_assoc()['total'];
+
+$countStmt->close();
+
+$totalPages = ceil($totalRows / $limit);
 /* ======================================
    PROPERTY STATISTICS
 ====================================== */
@@ -529,7 +530,7 @@ if($result->num_rows > 0){
 </div>
 
 <?php endif; ?>
-
+    </div>
 </section>
 
 </body>

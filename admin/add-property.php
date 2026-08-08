@@ -37,7 +37,7 @@ include "../includes/db_connect.php";
             Add New Property
         </h2>
 
-        <a href="admin/manage-properties.php" class="btn btn-secondary">
+        <a href="manage-properties.php" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i>
             Back
         </a>
@@ -272,7 +272,7 @@ Water Tank"></textarea>
 
             <div class="form-buttons">
 
-                <a href="admin/manage-properties.php" class="btn btn-secondary">
+                <a href="manage-properties.php" class="btn btn-secondary">
                     <i class="fas fa-xmark"></i>
                     Cancel
                 </a>

@@ -11,37 +11,78 @@ include "../includes/db_connect.php";
 /* Get all properties */
 
 $search = trim($_GET['search'] ?? '');
+$status = trim($_GET['status'] ?? '');
+$type   = trim($_GET['type'] ?? '');
+
+$sql = "SELECT * FROM properties WHERE 1=1";
+
+$params = [];
+$types = "";
+
+/* ===============================
+   SEARCH
+================================ */
 
 if ($search != "") {
 
-    $sql = "
-        SELECT *
-        FROM properties
-        WHERE
-            title LIKE ?
-            OR location LIKE ?
-            OR property_type LIKE ?
-            OR status LIKE ?
-        ORDER BY id DESC
-    ";
-
-    $stmt = $conn->prepare($sql);
+    $sql .= " AND (
+        title LIKE ?
+        OR location LIKE ?
+        OR property_type LIKE ?
+        OR status LIKE ?
+    )";
 
     $keyword = "%" . $search . "%";
 
-    $stmt->bind_param(
-        "ssss",
-        $keyword,
-        $keyword,
-        $keyword,
-        $keyword
-    );
+    $params[] = $keyword;
+    $params[] = $keyword;
+    $params[] = $keyword;
+    $params[] = $keyword;
 
-    $stmt->execute();
+    $types .= "ssss";
+}
 
-    $result = $stmt->get_result();
+/* ===============================
+   STATUS FILTER
+================================ */
 
-} else {
+if ($status != "") {
+
+    $sql .= " AND status = ?";
+
+    $params[] = $status;
+
+    $types .= "s";
+}
+
+/* ===============================
+   PROPERTY TYPE FILTER
+================================ */
+
+if ($type != "") {
+
+    $sql .= " AND property_type = ?";
+
+    $params[] = $type;
+
+    $types .= "s";
+}
+
+$sql .= " ORDER BY id DESC";
+
+$stmt = $conn->prepare($sql);
+
+if (!empty($params)) {
+
+    $stmt->bind_param($types, ...$params);
+
+}
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+ else {
 
     $result = $conn->query("
         SELECT *
@@ -116,72 +157,74 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             name="search"
             placeholder="Search by title, location, type or status..."
             value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-<select name="status">
 
-    <option value="">All Status</option>
+        <select name="status">
 
-    <option value="Available"
-        <?= (($_GET['status'] ?? '') == 'Available') ? 'selected' : '' ?>>
-        Available
-    </option>
+            <option value="">All Status</option>
 
-    <option value="Reserved"
-        <?= (($_GET['status'] ?? '') == 'Reserved') ? 'selected' : '' ?>>
-        Reserved
-    </option>
+            <option value="Available"
+                <?= (($_GET['status'] ?? '') == 'Available') ? 'selected' : '' ?>>
+                Available
+            </option>
 
-    <option value="Sold"
-        <?= (($_GET['status'] ?? '') == 'Sold') ? 'selected' : '' ?>>
-        Sold
-    </option>
+            <option value="Reserved"
+                <?= (($_GET['status'] ?? '') == 'Reserved') ? 'selected' : '' ?>>
+                Reserved
+            </option>
 
-</select>
+            <option value="Sold"
+                <?= (($_GET['status'] ?? '') == 'Sold') ? 'selected' : '' ?>>
+                Sold
+            </option>
 
-<select name="type">
+        </select>
 
-    <option value="">All Types</option>
+        <select name="type">
 
-    <option value="House & Lot"
-        <?= (($_GET['type'] ?? '') == 'House & Lot') ? 'selected' : '' ?>>
-        House & Lot
-    </option>
+            <option value="">All Types</option>
 
-    <option value="Townhouse"
-        <?= (($_GET['type'] ?? '') == 'Townhouse') ? 'selected' : '' ?>>
-        Townhouse
-    </option>
+            <option value="House & Lot"
+                <?= (($_GET['type'] ?? '') == 'House & Lot') ? 'selected' : '' ?>>
+                House & Lot
+            </option>
 
-    <option value="Residential Lot"
-        <?= (($_GET['type'] ?? '') == 'Residential Lot') ? 'selected' : '' ?>>
-        Residential Lot
-    </option>
+            <option value="Townhouse"
+                <?= (($_GET['type'] ?? '') == 'Townhouse') ? 'selected' : '' ?>>
+                Townhouse
+            </option>
 
-    <option value="Commercial Lot"
-        <?= (($_GET['type'] ?? '') == 'Commercial Lot') ? 'selected' : '' ?>>
-        Commercial Lot
-    </option>
+            <option value="Residential Lot"
+                <?= (($_GET['type'] ?? '') == 'Residential Lot') ? 'selected' : '' ?>>
+                Residential Lot
+            </option>
 
-    <option value="Agricultural Land"
-        <?= (($_GET['type'] ?? '') == 'Agricultural Land') ? 'selected' : '' ?>>
-        Agricultural Land
-    </option>
+            <option value="Commercial Lot"
+                <?= (($_GET['type'] ?? '') == 'Commercial Lot') ? 'selected' : '' ?>>
+                Commercial Lot
+            </option>
 
-    <option value="Condominium"
-        <?= (($_GET['type'] ?? '') == 'Condominium') ? 'selected' : '' ?>>
-        Condominium
-    </option>
+            <option value="Agricultural Land"
+                <?= (($_GET['type'] ?? '') == 'Agricultural Land') ? 'selected' : '' ?>>
+                Agricultural Land
+            </option>
 
-    <option value="Office Space"
-        <?= (($_GET['type'] ?? '') == 'Office Space') ? 'selected' : '' ?>>
-        Office Space
-    </option>
+            <option value="Condominium"
+                <?= (($_GET['type'] ?? '') == 'Condominium') ? 'selected' : '' ?>>
+                Condominium
+            </option>
 
-    <option value="Warehouse"
-        <?= (($_GET['type'] ?? '') == 'Warehouse') ? 'selected' : '' ?>>
-        Warehouse
-    </option>
+            <option value="Office Space"
+                <?= (($_GET['type'] ?? '') == 'Office Space') ? 'selected' : '' ?>>
+                Office Space
+            </option>
 
-</select>
+            <option value="Warehouse"
+                <?= (($_GET['type'] ?? '') == 'Warehouse') ? 'selected' : '' ?>>
+                Warehouse
+            </option>
+
+        </select>
+
         <button type="submit" class="btn btn-primary">
 
             <i class="fas fa-search"></i>
@@ -190,7 +233,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
         </button>
 
-        <?php if (!empty($_GET['search'])): ?>
+        <?php if (
+            !empty($_GET['search']) ||
+            !empty($_GET['status']) ||
+            !empty($_GET['type'])
+        ): ?>
 
             <a href="manage-properties.php" class="btn btn-secondary">
 
@@ -203,6 +250,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         <?php endif; ?>
 
     </form>
+
+</div>
 
 </div>
     <div class="property-list">

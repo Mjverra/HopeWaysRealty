@@ -170,10 +170,20 @@ $relatedProperties = $relatedStmt->get_result();
 
                 <div class="hero-content">
 
-                    <span class="property-status">
+                    <?php
+                    $status = strtolower(trim($property['status']));
 
+                    $statusClass = "status-available";
+
+                    if ($status == "reserved") {
+                        $statusClass = "status-reserved";
+                    } elseif ($status == "sold") {
+                        $statusClass = "status-sold";
+                    }
+                    ?>
+
+                    <span class="property-status <?= $statusClass ?>">
                         <?= htmlspecialchars($property['status']); ?>
-
                     </span>
 
                     <h1>

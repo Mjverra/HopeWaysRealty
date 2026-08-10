@@ -507,4 +507,50 @@ $relatedProperties = $relatedStmt->get_result();
         </div>
 
     </section>
+    <!-- ======================================
+     PROPERTY LOCATION
+====================================== -->
+
+    <section class="property-map">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Property Location</h2>
+
+                <p>View the property's location on Google Maps.</p>
+
+            </div>
+
+            <?php if (!empty($property['map_url'])): ?>
+
+                <div class="map-card">
+
+                    <iframe
+                        src="<?= htmlspecialchars($property['map_url']); ?>"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+
+                </div>
+
+            <?php else: ?>
+
+                <div class="no-map">
+
+                    <i class="fas fa-map-marked-alt"></i>
+
+                    <h3>Location Not Available</h3>
+
+                    <p>No map has been added for this property.</p>
+
+                </div>
+
+            <?php endif; ?>
+
+        </div>
+
+    </section>
 </body>

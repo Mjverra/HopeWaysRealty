@@ -28,7 +28,7 @@ $stmt->bind_param(
 if ($stmt->execute()) {
     echo "<script>
             alert('Message sent successfully!');
-            window.location='contact.html';
+            window.location='contact.php';
           </script>";
 } else {
     echo "Error: " . $stmt->error;

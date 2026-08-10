@@ -326,7 +326,9 @@ $relatedProperties = $relatedStmt->get_result();
 
                     <?php if (count($gallery) > 7): ?>
 
-                        <div class="gallery-item more-photos">
+                        <div
+                            class="gallery-item more-photos"
+                            onclick="openLightbox(7)">
 
                             <div class="more-overlay">
 
@@ -380,7 +382,12 @@ $relatedProperties = $relatedStmt->get_result();
     </div>
 
     <script>
-        const galleryImages = document.querySelectorAll(".gallery-item img");
+        const galleryImages = [
+            <?php foreach ($gallery as $image): ?> {
+                    src: "<?= htmlspecialchars($image['image_path']); ?>"
+                },
+            <?php endforeach; ?>
+        ];
 
         const lightbox = document.getElementById("lightbox");
 
@@ -394,7 +401,7 @@ $relatedProperties = $relatedStmt->get_result();
 
         let currentIndex = 0;
 
-        galleryImages.forEach((image, index) => {
+        document.querySelectorAll(".gallery-item img").forEach((image, index) => {
 
             image.addEventListener("click", () => {
 
@@ -407,6 +414,16 @@ $relatedProperties = $relatedStmt->get_result();
             });
 
         });
+
+        function openLightbox(index) {
+
+            currentIndex = index;
+
+            showImage();
+
+            lightbox.style.display = "flex";
+
+        }
 
         function showImage() {
 

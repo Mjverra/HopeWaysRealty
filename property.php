@@ -590,4 +590,72 @@ $relatedProperties = $relatedStmt->get_result();
         </div>
 
     </section>
+    <!-- ======================================
+     RELATED PROPERTIES
+====================================== -->
+
+    <section class="related-properties">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Related Properties</h2>
+
+                <p>You may also be interested in these listings.</p>
+
+            </div>
+
+            <div class="related-grid">
+
+                <?php while ($related = $relatedProperties->fetch_assoc()): ?>
+
+                    <div class="related-card">
+
+                        <img
+                            src="<?= htmlspecialchars($related['cover_image']); ?>"
+                            alt="<?= htmlspecialchars($related['title']); ?>">
+
+                        <div class="related-content">
+
+                            <h3>
+
+                                <?= htmlspecialchars($related['title']); ?>
+
+                            </h3>
+
+                            <p>
+
+                                <i class="fas fa-map-marker-alt"></i>
+
+                                <?= htmlspecialchars($related['location']); ?>
+
+                            </p>
+
+                            <h4>
+
+                                ₱<?= number_format($related['price'], 2); ?>
+
+                            </h4>
+
+                            <a
+                                href="property.php?id=<?= $related['id']; ?>"
+                                class="related-btn">
+
+                                View Property
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                <?php endwhile; ?>
+
+            </div>
+
+        </div>
+
+    </section>
+
 </body>

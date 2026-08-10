@@ -2,10 +2,9 @@
 <div class="login-container">
 
     <img
-        src="images/headerlogo.jpg"
+        src="images/logo/headerlogo.jpg"
         alt="Hope Ways Realty Logo"
-        class="login-logo"
-    >
+        class="login-logo">
 
     <h1>Administrator Login</h1>
 
@@ -20,8 +19,7 @@
                 type="text"
                 name="username"
                 placeholder="Username"
-                required
-            >
+                required>
         </div> <br>
 
         <div class="input-group">
@@ -31,8 +29,7 @@
                 type="password"
                 name="password"
                 placeholder="Password"
-                required
-            >
+                required>
         </div> <br>
 
         <button type="submit">

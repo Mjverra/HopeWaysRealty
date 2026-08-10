@@ -155,9 +155,14 @@ $relatedProperties = $relatedStmt->get_result();
 
     <section class="property-hero">
 
-        <img
-            src="<?= htmlspecialchars($property['cover_image']); ?>"
-            alt="<?= htmlspecialchars($property['title']); ?>">
+        <div class="hero-image-wrapper">
+
+            <img
+                id="mainHeroImage"
+                src="<?= htmlspecialchars($property['cover_image']); ?>"
+                alt="<?= htmlspecialchars($property['title']); ?>">
+
+        </div>
 
         <div class="hero-overlay">
 
@@ -194,6 +199,29 @@ $relatedProperties = $relatedStmt->get_result();
                 </div>
 
             </div>
+
+        </div>
+        <!-- Hero Thumbnails -->
+
+        <div class="hero-thumbnails">
+
+            <!-- Cover Image -->
+
+            <img
+                class="hero-thumb active-thumb"
+                src="<?= htmlspecialchars($property['cover_image']); ?>"
+                alt="Cover Image">
+
+            <!-- Gallery Images -->
+
+            <?php foreach ($gallery as $image): ?>
+
+                <img
+                    class="hero-thumb"
+                    src="<?= htmlspecialchars($image['image_path']); ?>"
+                    alt="Gallery Image">
+
+            <?php endforeach; ?>
 
         </div>
 
@@ -657,5 +685,23 @@ $relatedProperties = $relatedStmt->get_result();
         </div>
 
     </section>
+    <script>
+        const heroImage = document.getElementById("mainHeroImage");
 
+        const heroThumbs = document.querySelectorAll(".hero-thumb");
+
+        heroThumbs.forEach((thumb) => {
+
+            thumb.addEventListener("click", function() {
+
+                heroImage.src = this.src;
+
+                heroThumbs.forEach(t => t.classList.remove("active-thumb"));
+
+                this.classList.add("active-thumb");
+
+            });
+
+        });
+    </script>
 </body>

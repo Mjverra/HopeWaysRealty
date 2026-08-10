@@ -394,3 +394,28 @@ section {
 .close-lightbox:hover {
   color: #dddddd;
 }
+/* ======================================
+   PROPERTY DESCRIPTION
+====================================== */
+
+.property-description {
+  padding: 80px 0;
+
+  background: #f8fafc;
+}
+
+.description-card {
+  background: #fff;
+
+  padding: 40px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+  font-size: 18px;
+
+  line-height: 1.9;
+
+  color: #555;
+}

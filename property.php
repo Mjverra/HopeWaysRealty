@@ -429,5 +429,29 @@ $relatedProperties = $relatedStmt->get_result();
 
         });
     </script>
+    <!-- ======================================
+     PROPERTY DESCRIPTION
+====================================== -->
 
+    <section class="property-description">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Property Description</h2>
+
+                <p>Learn more about this property.</p>
+
+            </div>
+
+            <div class="description-card">
+
+                <?= nl2br(htmlspecialchars($property['description'])); ?>
+
+            </div>
+
+        </div>
+
+    </section>
 </body>

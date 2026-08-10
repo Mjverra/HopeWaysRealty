@@ -10,241 +10,237 @@ $result = $conn->query($sql);
 ?>
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
 
-    <title>Featured Properties | Hope Ways Realty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/style.css" />
+  <title>Featured Properties | Hope Ways Realty</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-  </head>
+  <link rel="stylesheet" href="css/style.css" />
 
-  <body>
-    <!-- ================= HEADER ================= -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
 
-   <header>
+<body>
+  <!-- ================= HEADER ================= -->
+
+  <header>
     <nav>
 
-        <div class="logo">
-            <a href="index.php">
-                <img
-                    src="images/headerlogo.jpg"
-                    class="header-logo"
-                    alt="Hope Ways Realty">
+      <div class="logo">
+        <a href="index.php">
+          <img
+            src="images/headerlogo.jpg"
+            class="header-logo"
+            alt="Hope Ways Realty">
 
-                <span>HopeWays Realty</span>
-            </a>
-        </div>
+          <span>HopeWays Realty</span>
+        </a>
+      </div>
 
-        <ul>
+      <ul>
 
-            <li>
-                <a href="index.php">Home</a>
-            </li>
+        <li>
+          <a href="index.php">Home</a>
+        </li>
 
-            <li>
-                <a href="properties.php" class="active">Properties</a>
-            </li>
+        <li>
+          <a href="properties.php" class="active">Properties</a>
+        </li>
 
-            <li>
-                <a href="about.php">About</a>
-            </li>
+        <li>
+          <a href="about.php">About</a>
+        </li>
 
-            <li>
-                <a href="services.php">Services</a>
-            </li>
+        <li>
+          <a href="services.php">Services</a>
+        </li>
 
-            <li>
-                <a href="contact.php">Contact</a>
-            </li>
+        <li>
+          <a href="contact.php">Contact</a>
+        </li>
 
-        </ul>
+      </ul>
 
     </nav>
-</header>
+  </header>
 
-    <!-- ================= HERO ================= -->
-    <section class="properties-hero">
-      <!-- Background Video -->
-      <video class="hero-video" autoplay muted loop playsinline>
-        <source src="images/property1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+  <!-- ================= HERO ================= -->
+  <section class="properties-hero">
+    <!-- Background Video -->
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="images/property1.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
 
-      <!-- Dark Overlay -->
-      <div class="overlay">
-        <h1>Featured Properties</h1>
+    <!-- Dark Overlay -->
+    <div class="overlay">
+      <h1>Featured Properties</h1>
 
-        <p>Discover quality homes and investment opportunities.</p>
+      <p>Discover quality homes and investment opportunities.</p>
 
-        <a href="#properties" class="btn">Browse Listings</a>
-      </div>
-    </section>
+      <a href="#properties" class="btn">Browse Listings</a>
+    </div>
+  </section>
 
-    <!-- ================= PROPERTIES ================= -->
+  <!-- ================= PROPERTIES ================= -->
 
-    <section id="properties" class="properties">
-      <h2>Our Featured Listings</h2>
+  <section id="properties" class="properties">
+    <h2>Our Featured Listings</h2>
 
-      <p class="subtitle">
-        Choose from our latest residential and commercial properties.
-      </p>
+    <p class="subtitle">
+      Choose from our latest residential and commercial properties.
+    </p>
 
-      <div class="property-container">
+    <div class="property-container">
 
-<?php if($result->num_rows > 0){ ?>
+      <?php if ($result->num_rows > 0) { ?>
 
-<?php while($row = $result->fetch_assoc()){ ?>
+        <?php while ($row = $result->fetch_assoc()) { ?>
 
-<div class="property-card">
+          <div class="property-card">
 
-    <img
-        src="<?php echo htmlspecialchars($row['cover_image']); ?>"
-        alt="<?php echo htmlspecialchars($row['title']); ?>">
+            <img
+              src="<?php echo htmlspecialchars($row['cover_image']); ?>"
+              alt="<?php echo htmlspecialchars($row['title']); ?>">
 
-    <div class="property-info">
+            <div class="property-info">
 
-        <h3>
-            <?php echo htmlspecialchars($row['title']); ?>
-        </h3>
+              <h3>
+                <?php echo htmlspecialchars($row['title']); ?>
+              </h3>
 
-        <p>
-            <i class="fas fa-map-marker-alt"></i>
-            <strong>
-                <?php echo htmlspecialchars($row['location']); ?>
-            </strong>
-        </p>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <strong>
+                  <?php echo htmlspecialchars($row['location']); ?>
+                </strong>
+              </p>
 
-        <p>
+              <p>
 
-            <?php
+                <?php
 
-            $description = strip_tags($row['description']);
+                $description = strip_tags($row['description']);
 
-            if(strlen($description) > 120){
-                echo htmlspecialchars(substr($description,0,120)) . "...";
-            } else {
-                echo htmlspecialchars($description);
-            }
+                if (strlen($description) > 120) {
+                  echo htmlspecialchars(substr($description, 0, 120)) . "...";
+                } else {
+                  echo htmlspecialchars($description);
+                }
 
-            ?>
+                ?>
 
-        </p>
+              </p>
 
-        <h4>
+              <h4>
 
-            ₱<?php echo number_format((float)$row['price'], 2); ?>
+                ₱<?php echo number_format((float)$row['price'], 2); ?>
 
-        </h4>
+              </h4>
 
-        <a
-            href="property.php?id=<?php echo $row['id']; ?>"
-            class="btn">
+              <a href="property.php?id=<?= $row['id']; ?>" class="btn">
+                View More Details
+              </a>
 
-            View More Details
+            </div>
 
-        </a>
+          </div>
+
+        <?php } ?>
+
+      <?php } else { ?>
+
+        <div class="empty-state">
+
+          <i class="fas fa-house-circle-xmark"></i>
+
+          <h2>No Properties Available</h2>
+
+          <p>Please check back later for new listings.</p>
+
+        </div>
+
+      <?php } ?>
 
     </div>
+  </section>
 
-</div>
+  <!-- ================= CTA ================= -->
 
-<?php } ?>
+  <section class="cta">
+    <h2>Looking for Your Dream Property?</h2>
 
-<?php } else { ?>
+    <p>
+      Our experienced brokers are ready to help you find the perfect home.
+    </p>
 
-<div class="empty-state">
+    <a href="contact.php" class="btn"> Contact Us </a>
+  </section>
 
-    <i class="fas fa-house-circle-xmark"></i>
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-content">
+      <h3>Hope Ways Realty Brokerage</h3>
 
-    <h2>No Properties Available</h2>
+      <p>Your Trusted Partner in Real Estate</p>
 
-    <p>Please check back later for new listings.</p>
-
-</div>
-
-<?php } ?>
-
-</div>
-    </section>
-
-    <!-- ================= CTA ================= -->
-
-    <section class="cta">
-      <h2>Looking for Your Dream Property?</h2>
+      <hr />
 
       <p>
-        Our experienced brokers are ready to help you find the perfect home.
+        <strong>Doris Hope S. Maruya, REB, REA</strong><br />
+        Real Estate Broker<br />
+        PRC Reg. No. 0036399
       </p>
 
-      <a href="contact.php" class="btn"> Contact Us </a>
-    </section>
+      <p>
+        <strong>Rose Windel B. Verra</strong><br />
+        Registered Real Estate Salesperson
+      </p>
 
-    <!-- ================= FOOTER ================= -->
-    <footer>
-      <div class="footer-content">
-        <h3>Hope Ways Realty Brokerage</h3>
+      <p>
+        <strong>Marc Jundel B. Verra</strong><br />
+        Registered Real Estate Salesperson
+      </p>
 
-        <p>Your Trusted Partner in Real Estate</p>
+      <hr />
 
-        <hr />
+      <p>
+        <strong>DHUD Registration No.</strong><br />
+        R8-B-05/26-80074
+      </p>
 
-        <p>
-          <strong>Doris Hope S. Maruya, REB, REA</strong><br />
-          Real Estate Broker<br />
-          PRC Reg. No. 0036399
-        </p>
+      <p>
+        <i class="fas fa-phone"></i>
+        <a href="tel:+639976055096">+63 997 605 5096</a> |
+        <a href="tel:+639524833739">+63 952 483 3739</a>
+      </p>
 
-        <p>
-          <strong>Rose Windel B. Verra</strong><br />
-          Registered Real Estate Salesperson
-        </p>
+      <p>
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:hopewaysrealtybrokerage@gmail.com">
+          hopewaysrealtybrokerage@gmail.com
+        </a>
+      </p>
 
-        <p>
-          <strong>Marc Jundel B. Verra</strong><br />
-          Registered Real Estate Salesperson
-        </p>
+      <p>
+        <i class="fab fa-facebook"></i>
+        Follow us on Facebook:
+        <a
+          href="https://www.facebook.com/share/14jEXvByckw/?mibextid=wwXlfr"
+          target="_blank"
+          rel="noopener noreferrer">
+          Hope Ways Realty
+        </a>
+      </p>
 
-        <hr />
+      <p>&copy; 2026 Hope Ways Realty Brokerage. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
 
-        <p>
-          <strong>DHUD Registration No.</strong><br />
-          R8-B-05/26-80074
-        </p>
-
-        <p>
-          <i class="fas fa-phone"></i>
-          <a href="tel:+639976055096">+63 997 605 5096</a> |
-          <a href="tel:+639524833739">+63 952 483 3739</a>
-        </p>
-
-        <p>
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:hopewaysrealtybrokerage@gmail.com">
-            hopewaysrealtybrokerage@gmail.com
-          </a>
-        </p>
-
-        <p>
-          <i class="fab fa-facebook"></i>
-          Follow us on Facebook:
-          <a
-            href="https://www.facebook.com/share/14jEXvByckw/?mibextid=wwXlfr"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Hope Ways Realty
-          </a>
-        </p>
-
-        <p>&copy; 2026 Hope Ways Realty Brokerage. All Rights Reserved.</p>
-      </div>
-    </footer>
-  </body>
 </html>

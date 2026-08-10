@@ -721,32 +721,36 @@ section {
 
 .hero-thumbnails {
   display: flex;
-
-  gap: 15px;
-
   justify-content: center;
-
+  align-items: center;
+  gap: 15px;
   flex-wrap: wrap;
 
-  padding: 25px;
+  background: #fff;
 
-  background: #ffffff;
+  padding: 20px;
+
+  margin-top: -45px;
+
+  position: relative;
+  z-index: 100;
 }
 
 .hero-thumb {
-  width: 110px;
-
+  width: 120px;
   height: 80px;
 
   object-fit: cover;
 
-  border-radius: 10px;
+  border-radius: 8px;
 
   cursor: pointer;
 
   border: 3px solid transparent;
 
   transition: 0.3s;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .hero-thumb:hover {

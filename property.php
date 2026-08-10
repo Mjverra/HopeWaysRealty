@@ -205,30 +205,25 @@ $relatedProperties = $relatedStmt->get_result();
 
         <div class="hero-thumbnails">
 
-            <!-- Cover Image -->
-
+            <!-- Cover -->
             <img
                 class="hero-thumb active-thumb"
                 src="<?= htmlspecialchars($property['cover_image']); ?>"
-                alt="Cover Image">
+                alt="Cover">
 
-            <!-- Gallery Images -->
-
+            <!-- Gallery -->
             <?php foreach ($gallery as $image): ?>
-
-                <p style="color:red;">
-                    <?= htmlspecialchars($image['image_path']); ?>
-                </p>
 
                 <img
                     class="hero-thumb"
                     src="<?= htmlspecialchars($image['image_path']); ?>"
-                    alt="Gallery Image"
-                    style="width:120px;height:80px;border:3px solid red;">
+                    alt="Gallery">
 
             <?php endforeach; ?>
 
         </div>
+
+    </section>
 
     </section>
     <!-- ======================================

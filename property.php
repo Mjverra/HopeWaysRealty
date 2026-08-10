@@ -156,9 +156,13 @@ $relatedProperties = $relatedStmt->get_result();
 
     <section class="property-hero">
 
-        <img
-            src="<?= htmlspecialchars($property['cover_image']); ?>"
-            alt="<?= htmlspecialchars($property['title']); ?>">
+        <div class="hero-image-wrapper">
+
+            <img
+                src="<?= htmlspecialchars($property['cover_image']); ?>"
+                alt="<?= htmlspecialchars($property['title']); ?>">
+
+        </div>
 
         <div class="hero-overlay">
 

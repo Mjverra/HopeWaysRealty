@@ -32,6 +32,30 @@ if ($result->num_rows == 0) {
 }
 
 $property = $result->fetch_assoc();
+/* ======================================
+   LOAD GALLERY IMAGES
+====================================== */
+
+$gallery = [];
+
+$stmt = $conn->prepare("
+    SELECT *
+    FROM property_images
+    WHERE property_id = ?
+    ORDER BY image_order ASC
+");
+
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+$resultGallery = $stmt->get_result();
+
+while ($row = $resultGallery->fetch_assoc()) {
+
+    $gallery[] = $row;
+}
+
+$stmt->close();
 
 $stmt->close();
 
@@ -245,6 +269,67 @@ $relatedProperties = $relatedStmt->get_result();
                 </div>
 
             </div>
+
+        </div>
+
+    </section>
+    <!-- ======================================
+     PROPERTY GALLERY
+====================================== -->
+
+    <section class="property-gallery">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>
+
+                    Property Gallery
+
+                </h2>
+
+                <p>
+
+                    Browse all available photos of this property.
+
+                </p>
+
+            </div>
+
+            <?php if (count($gallery) > 0): ?>
+
+                <div class="gallery-grid">
+
+                    <?php foreach ($gallery as $image): ?>
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="<?= htmlspecialchars($image['image_path']); ?>"
+                                alt="Gallery Image">
+
+                        </div>
+
+                    <?php endforeach; ?>
+
+                </div>
+
+            <?php else: ?>
+
+                <div class="no-gallery">
+
+                    <i class="fas fa-image"></i>
+
+                    <h3>No Gallery Images</h3>
+
+                    <p>
+                        No additional images have been uploaded for this property.
+                    </p>
+
+                </div>
+
+            <?php endif; ?>
 
         </div>
 

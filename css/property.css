@@ -691,16 +691,15 @@ section {
    HERO IMAGE SLIDER
 ====================================== */
 
-.property-hero {
-  position: relative;
+.hero-image-wrapper {
   width: 100%;
-  height: 520px;
-  overflow: hidden;
+  height: 100%;
 }
 
 .hero-image-wrapper img {
   width: 100%;
-  height: 520px;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }

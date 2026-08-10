@@ -11,81 +11,82 @@ $sql = "SELECT COUNT(*) AS total
 $result = $conn->query($sql);
 
 if ($result && $row = $result->fetch_assoc()) {
-    $count = $row['total'];
+  $count = $row['total'];
 }
 ?>
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
 
-    <title>Hope Ways Realty Brokerage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/style.css" />
+  <title>Hope Ways Realty Brokerage</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-  </head>
+  <link rel="stylesheet" href="css/style.css" />
 
-  <body>
-    <header>
-      <nav>
-        <div class="logo">
-          <a href="index.php">
-            <img src="images/headerlogo.jpg" class="header-logo" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
 
-            <span>HopeWays Realty</span>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.php">
+          <img src="images/headerlogo.jpg" class="header-logo" />
+
+          <span>HopeWays Realty</span>
+        </a>
+      </div>
+
+      <ul>
+        <li><a href="index.php">Home</a></li>
+
+        <li><a href="properties.php">Properties</a></li>
+
+        <li><a href="about.php">About</a></li>
+
+        <li><a href="services.php">Services</a></li>
+
+        <li><a href="contact.php">Contact</a></li>
+
+        <li class="admin-nav">
+          <a href="admin/view-messages.php" class="admin-link">
+            <u>| Admin Access |</u>
           </a>
-        </div>
 
-       <ul>
-    <li><a href="index.php">Home</a></li>
+          <a href="admin/view-messages.php" class="notification-badge">
+            🔔 <span id="messageCount"><?php echo $count; ?></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-    <li><a href="properties.php">Properties</a></li>
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Find Your Dream Properties Today</h1>
 
-    <li><a href="about.html">About</a></li>
+        <p>
+          Helping families and investors discover quality homes, lots,
+          condominiums and commercial properties throughout the Philippines.
+        </p>
 
-    <li><a href="services.html">Services</a></li>
+        <div class="hero-buttons">
+          <a href="properties.php" class="btn-primary">
+            Browse Properties
+          </a>
 
-    <li><a href="contact.html">Contact</a></li>
-
-    <li class="admin-nav">
-    <a href="admin/view-messages.php" class="admin-link">
-        <u>| Admin Access |</u>
-    </a>
-
-    <a href="admin/view-messages.php" class="notification-badge">
-    🔔 <span id="messageCount"><?php echo $count; ?></span>
-</a>
-</li>
-</ul>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div class="hero-overlay">
-        <div class="hero-content">
-          <h1>Find Your Dream Properties Today</h1>
-
-          <p>
-            Helping families and investors discover quality homes, lots,
-            condominiums and commercial properties throughout the Philippines.
-          </p>
-
-          <div class="hero-buttons">
-            <a href="properties.php" class="btn-primary">
-              Browse Properties
-            </a>
-
-            <a href="contact.html" class="btn-secondary"> Contact Us </a>
-          </div>
+          <a href="contact.php" class="btn-secondary"> Contact Us </a>
         </div>
       </div>
-    </section>
-  </body>
+    </div>
+  </section>
+</body>
+
 </html>

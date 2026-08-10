@@ -57,7 +57,7 @@ while ($row = $resultGallery->fetch_assoc()) {
 
 $stmt->close();
 
-$stmt->close();
+
 
 /* ======================================
    LOAD PROPERTY GALLERY

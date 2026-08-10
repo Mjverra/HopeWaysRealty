@@ -56,10 +56,7 @@ while ($row = $resultGallery->fetch_assoc()) {
 }
 
 $stmt->close();
-echo "<pre>";
-print_r($gallery);
-echo "</pre>";
-exit();
+
 
 
 

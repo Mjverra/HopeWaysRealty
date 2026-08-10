@@ -553,4 +553,41 @@ $relatedProperties = $relatedStmt->get_result();
         </div>
 
     </section>
+    <!-- ======================================
+     PROPERTY INQUIRY
+====================================== -->
+
+    <section class="property-inquiry">
+
+        <div class="container">
+
+            <div class="inquiry-box">
+
+                <h2>
+
+                    Interested in this Property?
+
+                </h2>
+
+                <p>
+
+                    Contact HopeWays Realty today to schedule a property viewing or request more information about this listing.
+
+                </p>
+
+                <a
+                    href="contact.php?property=<?= urlencode($property['title']); ?>"
+                    class="inquiry-btn">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                    Send Inquiry
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
 </body>

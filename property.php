@@ -328,7 +328,8 @@ $relatedProperties = $relatedStmt->get_result();
 
                         <div
                             class="gallery-item more-photos"
-                            onclick="openLightbox(7)">
+                            onclick="openLightbox(7)"
+                            style="background-image:url('<?= htmlspecialchars($gallery[7]['image_path']); ?>');">
 
                             <div class="more-overlay">
 

@@ -709,52 +709,72 @@ section {
 
 .more-photos {
   position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 16px;
-  min-height: 220px;
 
-  background: linear-gradient(135deg, #0b7d3b, #065f2d);
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  cursor: pointer;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  min-height: 220px;
 
   transition: 0.35s;
 }
 
 .more-photos:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transform: scale(1.03);
 }
 
 .more-overlay {
   position: absolute;
+
   inset: 0;
 
+  background: rgba(0, 0, 0, 0.55);
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
+
   align-items: center;
 
-  color: #fff;
-  text-align: center;
+  color: white;
 
-  padding: 20px;
+  transition: 0.35s;
+}
 
-  background: rgba(0, 0, 0, 0.15);
+.more-photos:hover .more-overlay {
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .more-overlay i {
-  font-size: 48px;
+  font-size: 42px;
+
   margin-bottom: 15px;
 }
 
 .more-overlay h2 {
-  font-size: 42px;
+  font-size: 48px;
+
   margin: 0;
-  font-weight: 700;
+
+  font-weight: bold;
 }
 
 .more-overlay p {
   margin-top: 10px;
+
   font-size: 16px;
+
   letter-spacing: 1px;
+
   text-transform: uppercase;
 }

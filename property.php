@@ -332,11 +332,11 @@ $relatedProperties = $relatedStmt->get_result();
 
                             <div class="more-overlay">
 
-                                +<?= count($gallery) - 7 ?>
+                                <i class="fas fa-images"></i>
 
-                                <br>
+                                <h2>+<?= count($gallery) - 7 ?></h2>
 
-                                More Photos
+                                <p>More Photos</p>
 
                             </div>
 

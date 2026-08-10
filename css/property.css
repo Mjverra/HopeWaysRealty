@@ -703,3 +703,58 @@ section {
   object-position: center;
   display: block;
 }
+/* ======================================
+   VIEW ALL PHOTOS CARD
+====================================== */
+
+.more-photos {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 16px;
+  min-height: 220px;
+
+  background: linear-gradient(135deg, #0b7d3b, #065f2d);
+
+  transition: 0.35s;
+}
+
+.more-photos:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.more-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  text-align: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.more-overlay i {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.more-overlay h2 {
+  font-size: 42px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.more-overlay p {
+  margin-top: 10px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

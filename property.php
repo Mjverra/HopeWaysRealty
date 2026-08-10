@@ -334,3 +334,100 @@ $relatedProperties = $relatedStmt->get_result();
         </div>
 
     </section>
+    <!-- ======================================
+     LIGHTBOX
+====================================== -->
+
+    <div class="lightbox" id="lightbox">
+
+        <span class="close-lightbox">&times;</span>
+
+        <span class="prev-image">&#10094;</span>
+
+        <img id="lightbox-image" src="" alt="Gallery Image">
+
+        <span class="next-image">&#10095;</span>
+
+    </div>
+
+    <script>
+        const galleryImages = document.querySelectorAll(".gallery-item img");
+
+        const lightbox = document.getElementById("lightbox");
+
+        const lightboxImage = document.getElementById("lightbox-image");
+
+        const closeBtn = document.querySelector(".close-lightbox");
+
+        const prevBtn = document.querySelector(".prev-image");
+
+        const nextBtn = document.querySelector(".next-image");
+
+        let currentIndex = 0;
+
+        galleryImages.forEach((image, index) => {
+
+            image.addEventListener("click", () => {
+
+                currentIndex = index;
+
+                showImage();
+
+                lightbox.style.display = "flex";
+
+            });
+
+        });
+
+        function showImage() {
+
+            lightboxImage.src = galleryImages[currentIndex].src;
+
+        }
+
+        nextBtn.addEventListener("click", () => {
+
+            currentIndex++;
+
+            if (currentIndex >= galleryImages.length) {
+
+                currentIndex = 0;
+
+            }
+
+            showImage();
+
+        });
+
+        prevBtn.addEventListener("click", () => {
+
+            currentIndex--;
+
+            if (currentIndex < 0) {
+
+                currentIndex = galleryImages.length - 1;
+
+            }
+
+            showImage();
+
+        });
+
+        closeBtn.addEventListener("click", () => {
+
+            lightbox.style.display = "none";
+
+        });
+
+        lightbox.addEventListener("click", (e) => {
+
+            if (e.target === lightbox) {
+
+                lightbox.style.display = "none";
+
+            }
+
+        });
+    </script>
+
+</body>

@@ -109,11 +109,16 @@ $relatedProperties = $relatedStmt->get_result();
 
             </a>
 
-            <h2 class="page-logo">
+            <div class="logo">
+                <a href="index.php">
+                    <img
+                        src="images/logo/headerlogo.jpg"
+                        class="header-logo"
+                        alt="Hope Ways Realty">
 
-                HopeWays Realty
-
-            </h2>
+                    <span>HopeWays Realty</span>
+                </a>
+            </div>
 
         </div>
 

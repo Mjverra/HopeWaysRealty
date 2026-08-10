@@ -34,7 +34,7 @@ $result = $conn->query($sql);
       <div class="logo">
         <a href="index.php">
           <img
-            src="images/headerlogo.jpg"
+            src="images/logo/headerlogo.jpg"
             class="header-logo"
             alt="Hope Ways Realty">
 

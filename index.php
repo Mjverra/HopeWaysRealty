@@ -37,7 +37,7 @@ if ($result && $row = $result->fetch_assoc()) {
     <nav>
       <div class="logo">
         <a href="index.php">
-          <img src="images/headerlogo.jpg" class="header-logo" />
+          <img src="images/logo/headerlogo.jpg" class="header-logo" />
 
           <span>HopeWays Realty</span>
         </a>

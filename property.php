@@ -454,4 +454,57 @@ $relatedProperties = $relatedStmt->get_result();
         </div>
 
     </section>
+    <!-- ======================================
+     PROPERTY AMENITIES
+====================================== -->
+
+    <section class="property-amenities">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Property Amenities</h2>
+
+                <p>Features and amenities included with this property.</p>
+
+            </div>
+
+            <div class="amenities-card">
+
+                <?php
+                $amenities = array_filter(array_map('trim', explode(",", $property['amenities'])));
+
+                if (!empty($amenities)):
+                ?>
+
+                    <div class="amenities-grid">
+
+                        <?php foreach ($amenities as $amenity): ?>
+
+                            <div class="amenity-item">
+
+                                <i class="fas fa-check-circle"></i>
+
+                                <span><?= htmlspecialchars($amenity); ?></span>
+
+                            </div>
+
+                        <?php endforeach; ?>
+
+                    </div>
+
+                <?php else: ?>
+
+                    <p class="no-amenities">
+                        No amenities have been added for this property.
+                    </p>
+
+                <?php endif; ?>
+
+            </div>
+
+        </div>
+
+    </section>
 </body>

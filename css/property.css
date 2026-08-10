@@ -100,3 +100,82 @@ section {
   color: #0b7d3b;
   font-weight: bold;
 }
+/* ======================================
+   HERO SECTION
+====================================== */
+
+.property-hero {
+  position: relative;
+
+  width: 100%;
+
+  height: 550px;
+
+  overflow: hidden;
+}
+
+.property-hero img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.7));
+
+  display: flex;
+
+  align-items: flex-end;
+}
+
+.hero-content {
+  color: #fff;
+
+  padding-bottom: 60px;
+}
+
+.property-status {
+  display: inline-block;
+
+  background: #0b7d3b;
+
+  color: #fff;
+
+  padding: 8px 18px;
+
+  border-radius: 30px;
+
+  font-weight: bold;
+
+  margin-bottom: 20px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+
+  margin-bottom: 15px;
+}
+
+.hero-content h2 {
+  font-size: 36px;
+
+  color: #ffd54f;
+
+  margin-bottom: 15px;
+}
+
+.hero-location {
+  font-size: 20px;
+}
+
+.hero-location i {
+  margin-right: 8px;
+
+  color: #ffd54f;
+}

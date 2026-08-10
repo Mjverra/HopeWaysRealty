@@ -125,3 +125,52 @@ $relatedProperties = $relatedStmt->get_result();
         </div>
 
     </div>
+    <!-- ======================================
+     HERO SECTION
+====================================== -->
+
+    <section class="property-hero">
+
+        <img
+            src="<?= htmlspecialchars($property['cover_image']); ?>"
+            alt="<?= htmlspecialchars($property['title']); ?>">
+
+        <div class="hero-overlay">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <span class="property-status">
+
+                        <?= htmlspecialchars($property['status']); ?>
+
+                    </span>
+
+                    <h1>
+
+                        <?= htmlspecialchars($property['title']); ?>
+
+                    </h1>
+
+                    <h2>
+
+                        ₱<?= number_format($property['price'], 2); ?>
+
+                    </h2>
+
+                    <p class="hero-location">
+
+                        <i class="fas fa-map-marker-alt"></i>
+
+                        <?= htmlspecialchars($property['location']); ?>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>

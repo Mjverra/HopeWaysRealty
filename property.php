@@ -216,10 +216,15 @@ $relatedProperties = $relatedStmt->get_result();
 
             <?php foreach ($gallery as $image): ?>
 
+                <p style="color:red;">
+                    <?= htmlspecialchars($image['image_path']); ?>
+                </p>
+
                 <img
                     class="hero-thumb"
                     src="<?= htmlspecialchars($image['image_path']); ?>"
-                    alt="Gallery Image">
+                    alt="Gallery Image"
+                    style="width:120px;height:80px;border:3px solid red;">
 
             <?php endforeach; ?>
 

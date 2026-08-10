@@ -112,7 +112,7 @@ $relatedProperties = $relatedStmt->get_result();
             <div class="page-brand">
 
                 <img
-                    src="images/headerlogo.jpg"
+                    src="images/logo/headerlogo.jpg"
                     alt="HopeWays Realty Logo"
                     class="page-logo-image">
 

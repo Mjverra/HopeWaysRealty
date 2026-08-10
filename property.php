@@ -174,3 +174,78 @@ $relatedProperties = $relatedStmt->get_result();
         </div>
 
     </section>
+    <!-- ======================================
+     PROPERTY INFORMATION
+====================================== -->
+
+    <section class="property-details">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>
+                    Property Information
+                </h2>
+
+                <p>
+                    Complete details of this property.
+                </p>
+
+            </div>
+
+            <div class="details-grid">
+
+                <div class="detail-card">
+                    <i class="fas fa-house"></i>
+                    <h4>Property Type</h4>
+                    <p><?= htmlspecialchars($property['property_type']); ?></p>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fas fa-bed"></i>
+                    <h4>Bedrooms</h4>
+                    <p><?= htmlspecialchars($property['bedrooms']); ?></p>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fas fa-bath"></i>
+                    <h4>Bathrooms</h4>
+                    <p><?= htmlspecialchars($property['bathrooms']); ?></p>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fas fa-car"></i>
+                    <h4>Garage</h4>
+                    <p><?= htmlspecialchars($property['garage']); ?></p>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fas fa-vector-square"></i>
+                    <h4>Lot Area</h4>
+                    <p><?= htmlspecialchars($property['lot_area']); ?></p>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fas fa-ruler-combined"></i>
+                    <h4>Floor Area</h4>
+                    <p><?= htmlspecialchars($property['floor_area']); ?></p>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fas fa-couch"></i>
+                    <h4>Furnishing</h4>
+                    <p><?= htmlspecialchars($property['furnishing']); ?></p>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fas fa-circle-check"></i>
+                    <h4>Status</h4>
+                    <p><?= htmlspecialchars($property['status']); ?></p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>

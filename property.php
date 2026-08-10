@@ -309,15 +309,23 @@ $relatedProperties = $relatedStmt->get_result();
 
                 <div class="gallery-grid">
 
-                    <?php foreach ($gallery as $image): ?>
+                    <?php
+                    $totalImages = count($gallery);
+                    ?>
 
-                        <div class="gallery-item">
+                    <?php foreach ($gallery as $index => $image): ?>
 
-                            <img
-                                src="<?= htmlspecialchars($image['image_path']); ?>"
-                                alt="Gallery Image">
+                        <?php if ($index < 7): ?>
 
-                        </div>
+                            <div class="gallery-item">
+
+                                <img
+                                    src="<?= htmlspecialchars($image['image_path']); ?>"
+                                    alt="Property Image">
+
+                            </div>
+
+                        <?php endif; ?>
 
                     <?php endforeach; ?>
 

@@ -73,7 +73,7 @@ $result = $conn->query($sql);
   <section class="properties-hero">
     <!-- Background Video -->
     <video class="hero-video" autoplay muted loop playsinline>
-      <source src="images/property1.mp4" type="video/mp4" />
+      <source src="images/hero/heroproperty1.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 

@@ -55,13 +55,11 @@
 
     <div class="admin-user">
 
-        <div>
+        <div class="user-info">
 
             <strong><?= htmlspecialchars($_SESSION['admin']) ?></strong>
 
-            <br>
-
-            <small>Super Administrator</small>
+            <small><?= htmlspecialchars($_SESSION['role']) ?></small>
 
         </div>
 

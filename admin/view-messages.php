@@ -28,7 +28,7 @@ if (!$result) {
     <title>Customer Messages | Hope Ways Realty</title>
 
     <link rel="stylesheet" href="../css/admin-header.css">
-
+    <link rel="stylesheet" href="../css/admin.css">
 
 
     <link rel="stylesheet"

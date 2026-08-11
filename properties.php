@@ -137,11 +137,17 @@ $result = $conn->query($sql);
 
               </p>
 
-              <h4>
+              <p class="price">
+                ₱<?= number_format($row['price'], 2) ?>
 
-                ₱<?php echo number_format((float)$row['price'], 2); ?>
+                <?php if ($row['price_option'] == 'Negotiable'): ?>
+                  <span class="price-option">(Negotiable)</span>
 
-              </h4>
+                <?php elseif ($row['price_option'] == 'Non-negotiable'): ?>
+                  <span class="price-option">(Non-negotiable)</span>
+
+                <?php endif; ?>
+              </p>
 
               <a href="property.php?id=<?= $row['id']; ?>" class="btn">
                 View More Details

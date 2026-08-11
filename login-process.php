@@ -1,3 +1,9 @@
+<?php
+session_start();
+include "includes/db_connect.php";
+$username = trim($_POST['username']);
+$password = trim($_POST['password']);
+
 $stmt = $conn->prepare("
 SELECT *
 FROM admins
@@ -11,26 +17,17 @@ $result = $stmt->get_result();
 
 if ($result->num_rows == 1) {
 
-echo "Username found.<br>";
+    $admin = $result->fetch_assoc();
 
-$admin = $result->fetch_assoc();
+    if (password_verify($password, $admin['password'])) {
 
-var_dump(password_verify($password, $admin['password']));
-exit();
+        $_SESSION['admin_id'] = $admin['id'];
+        $_SESSION['admin'] = $admin['username'];
+        $_SESSION['role'] = $admin['role'];
 
-$admin = $result->fetch_assoc();
-
-if (password_verify($password, $admin['password'])) {
-
-$_SESSION['admin_id'] = $admin['id'];
-$_SESSION['admin'] = $admin['username'];
-$_SESSION['role'] = $admin['role'];
-
-header("Location: admin/admin-dashboard.php");
-exit();
-
-}
-
+        header("Location: admin/admin-dashboard.php");
+        exit();
+    }
 }
 
 echo "<script>

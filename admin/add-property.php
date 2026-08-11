@@ -17,7 +17,7 @@ include "../includes/db_connect.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Property | HopeWays Realty</title>
 
-    <link rel="stylesheet" href="../css/admin-header.css">
+
     <link rel="stylesheet" href="../css/messages.css">
     <link rel="stylesheet" href="../css/admin.css">
 
@@ -27,7 +27,7 @@ include "../includes/db_connect.php";
 
 <body>
 
-    <?php include "admin-header.php"; ?>
+
 
     <div class="admin-container">
 

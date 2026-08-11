@@ -18,21 +18,123 @@ $result = $conn->query("
     ORDER BY id ASC
 ");
 
-echo "<h1>Manage Admins</h1>";
+<!DOCTYPE html>
+<html lang="en">
 
-echo "<p>Welcome, " . $_SESSION['admin'] . "</p>";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Admins</title>
 
-echo "<hr>";
+    <link rel="stylesheet" href="../css/admin.css">
 
-while ($admin = $result->fetch_assoc()) {
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
 
-    echo "<h3>" . htmlspecialchars($admin['full_name']) . "</h3>";
+<body>
 
-    echo "Username: " . htmlspecialchars($admin['username']) . "<br>";
+<div class="container">
 
-    echo "Role: " . htmlspecialchars($admin['role']) . "<br>";
+    <div class="page-header">
 
-    echo "Status: " . htmlspecialchars($admin['status']) . "<br>";
+        <h1>
+            <i class="fas fa-users"></i>
+            Manage Administrators
+        </h1>
 
-    echo "<hr>";
-}
+        <a href="dashboard.php" class="btn-back">
+            <i class="fas fa-arrow-left"></i>
+            Back
+        </a>
+
+    </div>
+
+    <div class="admin-card">
+
+        <div class="card-header">
+
+            <h2>
+                <i class="fas fa-user-shield"></i>
+                Administrator Accounts
+            </h2>
+
+            <a href="add-admin.php" class="btn-primary">
+                <i class="fas fa-plus"></i>
+                Add Admin
+            </a>
+
+        </div>
+
+        <table class="admin-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            <?php while($admin = $result->fetch_assoc()): ?>
+
+                <tr>
+
+                    <td><?= htmlspecialchars($admin['full_name']) ?></td>
+
+                    <td><?= htmlspecialchars($admin['username']) ?></td>
+
+                    <td><?= htmlspecialchars($admin['role']) ?></td>
+
+                    <td><?= htmlspecialchars($admin['status']) ?></td>
+
+                    <td><?= date("M d, Y", strtotime($admin['created_at'])) ?></td>
+
+                    <td>
+
+                        <a
+                            href="edit-admin.php?id=<?= $admin['id'] ?>"
+                            class="btn-edit">
+
+                            Edit
+
+                        </a>
+
+                        <?php if($admin['username'] != $_SESSION['admin']): ?>
+
+                            <a
+                                href="delete-admin.php?id=<?= $admin['id'] ?>"
+                                class="btn-delete"
+                                onclick="return confirm('Delete this admin?')">
+
+                                Delete
+
+                            </a>
+
+                        <?php endif; ?>
+
+                    </td>
+
+                </tr>
+
+            <?php endwhile; ?>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

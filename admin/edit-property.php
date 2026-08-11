@@ -16,7 +16,6 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 
     header("Location: manage-properties.php");
     exit();
-
 }
 
 $id = (int) $_GET['id'];
@@ -41,7 +40,6 @@ if ($result->num_rows == 0) {
 
     header("Location: manage-properties.php");
     exit();
-
 }
 
 $property = $result->fetch_assoc();
@@ -67,10 +65,9 @@ $sql->execute();
 
 $images = $sql->get_result();
 
-while($row = $images->fetch_assoc()){
+while ($row = $images->fetch_assoc()) {
 
     $gallery[] = $row;
-
 }
 
 $sql->close();
@@ -97,657 +94,685 @@ $sql->close();
 
 <body>
 
-<?php include "admin-header.php"; ?>
+    <?php include "admin-header.php"; ?>
 
-<div class="admin-container">
+    <div class="admin-container">
 
-    <div class="page-title">
+        <div class="page-title">
 
-        <h2>
+            <h2>
 
-            <i class="fas fa-pen-to-square"></i>
+                <i class="fas fa-pen-to-square"></i>
 
-            Edit Property
+                Edit Property
 
-        </h2>
+            </h2>
 
-        <a href="manage-properties.php" class="btn btn-secondary">
+            <a href="manage-properties.php" class="btn btn-secondary">
 
-            <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-left"></i>
 
-            Back
+                Back
 
-        </a>
+            </a>
 
-    </div>
+        </div>
 
-<form
-    action="update-property.php"
-    method="POST"
-    enctype="multipart/form-data">
-
-<input
-    type="hidden"
-    name="id"
-    value="<?php echo $property['id']; ?>">
-    <div class="admin-card">
-        <input
-    type="hidden"
-    id="deletedImages"
-    name="deleted_images"
-    value="">
-
-<h3 class="section-title">
-
-<i class="fas fa-house"></i>
-
-Property Information
-
-</h3>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Property Title</label>
-
-<input
-type="text"
-name="title"
-value="<?php echo htmlspecialchars($property['title']); ?>"
-required>
-
-</div>
-
-<div class="form-group">
-
-<label>Property Type</label>
-
-<select name="property_type" required>
-
-<?php
-
-$types = [
-
-"House & Lot",
-"Townhouse",
-"Residential Lot",
-"Commercial Lot",
-"Agricultural Land",
-"Condominium",
-"Office Space",
-"Warehouse"
-
-];
-
-foreach($types as $type){
-
-    $selected =
-        $property['property_type'] == $type
-        ? "selected"
-        : "";
-
-    echo "<option $selected>$type</option>";
-
-}
-
-?>
-
-</select>
-
-</div>
-
-<div class="form-group full-width">
-
-<label>Location</label>
-
-<input
-type="text"
-name="location"
-value="<?php echo htmlspecialchars($property['location']); ?>"
-required>
-
-</div>
-
-<div class="form-group">
-
-<label>Price</label>
-
-<input
-type="text"
-name="price"
-value="<?php echo htmlspecialchars($property['price']); ?>"
-required>
-
-</div>
-
-</div>
-
-</div>
-<!-- ================= PROPERTY DETAILS ================= -->
-
-<div class="admin-card">
-
-    <h3 class="section-title">
-
-        <i class="fas fa-circle-info"></i>
-
-        Property Details
-
-    </h3>
-
-    <div class="form-grid">
-
-        <div class="form-group">
-
-            <label>Bedrooms</label>
+        <form
+            action="update-property.php"
+            method="POST"
+            enctype="multipart/form-data">
 
             <input
-                type="number"
-                name="bedrooms"
-                value="<?php echo $property['bedrooms']; ?>"
-                min="0">
+                type="hidden"
+                name="id"
+                value="<?php echo $property['id']; ?>">
+            <div class="admin-card">
+                <input
+                    type="hidden"
+                    id="deletedImages"
+                    name="deleted_images"
+                    value="">
 
-        </div>
+                <h3 class="section-title">
 
-        <div class="form-group">
+                    <i class="fas fa-house"></i>
 
-            <label>Bathrooms</label>
+                    Property Information
 
-            <input
-                type="number"
-                name="bathrooms"
-                value="<?php echo $property['bathrooms']; ?>"
-                min="0">
+                </h3>
 
-        </div>
+                <div class="form-grid">
 
-        <div class="form-group">
+                    <div class="form-group">
 
-            <label>Garage</label>
+                        <label>Property Title</label>
 
-            <input
-                type="text"
-                name="garage"
-                value="<?php echo htmlspecialchars($property['garage']); ?>">
+                        <input
+                            type="text"
+                            name="title"
+                            value="<?php echo htmlspecialchars($property['title']); ?>"
+                            required>
 
-        </div>
+                    </div>
 
-        <div class="form-group">
+                    <div class="form-group">
 
-            <label>Lot Area</label>
+                        <label>Property Type</label>
 
-            <input
-                type="text"
-                name="lot_area"
-                value="<?php echo htmlspecialchars($property['lot_area']); ?>">
+                        <select name="property_type" required>
 
-        </div>
+                            <?php
 
-        <div class="form-group">
+                            $types = [
 
-            <label>Floor Area</label>
+                                "House & Lot",
+                                "Townhouse",
+                                "Residential Lot",
+                                "Commercial Lot",
+                                "Agricultural Land",
+                                "Condominium",
+                                "Office Space",
+                                "Warehouse"
 
-            <input
-                type="text"
-                name="floor_area"
-                value="<?php echo htmlspecialchars($property['floor_area']); ?>">
+                            ];
 
-        </div>
+                            foreach ($types as $type) {
 
-        <div class="form-group">
+                                $selected =
+                                    $property['property_type'] == $type
+                                    ? "selected"
+                                    : "";
 
-            <label>Furnishing</label>
+                                echo "<option $selected>$type</option>";
+                            }
 
-            <select name="furnishing">
+                            ?>
 
-                <?php
+                        </select>
 
-                $furnishing = [
+                    </div>
 
-                    "",
+                    <div class="form-group full-width">
 
-                    "Fully Furnished",
+                        <label>Location</label>
 
-                    "Semi-Furnished",
+                        <input
+                            type="text"
+                            name="location"
+                            value="<?php echo htmlspecialchars($property['location']); ?>"
+                            required>
 
-                    "Bare"
+                    </div>
 
-                ];
+                    <div class="form-group">
 
-                foreach($furnishing as $item){
+                        <label>Price</label>
 
-                    $selected =
-                        $property['furnishing'] == $item
-                        ? "selected"
-                        : "";
+                        <input
+                            type="text"
+                            name="price"
+                            value="<?php echo htmlspecialchars($property['price']); ?>"
+                            required>
 
-                    echo "<option $selected>$item</option>";
+                    </div>
+                    <div class="form-group">
 
-                }
+                        <label>Price</label>
 
-                ?>
+                        <input
+                            type="text"
+                            name="price"
+                            value="<?php echo htmlspecialchars($property['price']); ?>"
+                            required>
 
-            </select>
+                    </div>
 
-        </div>
+                    <div class="form-group">
+                        <label>Price Option</label>
 
-        <div class="form-group">
+                        <select name="price_option">
 
-            <label>Status</label>
+                            <option value="Blank"
+                                <?= $property['price_option'] == 'Blank' ? 'selected' : '' ?>>
+                                Blank
+                            </option>
 
-            <select name="status">
+                            <option value="Negotiable"
+                                <?= $property['price_option'] == 'Negotiable' ? 'selected' : '' ?>>
+                                Negotiable
+                            </option>
 
-                <?php
+                            <option value="Non-negotiable"
+                                <?= $property['price_option'] == 'Non-negotiable' ? 'selected' : '' ?>>
+                                Non-negotiable
+                            </option>
 
-                $status = [
+                        </select>
+                    </div>
 
-                    "Available",
-
-                    "Reserved",
-
-                    "Sold"
-
-                ];
-
-                foreach($status as $item){
-
-                    $selected =
-                        $property['status'] == $item
-                        ? "selected"
-                        : "";
-
-                    echo "<option $selected>$item</option>";
-
-                }
-
-                ?>
-
-            </select>
-
-        </div>
-
-    </div>
-
-</div>
-<!-- ================= COVER IMAGE ================= -->
-
-<div class="admin-card">
-
-    <h3 class="section-title">
-
-        <i class="fas fa-image"></i>
-
-        Cover Image
-
-    </h3>
-
-    <div style="text-align:center;">
-
-        <?php if(!empty($property['cover_image'])){ ?>
-
-            <img
-                src="<?php echo htmlspecialchars($property['cover_image']); ?>"
-                id="previewImage"
-                style="width:320px;
-                       border-radius:12px;
-                       border:1px solid #ddd;
-                       margin-bottom:20px;">
-
-        <?php }else{ ?>
-
-            <img
-                src="../images/default/no-image.png"
-                id="previewImage"
-                style="width:320px;
-                       border-radius:12px;
-                       border:1px solid #ddd;
-                       margin-bottom:20px;">
-
-        <?php } ?>
-
-        <div class="form-group">
-
-            <label>Replace Cover Image</label>
-
-            <input
-                type="file"
-                id="coverImage"
-                name="cover_image"
-                accept="image/*">
-                
-                <small>
-
-                Leave this blank if you don't want to replace the current cover image.
-
-            </small>
-
-        </div>
-
-    </div>
-
-</div>
-<!-- =======================================================
-     PROPERTY DESCRIPTION
-======================================================== -->
-
-<div class="admin-card">
-
-    <h3 class="section-title">
-
-        <i class="fas fa-file-lines"></i>
-
-        Property Description
-
-    </h3>
-
-    <div class="form-group">
-
-        <textarea
-            name="description"
-            rows="7"
-            placeholder="Enter property description..."><?php echo htmlspecialchars($property['description']); ?></textarea>
-
-    </div>
-
-</div>
-
-<!-- =======================================================
-     AMENITIES
-======================================================== -->
-
-<div class="admin-card">
-
-    <h3 class="section-title">
-
-        <i class="fas fa-star"></i>
-
-        Amenities
-
-    </h3>
-
-    <div class="form-group">
-
-        <textarea
-            name="amenities"
-            rows="6"
-            placeholder="Garage&#10;Garden&#10;Swimming Pool&#10;Balcony"><?php echo htmlspecialchars($property['amenities']); ?></textarea>
-
-    </div>
-
-</div>
-
-<!-- =======================================================
-     LOCATION
-======================================================== -->
-
-<div class="admin-card">
-
-    <h3 class="section-title">
-
-        <i class="fas fa-location-dot"></i>
-
-        Google Maps
-
-    </h3>
-
-    <div class="form-group">
-
-        <label>Google Maps URL</label>
-
-        <input
-            type="url"
-            name="map_url"
-            value="<?php echo htmlspecialchars($property['map_url']); ?>"
-            placeholder="https://www.google.com/maps?q=...">
-
-    </div>
-
-</div>
-<!-- =======================================================
-     GALLERY IMAGES
-======================================================== -->
-
-<div class="admin-card">
-
-    <h3 class="section-title">
-
-        <i class="fas fa-images"></i>
-
-        Property Gallery
-
-    </h3>
-
-    <?php if(count($gallery) > 0){ ?>
-
-    <div class="gallery-grid">
-
-        <?php foreach($gallery as $image){ ?>
-
-            <div
-    class="gallery-item"
-    id="gallery-image-<?php echo $image['id']; ?>">
-
-                <img
-                    src="<?php echo htmlspecialchars($image['image_path']); ?>"
-                    alt="Gallery Image">
-
-                <br><br>
-
-                <button
-    type="button"
-    class="btn btn-danger delete-gallery-btn"
-    data-image-id="<?php echo $image['id']; ?>">
-
-    <i class="fas fa-trash"></i>
-
-    Delete
-
-</button>
+                </div> <!-- form-grid -->
 
             </div>
 
+    </div>
+    <!-- ================= PROPERTY DETAILS ================= -->
+
+    <div class="admin-card">
+
+        <h3 class="section-title">
+
+            <i class="fas fa-circle-info"></i>
+
+            Property Details
+
+        </h3>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Bedrooms</label>
+
+                <input
+                    type="number"
+                    name="bedrooms"
+                    value="<?php echo $property['bedrooms']; ?>"
+                    min="0">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Bathrooms</label>
+
+                <input
+                    type="number"
+                    name="bathrooms"
+                    value="<?php echo $property['bathrooms']; ?>"
+                    min="0">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Garage</label>
+
+                <input
+                    type="text"
+                    name="garage"
+                    value="<?php echo htmlspecialchars($property['garage']); ?>">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Lot Area</label>
+
+                <input
+                    type="text"
+                    name="lot_area"
+                    value="<?php echo htmlspecialchars($property['lot_area']); ?>">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Floor Area</label>
+
+                <input
+                    type="text"
+                    name="floor_area"
+                    value="<?php echo htmlspecialchars($property['floor_area']); ?>">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Furnishing</label>
+
+                <select name="furnishing">
+
+                    <?php
+
+                    $furnishing = [
+
+                        "",
+
+                        "Fully Furnished",
+
+                        "Semi-Furnished",
+
+                        "Bare"
+
+                    ];
+
+                    foreach ($furnishing as $item) {
+
+                        $selected =
+                            $property['furnishing'] == $item
+                            ? "selected"
+                            : "";
+
+                        echo "<option $selected>$item</option>";
+                    }
+
+                    ?>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select name="status">
+
+                    <?php
+
+                    $status = [
+
+                        "Available",
+
+                        "Reserved",
+
+                        "Sold"
+
+                    ];
+
+                    foreach ($status as $item) {
+
+                        $selected =
+                            $property['status'] == $item
+                            ? "selected"
+                            : "";
+
+                        echo "<option $selected>$item</option>";
+                    }
+
+                    ?>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- ================= COVER IMAGE ================= -->
+
+    <div class="admin-card">
+
+        <h3 class="section-title">
+
+            <i class="fas fa-image"></i>
+
+            Cover Image
+
+        </h3>
+
+        <div style="text-align:center;">
+
+            <?php if (!empty($property['cover_image'])) { ?>
+
+                <img
+                    src="<?php echo htmlspecialchars($property['cover_image']); ?>"
+                    id="previewImage"
+                    style="width:320px;
+                       border-radius:12px;
+                       border:1px solid #ddd;
+                       margin-bottom:20px;">
+
+            <?php } else { ?>
+
+                <img
+                    src="../images/default/no-image.png"
+                    id="previewImage"
+                    style="width:320px;
+                       border-radius:12px;
+                       border:1px solid #ddd;
+                       margin-bottom:20px;">
+
+            <?php } ?>
+
+            <div class="form-group">
+
+                <label>Replace Cover Image</label>
+
+                <input
+                    type="file"
+                    id="coverImage"
+                    name="cover_image"
+                    accept="image/*">
+
+                <small>
+
+                    Leave this blank if you don't want to replace the current cover image.
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- =======================================================
+     PROPERTY DESCRIPTION
+======================================================== -->
+
+    <div class="admin-card">
+
+        <h3 class="section-title">
+
+            <i class="fas fa-file-lines"></i>
+
+            Property Description
+
+        </h3>
+
+        <div class="form-group">
+
+            <textarea
+                name="description"
+                rows="7"
+                placeholder="Enter property description..."><?php echo htmlspecialchars($property['description']); ?></textarea>
+
+        </div>
+
+    </div>
+
+    <!-- =======================================================
+     AMENITIES
+======================================================== -->
+
+    <div class="admin-card">
+
+        <h3 class="section-title">
+
+            <i class="fas fa-star"></i>
+
+            Amenities
+
+        </h3>
+
+        <div class="form-group">
+
+            <textarea
+                name="amenities"
+                rows="6"
+                placeholder="Garage&#10;Garden&#10;Swimming Pool&#10;Balcony"><?php echo htmlspecialchars($property['amenities']); ?></textarea>
+
+        </div>
+
+    </div>
+
+    <!-- =======================================================
+     LOCATION
+======================================================== -->
+
+    <div class="admin-card">
+
+        <h3 class="section-title">
+
+            <i class="fas fa-location-dot"></i>
+
+            Google Maps
+
+        </h3>
+
+        <div class="form-group">
+
+            <label>Google Maps URL</label>
+
+            <input
+                type="url"
+                name="map_url"
+                value="<?php echo htmlspecialchars($property['map_url']); ?>"
+                placeholder="https://www.google.com/maps?q=...">
+
+        </div>
+
+    </div>
+    <!-- =======================================================
+     GALLERY IMAGES
+======================================================== -->
+
+    <div class="admin-card">
+
+        <h3 class="section-title">
+
+            <i class="fas fa-images"></i>
+
+            Property Gallery
+
+        </h3>
+
+        <?php if (count($gallery) > 0) { ?>
+
+            <div class="gallery-grid">
+
+                <?php foreach ($gallery as $image) { ?>
+
+                    <div
+                        class="gallery-item"
+                        id="gallery-image-<?php echo $image['id']; ?>">
+
+                        <img
+                            src="<?php echo htmlspecialchars($image['image_path']); ?>"
+                            alt="Gallery Image">
+
+                        <br><br>
+
+                        <button
+                            type="button"
+                            class="btn btn-danger delete-gallery-btn"
+                            data-image-id="<?php echo $image['id']; ?>">
+
+                            <i class="fas fa-trash"></i>
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                <?php } ?>
+
+            </div>
+
+        <?php } else { ?>
+
+            <p style="color:#777;text-align:center;">
+
+                No gallery images uploaded.
+
+            </p>
+
         <?php } ?>
 
-    </div>
+        <hr style="margin:30px 0;">
 
-    <?php }else{ ?>
+        <div class="form-group">
 
-        <p style="color:#777;text-align:center;">
+            <label>
 
-            No gallery images uploaded.
+                Upload More Images
 
-        </p>
+            </label>
 
-    <?php } ?>
+            <input
+                type="file"
+                name="gallery_images[]"
+                id="galleryImages"
+                accept="image/*"
+                multiple>
 
-    <hr style="margin:30px 0;">
+        </div>
 
-    <div class="form-group">
-
-        <label>
-
-            Upload More Images
-
-        </label>
-
-        <input
-            type="file"
-            name="gallery_images[]"
-            id="galleryImages"
-            accept="image/*"
-            multiple>
+        <div id="galleryPreview" class="gallery-preview"></div>
 
     </div>
 
-    <div id="galleryPreview" class="gallery-preview"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
-</div>
+            const coverImage =
+                document.getElementById("coverImage");
 
-<script>
+            if (coverImage) {
 
-document.addEventListener("DOMContentLoaded", function(){
+                coverImage.addEventListener("change", function() {
 
-    const coverImage =
-        document.getElementById("coverImage");
+                    const file = this.files[0];
 
-    if(coverImage){
+                    if (file) {
 
-        coverImage.addEventListener("change", function(){
+                        const reader = new FileReader();
 
-            const file = this.files[0];
+                        reader.onload = function(e) {
 
-            if(file){
+                            document.getElementById("previewImage").src =
+                                e.target.result;
 
-                const reader = new FileReader();
+                        }
 
-                reader.onload = function(e){
+                        reader.readAsDataURL(file);
 
-                    document.getElementById("previewImage").src =
-                        e.target.result;
+                    }
 
-                }
-
-                reader.readAsDataURL(file);
+                });
 
             }
 
         });
+    </script>
+    <div class="form-buttons">
 
-    }
+        <a
+            href="manage-properties.php"
+            class="btn btn-secondary">
 
-});
+            <i class="fas fa-xmark"></i>
 
-</script>
-<div class="form-buttons">
+            Cancel
 
-    <a
-        href="manage-properties.php"
-        class="btn btn-secondary">
+        </a>
 
-        <i class="fas fa-xmark"></i>
+        <button
+            type="submit"
+            class="btn btn-primary"
+            id="updateBtn">
 
-        Cancel
+            <i class="fas fa-floppy-disk"></i>
+            Update Property
 
-    </a>
-
-    <button
-    type="submit"
-    class="btn btn-primary"
-    id="updateBtn">
-
-    <i class="fas fa-floppy-disk"></i>
-    Update Property
-
-</button>
-
-</div>
-
-
-</form>
-
-<!-- Loading Overlay -->
-<div id="loadingOverlay">
-
-    <div class="loading-box">
-
-        <i class="fas fa-spinner fa-spin"></i>
-
-        <h3>Updating Property...</h3>
-
-        <p>Please wait while changes are being saved.</p>
+        </button>
 
     </div>
 
-</div>
+
+    </form>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+
+        <div class="loading-box">
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            <h3>Updating Property...</h3>
+
+            <p>Please wait while changes are being saved.</p>
+
+        </div>
+
+    </div>
 
 
 
 </body>
+
 </html>
 </div>
 
 <script>
+    const galleryInput =
+        document.getElementById("galleryImages");
 
-const galleryInput =
-document.getElementById("galleryImages");
+    if (galleryInput) {
 
-if(galleryInput){
+        galleryInput.addEventListener("change", function() {
 
-galleryInput.addEventListener("change", function(){
+            const preview =
+                document.getElementById("galleryPreview");
 
-    const preview =
-    document.getElementById("galleryPreview");
+            preview.innerHTML = "";
 
-    preview.innerHTML = "";
+            [...this.files].forEach(file => {
 
-    [...this.files].forEach(file=>{
+                const reader =
+                    new FileReader();
 
-        const reader =
-        new FileReader();
+                reader.onload = function(e) {
 
-        reader.onload=function(e){
-
-            preview.innerHTML +=
-            `<img src="${e.target.result}"
+                    preview.innerHTML +=
+                        `<img src="${e.target.result}"
                   style="
                     width:150px;
                     margin:10px;
                     border-radius:10px;
                     border:1px solid #ddd;">`;
 
-        }
+                }
 
-        reader.readAsDataURL(file);
+                reader.readAsDataURL(file);
 
-    });
+            });
 
-});
+        });
 
-}
-
+    }
 </script>
 <script>
+    const deletedImages = [];
 
-const deletedImages = [];
+    document.querySelectorAll(".delete-gallery-btn").forEach(button => {
 
-document.querySelectorAll(".delete-gallery-btn").forEach(button => {
+        button.addEventListener("click", function() {
 
-    button.addEventListener("click", function () {
+            const imageId = this.dataset.imageId;
 
-        const imageId = this.dataset.imageId;
+            // don't add twice
+            if (!deletedImages.includes(imageId)) {
+                deletedImages.push(imageId);
+            }
 
-        // don't add twice
-        if (!deletedImages.includes(imageId)) {
-            deletedImages.push(imageId);
-        }
+            // update hidden input
+            document.getElementById("deletedImages").value =
+                deletedImages.join(",");
 
-        // update hidden input
-        document.getElementById("deletedImages").value =
-            deletedImages.join(",");
+            // hide image
+            document.getElementById("gallery-image-" + imageId)
+                .style.display = "none";
 
-        // hide image
-        document.getElementById("gallery-image-" + imageId)
-            .style.display = "none";
+        });
 
     });
-
-});
-
 </script>
 <script>
-document.querySelector("form").addEventListener("submit", function () {
+    document.querySelector("form").addEventListener("submit", function() {
 
-    document.getElementById("loadingOverlay").style.display = "flex";
+        document.getElementById("loadingOverlay").style.display = "flex";
 
-    const btn = document.getElementById("updateBtn");
+        const btn = document.getElementById("updateBtn");
 
-    btn.disabled = true;
+        btn.disabled = true;
 
-    btn.innerHTML =
-        '<i class="fas fa-spinner fa-spin"></i> Updating...';
+        btn.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Updating...';
 
-});
+    });
 </script>
 </body>
 

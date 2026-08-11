@@ -6,7 +6,7 @@ session_start();
 
 if (!isset($_SESSION['admin'])) {
     header("Location: ../login.php");
-exit();
+    exit();
 }
 
 include "../includes/db_connect.php";
@@ -24,6 +24,7 @@ $title         = trim($_POST['title']);
 $propertyType  = trim($_POST['property_type']);
 $location      = trim($_POST['location']);
 $price         = trim($_POST['price']);
+$priceOption = trim($_POST['price_option']);
 $bedrooms      = (int) $_POST['bedrooms'];
 $bathrooms     = (int) $_POST['bathrooms'];
 $garage        = trim($_POST['garage']);
@@ -48,7 +49,6 @@ if (
 ) {
 
     die("Please complete all required fields.");
-
 }
 /* ======================================
    INSERT PROPERTY
@@ -70,13 +70,14 @@ status,
 description,
 amenities,
 map_url,
+price_option,
 created_by
 
 )
 
 VALUES (
 
-?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
 
 )";
 
@@ -84,30 +85,30 @@ $stmt = $conn->prepare($sql);
 
 $stmt->bind_param(
 
-"ssssiisssssssss",
+    "ssssiissssssssss",
 
-$title,
-$propertyType,
-$location,
-$price,
-$bedrooms,
-$bathrooms,
-$garage,
-$lotArea,
-$floorArea,
-$furnishing,
-$status,
-$description,
-$amenities,
-$mapUrl,
-$createdBy
+    $title,
+    $propertyType,
+    $location,
+    $price,
+    $bedrooms,
+    $bathrooms,
+    $garage,
+    $lotArea,
+    $floorArea,
+    $furnishing,
+    $status,
+    $description,
+    $amenities,
+    $mapUrl,
+    $priceOption,
+    $createdBy
 
 );
 
 if (!$stmt->execute()) {
 
     die("Database Error: " . $stmt->error);
-
 }
 
 $propertyId = $conn->insert_id;
@@ -159,16 +160,11 @@ if (
         );
 
         $coverImageUrl = $upload->offsetGet('secure_url');
-$coverPublicId = $upload->offsetGet('public_id');
-
-        
-
+        $coverPublicId = $upload->offsetGet('public_id');
     } catch (Exception $e) {
 
         die("Cloudinary Upload Failed:<br>" . $e->getMessage());
-
     }
-
 }
 /* ======================================
    UPDATE COVER IMAGE
@@ -225,9 +221,9 @@ if (
 
             $imageUrl = $upload->offsetGet('secure_url');
             $publicId = $upload->offsetGet('public_id');
-           
 
-           $stmt = $conn->prepare("
+
+            $stmt = $conn->prepare("
     INSERT INTO property_images
     (
         property_id,
@@ -242,27 +238,23 @@ if (
 ");
 
             $stmt->bind_param(
-    "issi",
-    $propertyId,
-    $imageUrl,
-    $publicId,
-    $imageOrder
-);
+                "issi",
+                $propertyId,
+                $imageUrl,
+                $publicId,
+                $imageOrder
+            );
 
             $stmt->execute();
-         
+
             $stmt->close();
 
             $imageOrder++;
-
         } catch (Exception $e) {
 
             die("Gallery Upload Failed:<br>" . $e->getMessage());
-
         }
-
     }
-
 }
 $conn->close();
 

@@ -5,7 +5,10 @@ if (!isset($_SESSION['admin'])) {
     header("Location: ../login.php");
     exit();
 }
-
+if ($_SESSION['role'] != "Super Admin") {
+    header("Location: admin-dashboard.php");
+    exit();
+}
 include "../includes/db_connect.php";
 
 /* ===============================

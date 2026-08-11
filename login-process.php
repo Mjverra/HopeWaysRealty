@@ -14,10 +14,15 @@ $result = $conn->query($sql);
 
 if ($result->num_rows == 1) {
 
-    $_SESSION['admin'] = $username;
+    $admin = $result->fetch_assoc();
+
+    $_SESSION['admin'] = $admin['username'];
+    $_SESSION['role'] = $admin['role'];
 
     header("Location: admin/admin-dashboard.php");
     exit();
+
+}
 } else {
 
     echo "<script>

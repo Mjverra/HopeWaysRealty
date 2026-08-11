@@ -1,0 +1,100 @@
+/* ==========================================
+   ADMIN HEADER
+========================================== */
+
+.admin-header {
+  background: #0c3b63;
+
+  color: #fff;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 18px 40px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.admin-header h2 {
+  margin: 0;
+
+  font-size: 28px;
+}
+
+.admin-subtitle {
+  font-size: 14px;
+
+  opacity: 0.8;
+}
+
+.admin-nav {
+  display: flex;
+
+  gap: 15px;
+}
+
+.admin-nav a {
+  color: white;
+
+  text-decoration: none;
+
+  padding: 12px 18px;
+
+  border-radius: 8px;
+
+  transition: 0.3s;
+}
+
+.admin-nav a:hover {
+  background: #155182;
+}
+
+.admin-nav a.active {
+  background: #d18d00;
+}
+
+.admin-user {
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.logout-btn {
+  background: #dc3545;
+
+  color: white;
+
+  text-decoration: none;
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+}
+
+.logout-btn:hover {
+  background: #b02a37;
+}
+@media (max-width: 900px) {
+  .admin-header {
+    flex-direction: column;
+
+    gap: 20px;
+
+    padding: 20px;
+  }
+
+  .admin-nav {
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
+
+  .admin-user {
+    flex-direction: column;
+  }
+}

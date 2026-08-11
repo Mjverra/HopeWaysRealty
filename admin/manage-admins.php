@@ -26,6 +26,7 @@ $result = $conn->query("
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Admins</title>
 
+    <link rel="stylesheet" href="../css/admin-header.css">
     <link rel="stylesheet" href="../css/admin.css">
 
     <link rel="stylesheet"

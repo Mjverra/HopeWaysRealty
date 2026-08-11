@@ -41,10 +41,17 @@
                 Properties
 
             </a>
-            <a href="manage-admins.php">
+            <a href="manage-admins.php"
+                class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'manage-admins.php' ? 'active' : ''; ?>">
+
                 <i class="fas fa-users-cog"></i>
                 Manage Admins
+
+                <i class="fas fa-house"></i>
+                Manage Admins
+
             </a>
+
 
             <a href="../logout.php" class="logout-btn">
 

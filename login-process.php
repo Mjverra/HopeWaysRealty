@@ -12,19 +12,16 @@ $sql = "SELECT * FROM admins
 
 $result = $conn->query($sql);
 
-if($result->num_rows == 1){
+if ($result->num_rows == 1) {
 
     $_SESSION['admin'] = $username;
 
-    header("Location: admin/view-messages.php");
-exit();
-
-}else{
+    header("Location: admin/admin-dashboard.php");
+    exit();
+} else {
 
     echo "<script>
     alert('Invalid Username or Password');
     window.location='login.php';
     </script>";
-
 }
-?>

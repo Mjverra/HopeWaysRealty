@@ -785,3 +785,10 @@ section {
 
   text-transform: uppercase;
 }
+.price-option {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffd54f;
+  margin-left: 8px;
+  font-style: italic;
+}

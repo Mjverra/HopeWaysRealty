@@ -193,9 +193,15 @@ $relatedProperties = $relatedStmt->get_result();
                     </h1>
 
                     <h2>
-
                         ₱<?= number_format($property['price'], 2); ?>
 
+                        <?php if ($property['price_option'] == "Negotiable"): ?>
+                            <span class="price-option">(Negotiable)</span>
+
+                        <?php elseif ($property['price_option'] == "Non-negotiable"): ?>
+                            <span class="price-option">(Non-negotiable)</span>
+
+                        <?php endif; ?>
                     </h2>
 
                     <p class="hero-location">
@@ -690,9 +696,15 @@ $relatedProperties = $relatedStmt->get_result();
                             </p>
 
                             <h4>
-
                                 ₱<?= number_format($related['price'], 2); ?>
 
+                                <?php if ($related['price_option'] == "Negotiable"): ?>
+                                    <span class="price-option">(Negotiable)</span>
+
+                                <?php elseif ($related['price_option'] == "Non-negotiable"): ?>
+                                    <span class="price-option">(Non-negotiable)</span>
+
+                                <?php endif; ?>
                             </h4>
 
                             <a

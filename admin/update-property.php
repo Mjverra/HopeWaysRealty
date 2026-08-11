@@ -48,6 +48,7 @@ $title          = trim($_POST['title']);
 $property_type  = trim($_POST['property_type']);
 $location       = trim($_POST['location']);
 $price          = trim($_POST['price']);
+$priceOption = trim($_POST['price_option']);
 
 $bedrooms       = intval($_POST['bedrooms']);
 $bathrooms      = intval($_POST['bathrooms']);
@@ -76,7 +77,7 @@ if (
     $_FILES['cover_image']['error'] == 0
 ) {
 
-    $allowedExtensions = ['jpg','jpeg','png','webp'];
+    $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
 
     $extension = strtolower(pathinfo(
         $_FILES['cover_image']['name'],
@@ -98,19 +99,18 @@ if (
     }
 
     try {
-if (!empty($property['cover_public_id'])) {
+        if (!empty($property['cover_public_id'])) {
 
-    $cloudinary->uploadApi()->destroy(
-        $property['cover_public_id'],
-        [
-            "resource_type" => "image",
-            "invalidate" => true
-        ]
-    );
-
-}
+            $cloudinary->uploadApi()->destroy(
+                $property['cover_public_id'],
+                [
+                    "resource_type" => "image",
+                    "invalidate" => true
+                ]
+            );
+        }
         $upload = $cloudinary->uploadApi()->upload(
-            
+
             $_FILES['cover_image']['tmp_name'],
             [
                 "folder" => "hopeways/properties",
@@ -121,12 +121,10 @@ if (!empty($property['cover_public_id'])) {
         );
 
         $cover_image = $upload->offsetGet('secure_url');
-$cover_public_id = $upload->offsetGet('public_id');
-
+        $cover_public_id = $upload->offsetGet('public_id');
     } catch (Exception $e) {
 
         die("Cloudinary Upload Failed:<br>" . $e->getMessage());
-
     }
 }
 /* ==============================
@@ -139,6 +137,7 @@ UPDATE properties SET
     property_type=?,
     location=?,
     price=?,
+    price_option=?,
     bedrooms=?,
     bathrooms=?,
     garage=?,
@@ -150,17 +149,18 @@ UPDATE properties SET
     amenities=?,
     map_url=?,
     cover_image=?,
-cover_public_id=?,
-updated_at=NOW()
+    cover_public_id=?,
+    updated_at=NOW()
 WHERE id=?
 ");
 
 $stmt->bind_param(
-    "ssssiissssssssssi",
+    "sssssiissssssssssi"
     $title,
     $property_type,
     $location,
     $price,
+    $priceOption,
     $bedrooms,
     $bathrooms,
     $garage,
@@ -252,15 +252,11 @@ if (
             $insert->close();
 
             $imageOrder++;
-
         } catch (Exception $e) {
 
             die("Gallery Upload Failed:<br>" . $e->getMessage());
-
         }
-
     }
-
 }
 
 
@@ -304,12 +300,10 @@ if (!empty($_POST['deleted_images'])) {
                             "invalidate" => true
                         ]
                     );
-
                 } catch (Exception $e) {
 
                     // Continue even if Cloudinary fails
                 }
-
             }
 
             // Delete from database
@@ -321,13 +315,10 @@ if (!empty($_POST['deleted_images'])) {
             $delete->bind_param("i", $imageId);
             $delete->execute();
             $delete->close();
-
         }
 
         $img->close();
-
     }
-
 }
 $conn->close();
 

@@ -1,30 +1,32 @@
-<?php
-session_start();
+$stmt = $conn->prepare("
+SELECT *
+FROM admins
+WHERE username = ?
+");
 
-include "includes/db_connect.php";
+$stmt->bind_param("s", $username);
+$stmt->execute();
 
-$username = $_POST['username'];
-$password = $_POST['password'];
-
-$sql = "SELECT * FROM admins
-        WHERE username='$username'
-        AND password='$password'";
-
-$result = $conn->query($sql);
+$result = $stmt->get_result();
 
 if ($result->num_rows == 1) {
 
-    $admin = $result->fetch_assoc();
+$admin = $result->fetch_assoc();
 
-    $_SESSION['admin'] = $admin['username'];
-    $_SESSION['role'] = $admin['role'];
+if (password_verify($password, $admin['password'])) {
 
-    header("Location: admin/admin-dashboard.php");
-    exit();
-} else {
+$_SESSION['admin_id'] = $admin['id'];
+$_SESSION['admin'] = $admin['username'];
+$_SESSION['role'] = $admin['role'];
 
-    echo "<script>
-    alert('Invalid Username or Password');
-    window.location='login.php';
-    </script>";
+header("Location: admin/admin-dashboard.php");
+exit();
+
 }
+
+}
+
+echo "<script>
+    alert('Invalid Username or Password');
+    window.location = 'login.php';
+</script>";

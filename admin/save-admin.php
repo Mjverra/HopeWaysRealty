@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 $fullName = trim($_POST['full_name']);
 $username = trim($_POST['username']);
 $password = trim($_POST['password']);
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
 $confirmPassword = trim($_POST['confirm_password']);
 $role = trim($_POST['role']);
 $status = trim($_POST['status']);
@@ -91,7 +92,7 @@ $stmt->bind_param(
     "sssss",
     $fullName,
     $username,
-    $password,
+    $passwordHash,
     $role,
     $status
 );

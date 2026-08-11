@@ -182,8 +182,8 @@ $result = $stmt->get_result();
 
 
 ?>
-<link rel="stylesheet" href="../css/messages.css">
 <link rel="stylesheet" href="../css/admin-header.css">
+<link rel="stylesheet" href="../css/admin.css">
 <!DOCTYPE html>
 <html lang="en">
 

@@ -51,7 +51,15 @@ if ($new_password != $confirm_password) {
     header("Location: change-password.php?error=New passwords do not match.");
     exit();
 }
+/* ==========================
+   CHECK IF NEW PASSWORD IS THE SAME
+========================== */
 
+if ($new_password == $current_password) {
+
+    header("Location: change-password.php?error=Your new password must be different from your current password.");
+    exit();
+}
 /* ==========================
    CHECK PASSWORD LENGTH
 ========================== */

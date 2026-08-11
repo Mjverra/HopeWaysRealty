@@ -3,19 +3,19 @@
 ========================================== */
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-	background: #f5f7fa;
-	color: #333;
+  background: #f5f7fa;
+  color: #333;
 }
 
 /* ==========================================
@@ -23,53 +23,53 @@ body {
 ========================================== */
 
 header {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 999;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
 }
 
 nav {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 8%;
-	background: rgba(5, 20, 40, 0.7);
-	backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: rgba(5, 20, 40, 0.7);
+  backdrop-filter: blur(12px);
 }
 
 .logo a {
-	display: flex;
-	align-items: center;
-	gap: 15px;
-	text-decoration: none;
-	color: #fff;
-	font-size: 28px;
-	font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .header-logo {
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
 
 nav ul {
-	display: flex;
-	list-style: none;
-	gap: 35px;
+  display: flex;
+  list-style: none;
+  gap: 35px;
 }
 
 nav ul li a {
-	color: #fff;
-	text-decoration: none;
-	font-weight: bold;
-	transition: 0.3s;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 nav ul li a:hover,
 .active {
-	color: #f4b400;
+  color: #f4b400;
 }
 
 /* ==========================================
@@ -77,31 +77,31 @@ nav ul li a:hover,
 ========================================== */
 
 .hero-small {
-	height: 70vh;
-	background:
-		linear-gradient(rgba(8, 40, 70, 0.75), rgba(8, 40, 70, 0.75)),
-		url("../images/about-bg.jpg") center/cover no-repeat;
+  height: 70vh;
+  background:
+    linear-gradient(rgba(8, 40, 70, 0.75), rgba(8, 40, 70, 0.75)),
+    url("../images/about-bg.jpg") center/cover no-repeat;
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
 }
 
 .hero-content {
-	max-width: 800px;
-	padding: 20px;
+  max-width: 800px;
+  padding: 20px;
 }
 
 .hero-content h1 {
-	font-size: 3.5rem;
-	margin-bottom: 20px;
+  font-size: 3.5rem;
+  margin-bottom: 20px;
 }
 
 .hero-content p {
-	font-size: 1.2rem;
-	line-height: 1.8;
+  font-size: 1.2rem;
+  line-height: 1.8;
 }
 
 /* ==========================================
@@ -109,28 +109,28 @@ nav ul li a:hover,
 ========================================== */
 
 .about-section {
-	padding: 90px 8%;
-	background: white;
+  padding: 90px 8%;
+  background: white;
 }
 
 .container {
-	max-width: 1100px;
-	margin: auto;
+  max-width: 1100px;
+  margin: auto;
 }
 
 .about-section h2 {
-	color: #0a4d68;
-	font-size: 2.5rem;
-	margin-bottom: 30px;
-	text-align: center;
+  color: #0a4d68;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .about-section p {
-	color: #555;
-	font-size: 1.08rem;
-	line-height: 1.9;
-	margin-bottom: 25px;
-	text-align: justify;
+  color: #555;
+  font-size: 1.08rem;
+  line-height: 1.9;
+  margin-bottom: 25px;
+  text-align: justify;
 }
 
 /* ==========================================
@@ -138,44 +138,44 @@ nav ul li a:hover,
 ========================================== */
 
 .mission-vision {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-	gap: 35px;
-	padding: 90px 8%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 35px;
+  padding: 90px 8%;
 }
 
 .mission,
 .vision {
-	background: white;
-	padding: 40px;
-	border-radius: 20px;
-	text-align: center;
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-	transition: 0.35s;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.35s;
 }
 
 .mission:hover,
 .vision:hover {
-	transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .mission i,
 .vision i {
-	font-size: 60px;
-	color: #0a4d68;
-	margin-bottom: 20px;
+  font-size: 60px;
+  color: #0a4d68;
+  margin-bottom: 20px;
 }
 
 .mission h2,
 .vision h2 {
-	color: #0a4d68;
-	margin-bottom: 20px;
+  color: #0a4d68;
+  margin-bottom: 20px;
 }
 
 .mission p,
 .vision p {
-	line-height: 1.8;
-	color: #555;
+  line-height: 1.8;
+  color: #555;
 }
 
 /* ==========================================
@@ -183,53 +183,53 @@ nav ul li a:hover,
 ========================================== */
 
 .values {
-	padding: 90px 8%;
-	background: white;
+  padding: 90px 8%;
+  background: white;
 }
 
 .values h2 {
-	text-align: center;
-	color: #0a4d68;
-	font-size: 2.5rem;
-	margin-bottom: 50px;
+  text-align: center;
+  color: #0a4d68;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
 }
 
 .value-container {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
 .value-card {
-	background: #f8fbff;
-	padding: 35px;
-	text-align: center;
-	border-radius: 18px;
-	transition: 0.35s;
+  background: #f8fbff;
+  padding: 35px;
+  text-align: center;
+  border-radius: 18px;
+  transition: 0.35s;
 }
 
 .value-card:hover {
-	background: #0a4d68;
-	color: white;
-	transform: translateY(-8px);
+  background: #0a4d68;
+  color: white;
+  transform: translateY(-8px);
 }
 
 .value-card i {
-	font-size: 55px;
-	color: #0a4d68;
-	margin-bottom: 20px;
+  font-size: 55px;
+  color: #0a4d68;
+  margin-bottom: 20px;
 }
 
 .value-card:hover i {
-	color: white;
+  color: white;
 }
 
 .value-card h3 {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .value-card p {
-	line-height: 1.7;
+  line-height: 1.7;
 }
 
 /* ==========================================
@@ -237,49 +237,49 @@ nav ul li a:hover,
 ========================================== */
 
 .why-us {
-	padding: 90px 8%;
+  padding: 90px 8%;
 }
 
 .why-us h2 {
-	text-align: center;
-	color: #0a4d68;
-	font-size: 2.5rem;
-	margin-bottom: 50px;
+  text-align: center;
+  color: #0a4d68;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
 }
 
 .features {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
 .feature {
-	background: white;
-	padding: 35px;
-	text-align: center;
-	border-radius: 20px;
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-	transition: 0.35s;
+  background: white;
+  padding: 35px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.35s;
 }
 
 .feature:hover {
-	transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .feature i {
-	font-size: 55px;
-	color: #0a4d68;
-	margin-bottom: 20px;
+  font-size: 55px;
+  color: #0a4d68;
+  margin-bottom: 20px;
 }
 
 .feature h3 {
-	color: #0a4d68;
-	margin-bottom: 15px;
+  color: #0a4d68;
+  margin-bottom: 15px;
 }
 
 .feature p {
-	line-height: 1.8;
-	color: #555;
+  line-height: 1.8;
+  color: #555;
 }
 
 /* ==========================================
@@ -287,50 +287,50 @@ nav ul li a:hover,
 ========================================== */
 
 .team {
-	background: white;
-	padding: 90px 8%;
+  background: white;
+  padding: 90px 8%;
 }
 
 .team h2 {
-	text-align: center;
-	color: #0a4d68;
-	font-size: 2.5rem;
-	margin-bottom: 50px;
+  text-align: center;
+  color: #0a4d68;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
 }
 
 .team-container {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 35px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
 }
 
 .team-card {
-	background: #fff;
-	border-radius: 20px;
-	overflow: hidden;
-	text-align: center;
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-	transition: 0.35s;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.35s;
 }
 
 .team-card:hover {
-	transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .team-card img {
-	width: 100%;
-	height: 320px;
-	object-fit: cover;
+  width: 50%;
+  height: 160px;
+  object-fit: cover;
 }
 
 .team-card h3 {
-	color: #0a4d68;
-	margin-top: 20px;
+  color: #0a4d68;
+  margin-top: 20px;
 }
 
 .team-card p {
-	color: #666;
-	margin: 15px 0 25px;
+  color: #666;
+  margin: 15px 0 25px;
 }
 
 /* ==========================================
@@ -338,36 +338,36 @@ nav ul li a:hover,
 ========================================== */
 
 .cta {
-	background: linear-gradient(135deg, #0a4d68, #08384d);
-	color: white;
-	text-align: center;
-	padding: 90px 20px;
+  background: linear-gradient(135deg, #0a4d68, #08384d);
+  color: white;
+  text-align: center;
+  padding: 90px 20px;
 }
 
 .cta h2 {
-	font-size: 2.6rem;
-	margin-bottom: 20px;
+  font-size: 2.6rem;
+  margin-bottom: 20px;
 }
 
 .cta p {
-	font-size: 1.1rem;
-	margin-bottom: 35px;
+  font-size: 1.1rem;
+  margin-bottom: 35px;
 }
 
 .btn {
-	display: inline-block;
-	padding: 15px 35px;
-	background: #f4b400;
-	color: white;
-	text-decoration: none;
-	border-radius: 40px;
-	font-weight: bold;
-	transition: 0.3s;
+  display: inline-block;
+  padding: 15px 35px;
+  background: #f4b400;
+  color: white;
+  text-decoration: none;
+  border-radius: 40px;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .btn:hover {
-	background: #d99b00;
-	transform: translateY(-3px);
+  background: #d99b00;
+  transform: translateY(-3px);
 }
 
 /* ==========================================
@@ -375,14 +375,14 @@ nav ul li a:hover,
 ========================================== */
 
 footer {
-	background: #081e34;
-	color: white;
-	text-align: center;
-	padding: 35px 20px;
+  background: #081e34;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
 }
 
 footer p {
-	color: #ccc;
+  color: #ccc;
 }
 
 /* ==========================================
@@ -390,46 +390,46 @@ footer p {
 ========================================== */
 
 @media (max-width: 768px) {
-	nav {
-		flex-direction: column;
-		gap: 15px;
-	}
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
 
-	nav ul {
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 20px;
-	}
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
 
-	.hero-small {
-		height: 60vh;
-	}
+  .hero-small {
+    height: 60vh;
+  }
 
-	.hero-content h1 {
-		font-size: 2.3rem;
-	}
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
 
-	.hero-content p {
-		font-size: 1rem;
-	}
+  .hero-content p {
+    font-size: 1rem;
+  }
 
-	.about-section,
-	.mission-vision,
-	.values,
-	.why-us,
-	.team,
-	.cta {
-		padding: 70px 6%;
-	}
+  .about-section,
+  .mission-vision,
+  .values,
+  .why-us,
+  .team,
+  .cta {
+    padding: 70px 6%;
+  }
 
-	.about-section h2,
-	.values h2,
-	.why-us h2,
-	.team h2 {
-		font-size: 2rem;
-	}
+  .about-section h2,
+  .values h2,
+  .why-us h2,
+  .team h2 {
+    font-size: 2rem;
+  }
 
-	.team-card img {
-		height: 280px;
-	}
+  .team-card img {
+    height: 280px;
+  }
 }

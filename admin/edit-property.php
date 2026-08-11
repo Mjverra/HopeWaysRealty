@@ -216,17 +216,7 @@ $sql->close();
                             required>
 
                     </div>
-                    <div class="form-group">
 
-                        <label>Price</label>
-
-                        <input
-                            type="text"
-                            name="price"
-                            value="<?php echo htmlspecialchars($property['price']); ?>"
-                            required>
-
-                    </div>
 
                     <div class="form-group">
                         <label>Price Option</label>

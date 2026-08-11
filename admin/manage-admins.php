@@ -137,7 +137,7 @@ $result = $conn->query("
 
                             <td>
 
-                                <span class="status <?= strtolower($admin['status']) ?>">
+                                <span class="status status-<?= strtolower($admin['status']) ?>">
 
                                     <?= htmlspecialchars($admin['status']) ?>
 

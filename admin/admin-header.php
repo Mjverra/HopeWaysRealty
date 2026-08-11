@@ -42,7 +42,7 @@
         <?php if ($_SESSION['role'] == "Super Admin"): ?>
 
             <a href="manage-admins.php"
-                class="nav-btn <?= basename($_SERVER['PHP_SELF']) == 'manage-admins.php' ? 'active' : '' ?>">
+                class="<?= basename($_SERVER['PHP_SELF']) == 'manage-admins.php' ? 'active' : '' ?>">
 
                 <i class="fas fa-users-cog"></i>
                 Admins

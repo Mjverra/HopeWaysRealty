@@ -53,7 +53,8 @@
 }
 
 .admin-nav a.active {
-  background: #d18d00;
+  background: #d18d00 !important;
+  color: #fff !important;
 }
 
 .admin-user {

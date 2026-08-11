@@ -202,9 +202,9 @@ include "includes/db_connect.php";
       <div class="team-card">
         <img src="images/agent.jpg" alt="Broker" />
 
-        <h3>Maria Santos</h3>
+        <h3>Doris Hope Maruya, REA, REB</h3>
 
-        <p>Licensed Real Estate Broker</p>
+        <p><b> Licensed Real Estate Appraiser & Broker</b><br>PRC License No. : 0036399 <br>DHSUD Registration No. : R8-B-05/26-80074</p>
       </div>
 
       <div class="team-card">

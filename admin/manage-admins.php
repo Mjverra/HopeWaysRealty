@@ -17,7 +17,7 @@ $result = $conn->query("
     FROM admins
     ORDER BY id ASC
 ");
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,107 +34,108 @@ $result = $conn->query("
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <div class="page-header">
+        <div class="page-header">
 
-        <h1>
-            <i class="fas fa-users"></i>
-            Manage Administrators
-        </h1>
+            <h1>
+                <i class="fas fa-users"></i>
+                Manage Administrators
+            </h1>
 
-        <a href="dashboard.php" class="btn-back">
-            <i class="fas fa-arrow-left"></i>
-            Back
-        </a>
-
-    </div>
-
-    <div class="admin-card">
-
-        <div class="card-header">
-
-            <h2>
-                <i class="fas fa-user-shield"></i>
-                Administrator Accounts
-            </h2>
-
-            <a href="add-admin.php" class="btn-primary">
-                <i class="fas fa-plus"></i>
-                Add Admin
+            <a href="dashboard.php" class="btn-back">
+                <i class="fas fa-arrow-left"></i>
+                Back
             </a>
 
         </div>
 
-        <table class="admin-table">
+        <div class="admin-card">
 
-            <thead>
+            <div class="card-header">
 
-                <tr>
+                <h2>
+                    <i class="fas fa-user-shield"></i>
+                    Administrator Accounts
+                </h2>
 
-                    <th>Full Name</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Created</th>
-                    <th>Actions</th>
+                <a href="add-admin.php" class="btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Add Admin
+                </a>
 
-                </tr>
+            </div>
 
-            </thead>
+            <table class="admin-table">
 
-            <tbody>
+                <thead>
 
-            <?php while($admin = $result->fetch_assoc()): ?>
+                    <tr>
 
-                <tr>
+                        <th>Full Name</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Actions</th>
 
-                    <td><?= htmlspecialchars($admin['full_name']) ?></td>
+                    </tr>
 
-                    <td><?= htmlspecialchars($admin['username']) ?></td>
+                </thead>
 
-                    <td><?= htmlspecialchars($admin['role']) ?></td>
+                <tbody>
 
-                    <td><?= htmlspecialchars($admin['status']) ?></td>
+                    <?php while ($admin = $result->fetch_assoc()): ?>
 
-                    <td><?= date("M d, Y", strtotime($admin['created_at'])) ?></td>
+                        <tr>
 
-                    <td>
+                            <td><?= htmlspecialchars($admin['full_name']) ?></td>
 
-                        <a
-                            href="edit-admin.php?id=<?= $admin['id'] ?>"
-                            class="btn-edit">
+                            <td><?= htmlspecialchars($admin['username']) ?></td>
 
-                            Edit
+                            <td><?= htmlspecialchars($admin['role']) ?></td>
 
-                        </a>
+                            <td><?= htmlspecialchars($admin['status']) ?></td>
 
-                        <?php if($admin['username'] != $_SESSION['admin']): ?>
+                            <td><?= date("M d, Y", strtotime($admin['created_at'])) ?></td>
 
-                            <a
-                                href="delete-admin.php?id=<?= $admin['id'] ?>"
-                                class="btn-delete"
-                                onclick="return confirm('Delete this admin?')">
+                            <td>
 
-                                Delete
+                                <a
+                                    href="edit-admin.php?id=<?= $admin['id'] ?>"
+                                    class="btn-edit">
 
-                            </a>
+                                    Edit
 
-                        <?php endif; ?>
+                                </a>
 
-                    </td>
+                                <?php if ($admin['username'] != $_SESSION['admin']): ?>
 
-                </tr>
+                                    <a
+                                        href="delete-admin.php?id=<?= $admin['id'] ?>"
+                                        class="btn-delete"
+                                        onclick="return confirm('Delete this admin?')">
 
-            <?php endwhile; ?>
+                                        Delete
 
-            </tbody>
+                                    </a>
 
-        </table>
+                                <?php endif; ?>
+
+                            </td>
+
+                        </tr>
+
+                    <?php endwhile; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-</div>
-
 </body>
+
 </html>

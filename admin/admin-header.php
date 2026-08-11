@@ -47,18 +47,12 @@
                 <i class="fas fa-users-cog"></i>
                 Manage Admins
 
-                <i class="fas fa-house"></i>
-                Manage Admins
+                <a href="../logout.php" class="logout-btn">
 
-            </a>
+                    <i class="fas fa-right-from-bracket"></i>
+                    Logout
 
-
-            <a href="../logout.php" class="logout-btn">
-
-                <i class="fas fa-right-from-bracket"></i>
-                Logout
-
-            </a>
+                </a>
 
         </div>
 

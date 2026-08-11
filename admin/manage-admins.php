@@ -35,6 +35,8 @@ $result = $conn->query("
 
 <body>
 
+    <?php include "admin-header.php"; ?>
+
     <div class="container">
 
         <div class="page-header">
@@ -44,7 +46,7 @@ $result = $conn->query("
                 Manage Administrators
             </h1>
 
-            <a href="dashboard.php" class="btn-back">
+            <a href="admin-dashboard.php" class="btn-back">
                 <i class="fas fa-arrow-left"></i>
                 Back
             </a>

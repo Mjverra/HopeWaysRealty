@@ -41,6 +41,10 @@
                 Properties
 
             </a>
+            <a href="manage-admins.php">
+                <i class="fas fa-users-cog"></i>
+                Manage Admins
+            </a>
 
             <a href="../logout.php" class="logout-btn">
 

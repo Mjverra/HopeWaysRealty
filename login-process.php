@@ -21,8 +21,6 @@ if ($result->num_rows == 1) {
 
     header("Location: admin/admin-dashboard.php");
     exit();
-
-}
 } else {
 
     echo "<script>

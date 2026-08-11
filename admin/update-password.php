@@ -18,7 +18,11 @@ $username = $_SESSION['admin'];
    GET CURRENT ADMIN
 ========================== */
 
-$stmt = $conn->prepare("SELECT password FROM admins WHERE username = ?");
+$stmt = $conn->prepare("
+    SELECT id, username, password
+    FROM admins
+    WHERE username = ?
+");
 $stmt->bind_param("s", $username);
 $stmt->execute();
 
@@ -36,12 +40,20 @@ $admin = $result->fetch_assoc();
    VERIFY CURRENT PASSWORD
 ========================== */
 
-if ($current_password != $admin['password']) {
+if (!password_verify($current_password, $admin['password'])) {
 
     header("Location: change-password.php?error=Current password is incorrect.");
     exit();
 }
+/* ==========================
+   CHECK IF NEW PASSWORD IS SAME AS CURRENT
+========================== */
 
+if (password_verify($new_password, $admin['password'])) {
+
+    header("Location: change-password.php?error=Your new password cannot be the same as your current password.");
+    exit();
+}
 /* ==========================
    VERIFY NEW PASSWORDS MATCH
 ========================== */
@@ -51,15 +63,7 @@ if ($new_password != $confirm_password) {
     header("Location: change-password.php?error=New passwords do not match.");
     exit();
 }
-/* ==========================
-   CHECK IF NEW PASSWORD IS THE SAME
-========================== */
 
-if ($new_password == $current_password) {
-
-    header("Location: change-password.php?error=Your new password must be different from your current password.");
-    exit();
-}
 /* ==========================
    CHECK PASSWORD LENGTH
 ========================== */
@@ -74,8 +78,10 @@ if (strlen($new_password) < 6) {
    UPDATE PASSWORD
 ========================== */
 
+$hashedPassword = password_hash($new_password, PASSWORD_DEFAULT);
+
 $stmt = $conn->prepare("UPDATE admins SET password = ? WHERE username = ?");
-$stmt->bind_param("ss", $new_password, $username);
+$stmt->bind_param("ss", $hashedPassword, $username);
 
 if ($stmt->execute()) {
 

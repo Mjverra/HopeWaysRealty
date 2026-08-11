@@ -65,7 +65,7 @@ $totalAdmins = $conn->query("
 
 
     <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/messages.css">
+
 
 
 

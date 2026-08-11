@@ -62,7 +62,14 @@
             <small><?= htmlspecialchars($_SESSION['role']) ?></small>
 
         </div>
+        <a href="change-password.php"
+            class="nav-btn <?= basename($_SERVER['PHP_SELF']) == 'change-password.php' ? 'active' : '' ?>">
 
+            <i class="fas fa-key"></i>
+
+            Change Password
+
+        </a>
         <a href="../logout.php" class="logout-btn">
 
             <i class="fas fa-right-from-bracket"></i>

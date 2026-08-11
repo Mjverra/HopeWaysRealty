@@ -648,3 +648,18 @@ body {
 .btn-primary:hover {
   background: #1d4ed8;
 }
+.error-message {
+  background: #fee2e2;
+
+  color: #991b1b;
+
+  border: 1px solid #ef4444;
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px;
+
+  font-weight: 600;
+}

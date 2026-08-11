@@ -52,6 +52,32 @@ $result = $conn->query("
             </a>
 
         </div>
+        <?php if (isset($_GET['success'])): ?>
+
+            <div class="success-message">
+                <i class="fas fa-circle-check"></i>
+                Administrator added successfully.
+            </div>
+
+        <?php endif; ?>
+
+        <?php if (isset($_GET['updated'])): ?>
+
+            <div class="success-message">
+                <i class="fas fa-circle-check"></i>
+                Administrator updated successfully.
+            </div>
+
+        <?php endif; ?>
+
+        <?php if (isset($_GET['deleted'])): ?>
+
+            <div class="success-message">
+                <i class="fas fa-circle-check"></i>
+                Administrator deleted successfully.
+            </div>
+
+        <?php endif; ?>
 
         <div class="admin-card">
 
@@ -96,9 +122,25 @@ $result = $conn->query("
 
                             <td><?= htmlspecialchars($admin['username']) ?></td>
 
-                            <td><?= htmlspecialchars($admin['role']) ?></td>
+                            <td>
 
-                            <td><?= htmlspecialchars($admin['status']) ?></td>
+                                <span class="role <?= strtolower(str_replace(' ', '-', $admin['role'])) ?>">
+
+                                    <?= htmlspecialchars($admin['role']) ?>
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <span class="status <?= strtolower($admin['status']) ?>">
+
+                                    <?= htmlspecialchars($admin['status']) ?>
+
+                                </span>
+
+                            </td>
 
                             <td><?= date("M d, Y", strtotime($admin['created_at'])) ?></td>
 

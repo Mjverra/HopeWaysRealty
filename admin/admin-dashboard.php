@@ -51,6 +51,7 @@ $totalAdmins = $conn->query("
     SELECT COUNT(*) AS total
     FROM admins
 ")->fetch_assoc()['total'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,65 +72,66 @@ $totalAdmins = $conn->query("
 
 <body>
 
-<?php include "admin-header.php"; ?>
+    <?php include "admin-header.php"; ?>
 
-<section class="dashboard">
+    <section class="dashboard">
 
-    <div class="dashboard-title">
+        <div class="dashboard-title">
 
-        <h2>
-            <i class="fas fa-chart-line"></i>
-            Dashboard
-        </h2>
+            <h2>
+                <i class="fas fa-chart-line"></i>
+                Dashboard
+            </h2>
 
-        <span>
-            Welcome back,
-            <strong><?= htmlspecialchars($_SESSION['admin']) ?></strong>
-        </span>
+            <span>
+                Welcome back,
+                <strong><?= htmlspecialchars($_SESSION['admin']) ?></strong>
+            </span>
 
-    </div>
-
-    <div class="stats-grid">
-
-        <div class="stat-card">
-            <i class="fas fa-house"></i>
-            <h2><?= $totalProperties ?></h2>
-            <p>Total Properties</p>
         </div>
 
-        <div class="stat-card">
-            <i class="fas fa-circle-check"></i>
-            <h2><?= $availableProperties ?></h2>
-            <p>Available</p>
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <i class="fas fa-house"></i>
+                <h2><?= $totalProperties ?></h2>
+                <p>Total Properties</p>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-circle-check"></i>
+                <h2><?= $availableProperties ?></h2>
+                <p>Available</p>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <h2><?= $reservedProperties ?></h2>
+                <p>Reserved</p>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-circle-xmark"></i>
+                <h2><?= $soldProperties ?></h2>
+                <p>Sold</p>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-envelope"></i>
+                <h2><?= $unreadMessages ?></h2>
+                <p>Unread Messages</p>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <h2><?= $totalAdmins ?></h2>
+                <p>Administrators</p>
+            </div>
+
         </div>
 
-        <div class="stat-card">
-            <i class="fas fa-clock"></i>
-            <h2><?= $reservedProperties ?></h2>
-            <p>Reserved</p>
-        </div>
-
-        <div class="stat-card">
-            <i class="fas fa-circle-xmark"></i>
-            <h2><?= $soldProperties ?></h2>
-            <p>Sold</p>
-        </div>
-
-        <div class="stat-card">
-            <i class="fas fa-envelope"></i>
-            <h2><?= $unreadMessages ?></h2>
-            <p>Unread Messages</p>
-        </div>
-
-        <div class="stat-card">
-            <i class="fas fa-users"></i>
-            <h2><?= $totalAdmins ?></h2>
-            <p>Administrators</p>
-        </div>
-
-    </div>
-
-</section>
+    </section>
 
 </body>
+
 </html>

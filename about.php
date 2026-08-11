@@ -216,7 +216,7 @@ include "includes/db_connect.php";
       </div>
 
       <div class="team-card">
-        <img src="images/agent.jpg" alt="Real Estate Salesperson" />
+        <img src="../images/hero/MJ.jpg" alt="Real Estate Salesperson" />
 
         <h3>Marc Jundel B. Verra</h3>
 

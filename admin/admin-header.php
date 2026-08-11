@@ -1,60 +1,73 @@
-<header class="top-header">
+<header class="admin-header">
 
-    <div class="header-content">
+    <div class="admin-header-left">
+
+        <h2>
+            <i class="fas fa-building"></i>
+            HopeWays Realty
+        </h2>
+
+        <span class="admin-subtitle">
+            Administration Panel
+        </span>
+
+    </div>
+
+    <nav class="admin-nav">
+
+        <a href="admin-dashboard.php"
+            class="<?= basename($_SERVER['PHP_SELF']) == 'admin-dashboard.php' ? 'active' : '' ?>">
+
+            <i class="fas fa-chart-line"></i>
+            Dashboard
+
+        </a>
+
+        <a href="manage-properties.php"
+            class="<?= basename($_SERVER['PHP_SELF']) == 'manage-properties.php' ? 'active' : '' ?>">
+
+            <i class="fas fa-house"></i>
+            Properties
+
+        </a>
+
+        <a href="view-messages.php"
+            class="<?= basename($_SERVER['PHP_SELF']) == 'view-messages.php' ? 'active' : '' ?>">
+
+            <i class="fas fa-envelope"></i>
+            Messages
+
+        </a>
+
+        <a href="manage-admins.php"
+            class="<?= basename($_SERVER['PHP_SELF']) == 'manage-admins.php' ? 'active' : '' ?>">
+
+            <i class="fas fa-users"></i>
+            Admins
+
+        </a>
+
+    </nav>
+
+    <div class="admin-user">
 
         <div>
 
-            <h1>
-                <i class="fas fa-user-shield"></i>
-                HopeWays Realty Admin
-            </h1>
+            <strong><?= htmlspecialchars($_SESSION['admin']) ?></strong>
 
-            <p>
-                Welcome,
-                <strong><?php echo $_SESSION['admin']; ?></strong>
-            </p>
+            <br>
+
+            <small>Super Administrator</small>
 
         </div>
 
-        <div class="header-actions">
+        <a href="../logout.php" class="logout-btn">
 
-            <a href="admin-dashboard.php"
-                class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'admin-dashboard.php' ? 'active' : ''; ?>">
+            <i class="fas fa-right-from-bracket"></i>
 
-                <i class="fas fa-gauge-high"></i>
-                Dashboard
+            Logout
 
-            </a>
-
-            <a href="view-messages.php"
-                class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'view-messages.php' ? 'active' : ''; ?>">
-
-                <i class="fas fa-envelope"></i>
-                Messages
-
-            </a>
-
-            <a href="manage-properties.php"
-                class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'manage-properties.php' ? 'active' : ''; ?>">
-
-                <i class="fas fa-house"></i>
-                Properties
-
-            </a>
-            <a href="manage-admins.php"
-                class="nav-btn <?php echo basename($_SERVER['PHP_SELF']) == 'manage-admins.php' ? 'active' : ''; ?>">
-
-                <i class="fas fa-users-cog"></i>
-                Manage Admins
-
-                <a href="../logout.php" class="logout-btn">
-
-                    <i class="fas fa-right-from-bracket"></i>
-                    Logout
-
-                </a>
-
-        </div>
+        </a>
 
     </div>
 

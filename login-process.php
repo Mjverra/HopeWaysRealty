@@ -11,6 +11,13 @@ $result = $stmt->get_result();
 
 if ($result->num_rows == 1) {
 
+echo "Username found.<br>";
+
+$admin = $result->fetch_assoc();
+
+var_dump(password_verify($password, $admin['password']));
+exit();
+
 $admin = $result->fetch_assoc();
 
 if (password_verify($password, $admin['password'])) {

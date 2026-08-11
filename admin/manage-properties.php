@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['admin'])) {
     header("Location: ../login.php");
-exit();
+    exit();
 }
 
 include "../includes/db_connect.php";
@@ -154,9 +154,7 @@ while ($row = $statsResult->fetch_assoc()) {
         case "Sold":
             $soldProperties++;
             break;
-
     }
-
 }
 
 $statsStmt->close();
@@ -191,347 +189,348 @@ $result = $stmt->get_result();
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Property Management</title>
+    <title>Property Management</title>
 
 
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
-<?php include "admin-header.php"; ?>
-<?php if(isset($_GET['deleted'])){ ?>
+    <?php include "admin-header.php"; ?>
+    <?php if (isset($_GET['deleted'])) { ?>
 
-<div class="success-message">
+        <div class="success-message">
 
-    <i class="fas fa-circle-check"></i>
+            <i class="fas fa-circle-check"></i>
 
-    Property deleted successfully.
-
-</div>
-
-<?php } ?>
-
-<section class="dashboard">
-
-    <div class="dashboard-title">
-
-        <h2>
-
-            <i class="fas fa-house"></i>
-
-            Property Management
-
-        </h2>
-
-        <a href="add-property.php" class="add-btn">
-
-            <i class="fas fa-plus"></i>
-
-            Add Property
-
-        </a>
-
-    </div>
-    <div class="stats-grid">
-
-    <div class="stat-card">
-        <i class="fas fa-house"></i>
-        <h3><?= $totalProperties ?></h3>
-        <p>Total Properties</p>
-    </div>
-
-    <div class="stat-card available">
-        <i class="fas fa-circle-check"></i>
-        <h3><?= $availableProperties ?></h3>
-        <p>Available</p>
-    </div>
-
-    <div class="stat-card reserved">
-        <i class="fas fa-clock"></i>
-        <h3><?= $reservedProperties ?></h3>
-        <p>Reserved</p>
-    </div>
-
-    <div class="stat-card sold">
-        <i class="fas fa-circle-xmark"></i>
-        <h3><?= $soldProperties ?></h3>
-        <p>Sold</p>
-    </div>
-
-</div>
-<div class="search-bar">
-
-    <form method="GET">
-
-        <input
-            type="text"
-            name="search"
-            placeholder="Search by title, location, type or status..."
-            value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-
-        <select name="status">
-
-            <option value="">All Status</option>
-
-            <option value="Available"
-                <?= (($_GET['status'] ?? '') == 'Available') ? 'selected' : '' ?>>
-                Available
-            </option>
-
-            <option value="Reserved"
-                <?= (($_GET['status'] ?? '') == 'Reserved') ? 'selected' : '' ?>>
-                Reserved
-            </option>
-
-            <option value="Sold"
-                <?= (($_GET['status'] ?? '') == 'Sold') ? 'selected' : '' ?>>
-                Sold
-            </option>
-
-        </select>
-
-        <select name="type">
-
-            <option value="">All Types</option>
-
-            <option value="House & Lot"
-                <?= (($_GET['type'] ?? '') == 'House & Lot') ? 'selected' : '' ?>>
-                House & Lot
-            </option>
-
-            <option value="Townhouse"
-                <?= (($_GET['type'] ?? '') == 'Townhouse') ? 'selected' : '' ?>>
-                Townhouse
-            </option>
-
-            <option value="Residential Lot"
-                <?= (($_GET['type'] ?? '') == 'Residential Lot') ? 'selected' : '' ?>>
-                Residential Lot
-            </option>
-
-            <option value="Commercial Lot"
-                <?= (($_GET['type'] ?? '') == 'Commercial Lot') ? 'selected' : '' ?>>
-                Commercial Lot
-            </option>
-
-            <option value="Agricultural Land"
-                <?= (($_GET['type'] ?? '') == 'Agricultural Land') ? 'selected' : '' ?>>
-                Agricultural Land
-            </option>
-
-            <option value="Condominium"
-                <?= (($_GET['type'] ?? '') == 'Condominium') ? 'selected' : '' ?>>
-                Condominium
-            </option>
-
-            <option value="Office Space"
-                <?= (($_GET['type'] ?? '') == 'Office Space') ? 'selected' : '' ?>>
-                Office Space
-            </option>
-
-            <option value="Warehouse"
-                <?= (($_GET['type'] ?? '') == 'Warehouse') ? 'selected' : '' ?>>
-                Warehouse
-            </option>
-
-        </select>
-
-        <button type="submit" class="btn btn-primary">
-
-            <i class="fas fa-search"></i>
-
-            Search
-
-        </button>
-
-        <?php if (
-            !empty($_GET['search']) ||
-            !empty($_GET['status']) ||
-            !empty($_GET['type'])
-        ): ?>
-
-            <a href="manage-properties.php" class="btn btn-secondary">
-
-                <i class="fas fa-times"></i>
-
-                Clear
-
-            </a>
-
-        <?php endif; ?>
-
-    </form>
-
-</div>
-
-
-    <div class="property-list">
-
-<?php
-
-if($result->num_rows > 0){
-
-    while($row = $result->fetch_assoc()){
-
-?>
-
-<div class="property-card-admin">
-
-    <div class="property-image">
-
-        <?php if(!empty($row['cover_image'])){ ?>
-
-            <img
-                src="<?php echo htmlspecialchars($row['cover_image']); ?>"
-                alt="Property">
-
-        <?php }else{ ?>
-
-            <img
-                src="images/headerlogo.jpg"
-                alt="No Image">
-
-        <?php } ?>
-
-    </div>
-
-    <div class="property-details">
-
-        <h3>
-            <?php echo htmlspecialchars($row['title']); ?>
-        </h3>
-
-        <p>
-
-            <i class="fas fa-location-dot"></i>
-
-            <?php echo htmlspecialchars($row['location']); ?>
-
-        </p>
-
-        <p>
-
-            <strong>Type:</strong>
-
-            <?php echo htmlspecialchars($row['property_type']); ?>
-
-        </p>
-
-        <p>
-
-            <strong>Price:</strong>
-
-            <?php echo htmlspecialchars($row['price']); ?>
-
-        </p>
-
-        <p>
-
-            <strong>Status:</strong>
-
-            <span class="status">
-
-                <?php echo htmlspecialchars($row['status']); ?>
-
-            </span>
-
-        </p>
-
-        <div class="property-actions">
-
-            <a
-                href="edit-property.php?id=<?php echo $row['id']; ?>"
-                class="btn btn-primary">
-
-                <i class="fas fa-pen"></i>
-
-                Edit
-
-            </a>
-
-           <a
-    href="delete-property.php?id=<?php echo $row['id']; ?>"
-    class="btn btn-danger"
-    onclick="return confirm('Are you sure you want to permanently delete this property?\n\nThis will also delete:\n• Cover Image\n• Gallery Images\n• Property Details');">
-
-    <i class="fas fa-trash"></i>
-    Delete
-
-</a>
+            Property deleted successfully.
 
         </div>
 
-    </div>
+    <?php } ?>
 
-</div>
+    <section class="dashboard">
 
-<?php
+        <div class="dashboard-title">
 
-    }
+            <h2>
 
-}else{
+                <i class="fas fa-house"></i>
 
-?>
+                Property Management
 
-<div class="empty-state">
+            </h2>
 
-    <i class="fas fa-house-circle-xmark"></i>
+            <a href="add-property.php" class="add-btn">
 
-    <h2>No Properties Yet</h2>
+                <i class="fas fa-plus"></i>
 
-    <p>Click "Add Property" to create your first listing.</p>
+                Add Property
 
-</div>
+            </a>
 
-<?php
-}
-?>
+        </div>
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <i class="fas fa-house"></i>
+                <h3><?= $totalProperties ?></h3>
+                <p>Total Properties</p>
+            </div>
+
+            <div class="stat-card available">
+                <i class="fas fa-circle-check"></i>
+                <h3><?= $availableProperties ?></h3>
+                <p>Available</p>
+            </div>
+
+            <div class="stat-card reserved">
+                <i class="fas fa-clock"></i>
+                <h3><?= $reservedProperties ?></h3>
+                <p>Reserved</p>
+            </div>
+
+            <div class="stat-card sold">
+                <i class="fas fa-circle-xmark"></i>
+                <h3><?= $soldProperties ?></h3>
+                <p>Sold</p>
+            </div>
+
+        </div>
+        <div class="search-bar">
+
+            <form method="GET">
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search by title, location, type or status..."
+                    value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+
+                <select name="status">
+
+                    <option value="">All Status</option>
+
+                    <option value="Available"
+                        <?= (($_GET['status'] ?? '') == 'Available') ? 'selected' : '' ?>>
+                        Available
+                    </option>
+
+                    <option value="Reserved"
+                        <?= (($_GET['status'] ?? '') == 'Reserved') ? 'selected' : '' ?>>
+                        Reserved
+                    </option>
+
+                    <option value="Sold"
+                        <?= (($_GET['status'] ?? '') == 'Sold') ? 'selected' : '' ?>>
+                        Sold
+                    </option>
+
+                </select>
+
+                <select name="type">
+
+                    <option value="">All Types</option>
+
+                    <option value="House & Lot"
+                        <?= (($_GET['type'] ?? '') == 'House & Lot') ? 'selected' : '' ?>>
+                        House & Lot
+                    </option>
+
+                    <option value="Townhouse"
+                        <?= (($_GET['type'] ?? '') == 'Townhouse') ? 'selected' : '' ?>>
+                        Townhouse
+                    </option>
+
+                    <option value="Residential Lot"
+                        <?= (($_GET['type'] ?? '') == 'Residential Lot') ? 'selected' : '' ?>>
+                        Residential Lot
+                    </option>
+
+                    <option value="Commercial Lot"
+                        <?= (($_GET['type'] ?? '') == 'Commercial Lot') ? 'selected' : '' ?>>
+                        Commercial Lot
+                    </option>
+
+                    <option value="Agricultural Land"
+                        <?= (($_GET['type'] ?? '') == 'Agricultural Land') ? 'selected' : '' ?>>
+                        Agricultural Land
+                    </option>
+
+                    <option value="Condominium"
+                        <?= (($_GET['type'] ?? '') == 'Condominium') ? 'selected' : '' ?>>
+                        Condominium
+                    </option>
+
+                    <option value="Office Space"
+                        <?= (($_GET['type'] ?? '') == 'Office Space') ? 'selected' : '' ?>>
+                        Office Space
+                    </option>
+
+                    <option value="Warehouse"
+                        <?= (($_GET['type'] ?? '') == 'Warehouse') ? 'selected' : '' ?>>
+                        Warehouse
+                    </option>
+
+                </select>
+
+                <button type="submit" class="btn btn-primary">
+
+                    <i class="fas fa-search"></i>
+
+                    Search
+
+                </button>
+
+                <?php if (
+                    !empty($_GET['search']) ||
+                    !empty($_GET['status']) ||
+                    !empty($_GET['type'])
+                ): ?>
+
+                    <a href="manage-properties.php" class="btn btn-secondary">
+
+                        <i class="fas fa-times"></i>
+
+                        Clear
+
+                    </a>
+
+                <?php endif; ?>
+
+            </form>
+
+        </div>
+
+
+        <div class="property-list">
+
+            <?php
+
+            if ($result->num_rows > 0) {
+
+                while ($row = $result->fetch_assoc()) {
+
+            ?>
+
+                    <div class="property-card-admin">
+
+                        <div class="property-image">
+
+                            <?php if (!empty($row['cover_image'])) { ?>
+
+                                <img
+                                    src="<?php echo htmlspecialchars($row['cover_image']); ?>"
+                                    alt="Property">
+
+                            <?php } else { ?>
+
+                                <img
+                                    src="images/headerlogo.jpg"
+                                    alt="No Image">
+
+                            <?php } ?>
+
+                        </div>
+
+                        <div class="property-details">
+
+                            <h3>
+                                <?php echo htmlspecialchars($row['title']); ?>
+                            </h3>
+
+                            <p>
+
+                                <i class="fas fa-location-dot"></i>
+
+                                <?php echo htmlspecialchars($row['location']); ?>
+
+                            </p>
+
+                            <p>
+
+                                <strong>Type:</strong>
+
+                                <?php echo htmlspecialchars($row['property_type']); ?>
+
+                            </p>
+
+                            <strong>Price:</strong>
+                            ₱<?= number_format($row['price'], 2) ?>
+
+                            <?php if ($row['price_option'] == 'Negotiable'): ?>
+                                <span class="price-option">(Negotiable)</span>
+
+                            <?php elseif ($row['price_option'] == 'Non-negotiable'): ?>
+                                <span class="price-option">(Non-negotiable)</span>
+                            <?php endif; ?>
+
+                            <p>
+
+                                <strong>Status:</strong>
+
+                                <span class="status">
+
+                                    <?php echo htmlspecialchars($row['status']); ?>
+
+                                </span>
+
+                            </p>
+
+                            <div class="property-actions">
+
+                                <a
+                                    href="edit-property.php?id=<?php echo $row['id']; ?>"
+                                    class="btn btn-primary">
+
+                                    <i class="fas fa-pen"></i>
+
+                                    Edit
+
+                                </a>
+
+                                <a
+                                    href="delete-property.php?id=<?php echo $row['id']; ?>"
+                                    class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to permanently delete this property?\n\nThis will also delete:\n• Cover Image\n• Gallery Images\n• Property Details');">
+
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <?php
+
+                }
+            } else {
+
+                ?>
+
+                <div class="empty-state">
+
+                    <i class="fas fa-house-circle-xmark"></i>
+
+                    <h2>No Properties Yet</h2>
+
+                    <p>Click "Add Property" to create your first listing.</p>
+
+                </div>
+
+            <?php
+            }
+            ?>
 
 
 
-<?php if ($totalPages > 1): ?>
+            <?php if ($totalPages > 1): ?>
 
-<div class="pagination">
+                <div class="pagination">
 
-    <?php if ($page > 1): ?>
-        <a href="?page=<?= $page-1 ?>&search=<?= urlencode($search) ?>&status=<?= urlencode($status) ?>&type=<?= urlencode($type) ?>">
-            &laquo; Previous
-        </a>
-    <?php endif; ?>
+                    <?php if ($page > 1): ?>
+                        <a href="?page=<?= $page - 1 ?>&search=<?= urlencode($search) ?>&status=<?= urlencode($status) ?>&type=<?= urlencode($type) ?>">
+                            &laquo; Previous
+                        </a>
+                    <?php endif; ?>
 
-    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
 
-        <a
-            href="?page=<?= $i ?>&search=<?= urlencode($search) ?>&status=<?= urlencode($status) ?>&type=<?= urlencode($type) ?>"
-            class="<?= ($i == $page) ? 'active' : '' ?>">
+                        <a
+                            href="?page=<?= $i ?>&search=<?= urlencode($search) ?>&status=<?= urlencode($status) ?>&type=<?= urlencode($type) ?>"
+                            class="<?= ($i == $page) ? 'active' : '' ?>">
 
-            <?= $i ?>
+                            <?= $i ?>
 
-        </a>
+                        </a>
 
-    <?php endfor; ?>
+                    <?php endfor; ?>
 
-    <?php if ($page < $totalPages): ?>
+                    <?php if ($page < $totalPages): ?>
 
-        <a href="?page=<?= $page+1 ?>&search=<?= urlencode($search) ?>&status=<?= urlencode($status) ?>&type=<?= urlencode($type) ?>">
-            Next &raquo;
-        </a>
+                        <a href="?page=<?= $page + 1 ?>&search=<?= urlencode($search) ?>&status=<?= urlencode($status) ?>&type=<?= urlencode($type) ?>">
+                            Next &raquo;
+                        </a>
 
-    <?php endif; ?>
+                    <?php endif; ?>
 
-</div>
+                </div>
 
-<?php endif; ?>
-    </div>
-</section>
+            <?php endif; ?>
+        </div>
+    </section>
 
 </body>
 

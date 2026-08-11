@@ -155,7 +155,7 @@ WHERE id=?
 ");
 
 $stmt->bind_param(
-    "sssssiissssssssssi"
+    "sssssiissssssssssi",
     $title,
     $property_type,
     $location,

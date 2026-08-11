@@ -208,19 +208,19 @@ include "includes/db_connect.php";
       </div>
 
       <div class="team-card">
-        <img src="images/agent.jpg" alt="Sales Consultant" />
+        <img src="images/agent.jpg" alt="Real Estate Salesperson" />
 
-        <h3>John Cruz</h3>
+        <h3>Rose Windel B. Verra</h3>
 
-        <p>Property Sales Consultant</p>
+        <p>Real Estate Salesperson</p>
       </div>
 
       <div class="team-card">
-        <img src="images/agent.jpg" alt="Marketing Officer" />
+        <img src="images/agent.jpg" alt="Real Estate Salesperson" />
 
-        <h3>Angela Reyes</h3>
+        <h3>Marc Jundel B. Verra</h3>
 
-        <p>Marketing Officer</p>
+        <p>Real Estate Salesperson</p>
       </div>
     </div>
   </section>

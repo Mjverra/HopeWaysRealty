@@ -82,7 +82,7 @@ $sql->close();
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Edit Property | HopeWays Realty</title>
+    <title>Edit Property || HopeWays Realty</title>
 
     <link rel="stylesheet" href="../css/messages.css">
     <link rel="stylesheet" href="../css/admin.css">

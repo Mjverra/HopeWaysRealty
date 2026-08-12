@@ -94,7 +94,7 @@ $sql->close();
 
 <body>
 
-    <?php include "admin-header.php"; ?>
+
 
     <div class="admin-container">
 

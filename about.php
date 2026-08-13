@@ -200,7 +200,7 @@ include "includes/db_connect.php";
 
     <div class="team-container">
       <div class="team-card">
-        <img src="images/agent.jpg" alt="Broker" />
+        <img src="../images/hero/DH.jpg" alt="Broker" />
 
         <h3>Doris Hope Maruya, REA, REB</h3>
 
